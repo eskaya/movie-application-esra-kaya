@@ -7,7 +7,7 @@ import com.example.movie_application_esra_kaya.data.remote.dto.MovieItem
 import com.example.movie_application_esra_kaya.databinding.ListItemPopularMovieBinding
 
 class PopularMovieListAdapter(
-    val data: ArrayList<MovieItem>
+    val data: List<MovieItem>
 ) : RecyclerView.Adapter<PopularMovieListHistoryViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -28,10 +28,11 @@ class PopularMovieListAdapter(
 
 class PopularMovieListHistoryViewHolder(
     private val binding: ListItemPopularMovieBinding,
-    private val data: ArrayList<MovieItem>
+    private val data: List<MovieItem>
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: MovieItem) {
+        binding.tvMovieName.text = item.title
     }
 
 

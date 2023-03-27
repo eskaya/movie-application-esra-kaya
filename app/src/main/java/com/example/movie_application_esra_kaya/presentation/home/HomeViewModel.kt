@@ -4,42 +4,54 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movie_application_esra_kaya.data.remote.dto.MovieListDto
 import com.example.movie_application_esra_kaya.domain.use_case.GetPopularMovieListUseCase
 import com.example.movie_application_esra_kaya.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getPopularMovielistUseCase: GetPopularMovieListUseCase
+    private val getBankAccountsUseCase: GetPopularMovieListUseCase
 ) : ViewModel() {
-
-    private val _state = mutableStateOf(MovieListState())
-    val state: State<MovieListState> = _state
+    private val _state = MutableStateFlow<BankAccountsViewState>(BankAccountsViewState.Init)
+    fun getViewState(): StateFlow<BankAccountsViewState> = _state.asStateFlow()
 
     init {
-        getCoins()
+        getBankAccounts()
     }
 
-    private fun getCoins() {
-        getPopularMovielistUseCase().onEach { result ->
-            when (result) {
-                is Resource.Success -> {
-                    _state.value = MovieListState(movies = result.data ?: emptyList())
-                }
+    private fun setLoadingState(isLoading: Boolean) {
+        _state.value = BankAccountsViewState.IsLoading(isLoading)
+    }
+
+    private fun getBankAccounts() {
+        getBankAccountsUseCase.invoke().onEach {
+            when (it) {
                 is Resource.Error -> {
-                    _state.value = MovieListState(
-                        error = result.message ?: "An unexpected error occured"
-                    )
+                    setLoadingState(false)
+                    _state.value = BankAccountsViewState.Error(it.message as Any)
                 }
                 is Resource.Loading -> {
-                    _state.value = MovieListState(isLoading = true)
+                    setLoadingState(true)
+                }
+                is Resource.Success -> {
+                    setLoadingState(false)
+                    _state.value = BankAccountsViewState.Success(it.data)
                 }
             }
+
         }.launchIn(viewModelScope)
     }
+
+    sealed class BankAccountsViewState {
+        object Init : BankAccountsViewState()
+        data class Success(val data: MovieListDto?) : BankAccountsViewState()
+        data class IsLoading(val isLoading: Boolean) : BankAccountsViewState()
+        data class Error(val error: Any) : BankAccountsViewState()
+    }
+
 }
 
 
