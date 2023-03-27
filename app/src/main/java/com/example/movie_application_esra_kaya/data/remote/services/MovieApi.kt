@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface MovieApi {
 
-    @GET("movie/popular ")
-    suspend fun getMovieList(): List<MovieListDto>
+    @GET("movie/popular?api_key=46d0b7df20b6dca0b123566e3d926b4b")
+    suspend fun getMovieList(): MovieListDto
 
 }

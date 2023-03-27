@@ -10,17 +10,19 @@ import javax.inject.Inject
 import com.example.movie_application_esra_kaya.utils.Resource
 
 class GetPopularMovieListUseCase @Inject constructor(
-private val repository: MovieRepository
+    private val repository: MovieRepository
 ) {
-    operator fun invoke(): Flow<Resource<List<MovieListDto>>> = flow {
+    operator fun invoke(): Flow<Resource<MovieListDto>> = flow {
         try {
-            emit(Resource.Loading<List<MovieListDto>>())
+            emit(Resource.Loading())
             val coins = repository.getMovieList()
-            emit(Resource.Success<List<MovieListDto>>(coins))
-        } catch(e: HttpException) {
-            emit(Resource.Error<List<MovieListDto>>(e.localizedMessage ?: "An unexpected error occured"))
-        } catch(e: IOException) {
-            emit(Resource.Error<List<MovieListDto>>("Couldn't reach server. Check your internet connection."))
+            emit(Resource.Success(data = coins))
+        } catch (e: HttpException) {
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))
+        } catch (e: IOException) {
+            emit(Resource.Error("Couldn't reach server. Check your internet connection."))
         }
     }
+
+
 }

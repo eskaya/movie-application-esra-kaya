@@ -7,7 +7,7 @@ class MovieRepositoryImpl @Inject constructor(
     private val api: MovieApi
 ) : MovieRepository {
 
-    override suspend fun getMovieList(): List<MovieListDto> {
+    override suspend fun getMovieList(): MovieListDto {
         return api.getMovieList()
     }
 

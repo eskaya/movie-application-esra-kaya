@@ -4,5 +4,5 @@ import com.example.movie_application_esra_kaya.data.remote.dto.MovieListDto
 
 interface MovieRepository {
 
-    suspend fun getMovieList(): List<MovieListDto>
+    suspend fun getMovieList(): MovieListDto
 }
