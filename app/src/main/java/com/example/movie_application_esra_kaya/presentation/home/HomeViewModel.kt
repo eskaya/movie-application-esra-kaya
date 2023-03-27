@@ -13,43 +13,43 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getBankAccountsUseCase: GetPopularMovieListUseCase
+    private val getPopularMovieListUseCase: GetPopularMovieListUseCase
 ) : ViewModel() {
-    private val _state = MutableStateFlow<BankAccountsViewState>(BankAccountsViewState.Init)
-    fun getViewState(): StateFlow<BankAccountsViewState> = _state.asStateFlow()
+    private val _state = MutableStateFlow<PopularMovieListViewState>(PopularMovieListViewState.Init)
+    fun getViewState(): StateFlow<PopularMovieListViewState> = _state.asStateFlow()
 
     init {
-        getBankAccounts()
+        getPopularMovieList()
     }
 
     private fun setLoadingState(isLoading: Boolean) {
-        _state.value = BankAccountsViewState.IsLoading(isLoading)
+        _state.value = PopularMovieListViewState.IsLoading(isLoading)
     }
 
-    private fun getBankAccounts() {
-        getBankAccountsUseCase.invoke().onEach {
+    private fun getPopularMovieList() {
+        getPopularMovieListUseCase.invoke().onEach {
             when (it) {
                 is Resource.Error -> {
                     setLoadingState(false)
-                    _state.value = BankAccountsViewState.Error(it.message as Any)
+                    _state.value = PopularMovieListViewState.Error(it.message as Any)
                 }
                 is Resource.Loading -> {
                     setLoadingState(true)
                 }
                 is Resource.Success -> {
                     setLoadingState(false)
-                    _state.value = BankAccountsViewState.Success(it.data)
+                    _state.value = PopularMovieListViewState.Success(it.data)
                 }
             }
 
         }.launchIn(viewModelScope)
     }
 
-    sealed class BankAccountsViewState {
-        object Init : BankAccountsViewState()
-        data class Success(val data: MovieListDto?) : BankAccountsViewState()
-        data class IsLoading(val isLoading: Boolean) : BankAccountsViewState()
-        data class Error(val error: Any) : BankAccountsViewState()
+    sealed class PopularMovieListViewState {
+        object Init : PopularMovieListViewState()
+        data class Success(val data: MovieListDto?) : PopularMovieListViewState()
+        data class IsLoading(val isLoading: Boolean) : PopularMovieListViewState()
+        data class Error(val error: Any) : PopularMovieListViewState()
     }
 
 }

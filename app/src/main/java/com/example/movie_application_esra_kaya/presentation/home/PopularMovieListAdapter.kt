@@ -3,6 +3,7 @@ package com.example.movie_application_esra_kaya.presentation.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.movie_application_esra_kaya.data.remote.dto.MovieItem
 import com.example.movie_application_esra_kaya.databinding.ListItemPopularMovieBinding
 
@@ -32,7 +33,13 @@ class PopularMovieListHistoryViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: MovieItem) {
-        binding.tvMovieName.text = item.title
+        binding.tvTitle.text = item.title
+        binding.tvContent.text = item.overview
+        binding.tvPopularity.text = item.popularity.toString()
+        //  binding.tvImdb.text = item.
+        Glide.with(binding.root.context)
+            .load(item.poster_path)
+            .into(binding.ivMovie)
     }
 
 

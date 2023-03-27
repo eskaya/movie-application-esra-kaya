@@ -12,7 +12,6 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide.init
 import com.example.movie_application_esra_kaya.data.remote.dto.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentMovieListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +25,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentMovieListBinding
     private val viewModel: HomeViewModel by viewModels()
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private lateinit var bankAccountsAdapter: PopularMovieListAdapter
+    private lateinit var popularMovieListAdapter: PopularMovieListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,12 +61,12 @@ class HomeFragment : Fragment() {
             .launchIn(lifecycleScope)
     }
 
-    private fun handleStateChange(state: HomeViewModel.BankAccountsViewState) {
+    private fun handleStateChange(state: HomeViewModel.PopularMovieListViewState) {
         when (state) {
-            HomeViewModel.BankAccountsViewState.Init -> Unit
-            is HomeViewModel.BankAccountsViewState.Error -> handleError(state.error)
-            is HomeViewModel.BankAccountsViewState.IsLoading -> handleLoading(state.isLoading)
-            is HomeViewModel.BankAccountsViewState.Success -> state.data?.let {
+            HomeViewModel.PopularMovieListViewState.Init -> Unit
+            is HomeViewModel.PopularMovieListViewState.Error -> handleError(state.error)
+            is HomeViewModel.PopularMovieListViewState.IsLoading -> handleLoading(state.isLoading)
+            is HomeViewModel.PopularMovieListViewState.Success -> state.data?.let {
                 handleSuccess(
                     it.results as List<MovieItem>
                 )
@@ -81,8 +80,8 @@ class HomeFragment : Fragment() {
 
     private fun handleSuccess(data: List<MovieItem>) {
         println(data)
-        bankAccountsAdapter = PopularMovieListAdapter(data)
-        binding.recyclerView.adapter = bankAccountsAdapter
+        popularMovieListAdapter = PopularMovieListAdapter(data)
+        binding.recyclerView.adapter = popularMovieListAdapter
     }
 
     private fun handleLoading(loading: Boolean) {
