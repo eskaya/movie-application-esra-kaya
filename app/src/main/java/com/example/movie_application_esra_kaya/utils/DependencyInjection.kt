@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,7 +20,14 @@ import javax.inject.Singleton
 object DependencyInjection {
 
     private val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-    private val okHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
+    private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(Interceptor { chain ->
+            val newRequest = chain.request().newBuilder()
+                .addHeader("api_key", Constants.API_KEY)
+                .build()
+            chain.proceed(newRequest)
+        })
+        .addInterceptor(interceptor).build()
 
     @Provides
     @Singleton
@@ -27,6 +35,7 @@ object DependencyInjection {
      fun providePaprikaApi(): MovieApi {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(MovieApi::class.java)

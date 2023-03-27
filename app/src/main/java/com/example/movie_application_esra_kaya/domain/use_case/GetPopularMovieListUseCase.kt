@@ -9,7 +9,7 @@ import java.io.IOException
 import javax.inject.Inject
 import com.example.movie_application_esra_kaya.utils.Resource
 
-class GetMovieListUseCase @Inject constructor(
+class GetPopularMovieListUseCase @Inject constructor(
 private val repository: MovieRepository
 ) {
     operator fun invoke(): Flow<Resource<List<MovieListDto>>> = flow {
