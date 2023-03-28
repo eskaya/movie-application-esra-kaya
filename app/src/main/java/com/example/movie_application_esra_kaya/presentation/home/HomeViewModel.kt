@@ -1,10 +1,7 @@
 package com.example.movie_application_esra_kaya.presentation.home
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movie_application_esra_kaya.data.remote.dto.MovieListDto
 import com.example.movie_application_esra_kaya.domain.use_case.GetPopularMovieListUseCase
 import com.example.movie_application_esra_kaya.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +12,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getPopularMovieListUseCase: GetPopularMovieListUseCase
 ) : ViewModel() {
-    private val _state = MutableStateFlow<PopularMovieListViewState>(PopularMovieListViewState.Init)
+     val _state = MutableStateFlow<PopularMovieListViewState>(PopularMovieListViewState.Init)
     fun getViewState(): StateFlow<PopularMovieListViewState> = _state.asStateFlow()
 
     init {
@@ -44,14 +41,6 @@ class HomeViewModel @Inject constructor(
 
         }.launchIn(viewModelScope)
     }
-
-    sealed class PopularMovieListViewState {
-        object Init : PopularMovieListViewState()
-        data class Success(val data: MovieListDto?) : PopularMovieListViewState()
-        data class IsLoading(val isLoading: Boolean) : PopularMovieListViewState()
-        data class Error(val error: Any) : PopularMovieListViewState()
-    }
-
 }
 
 

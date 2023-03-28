@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.compose.runtime.snapshots.Snapshot.Companion.observe
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide.init
 import com.example.movie_application_esra_kaya.data.remote.dto.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentMovieListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,6 +49,11 @@ class HomeFragment : Fragment() {
          */
         init()
         setUpObservers()
+        /*
+        viewModel._state.observe(viewLifecycleOwner) { viewState ->
+            updateUI(viewState)
+        }
+         */
         return binding.root
     }
 
@@ -61,12 +68,12 @@ class HomeFragment : Fragment() {
             .launchIn(lifecycleScope)
     }
 
-    private fun handleStateChange(state: HomeViewModel.PopularMovieListViewState) {
+    private fun handleStateChange(state: PopularMovieListViewState) {
         when (state) {
-            HomeViewModel.PopularMovieListViewState.Init -> Unit
-            is HomeViewModel.PopularMovieListViewState.Error -> handleError(state.error)
-            is HomeViewModel.PopularMovieListViewState.IsLoading -> handleLoading(state.isLoading)
-            is HomeViewModel.PopularMovieListViewState.Success -> state.data?.let {
+            PopularMovieListViewState.Init -> Unit
+            is PopularMovieListViewState.Error -> handleError(state.error)
+            is PopularMovieListViewState.IsLoading -> handleLoading(state.isLoading)
+            is PopularMovieListViewState.Success -> state.data?.let {
                 handleSuccess(
                     it.results as List<MovieItem>
                 )

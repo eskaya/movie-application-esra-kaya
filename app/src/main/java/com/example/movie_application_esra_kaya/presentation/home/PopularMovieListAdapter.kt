@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movie_application_esra_kaya.data.remote.dto.MovieItem
 import com.example.movie_application_esra_kaya.databinding.ListItemPopularMovieBinding
+import com.example.movie_application_esra_kaya.utils.Constants
 
 class PopularMovieListAdapter(
     val data: List<MovieItem>
@@ -35,12 +36,11 @@ class PopularMovieListHistoryViewHolder(
     fun bind(item: MovieItem) {
         binding.tvTitle.text = item.title
         binding.tvContent.text = item.overview
-        binding.tvPopularity.text = item.popularity.toString()
+        binding.tvPopularity.text = item.popularity.toString() + " popularity"
         //  binding.tvImdb.text = item.
         Glide.with(binding.root.context)
-            .load(item.poster_path)
+            .load(Constants.POSTER_PATH + item.poster_path)
             .into(binding.ivMovie)
     }
-
 
 }
