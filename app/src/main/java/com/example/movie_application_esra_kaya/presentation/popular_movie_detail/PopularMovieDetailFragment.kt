@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_application_esra_kaya.databinding.FragmentPopularMovieDetailBinding
 import com.example.movie_application_esra_kaya.utils.Constants
 
@@ -13,6 +15,8 @@ import com.example.movie_application_esra_kaya.utils.Constants
 class PopularMovieDetailFragment : Fragment() {
     private lateinit var binding: FragmentPopularMovieDetailBinding
     private var movieId: Int? = null
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private lateinit var genresAdapter: GenresAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +32,8 @@ class PopularMovieDetailFragment : Fragment() {
     }
 
     private fun init() {
+        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        binding.recyclerView.layoutManager = layoutManager
         if (movieId != null) {
             Toast.makeText(context, "movieId: ${movieId.toString()}", Toast.LENGTH_SHORT).show()
         }
@@ -37,6 +43,11 @@ class PopularMovieDetailFragment : Fragment() {
         binding.ivClose.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+    }
+
+    private fun setupRecyclerView(){
+       // genresAdapter = GenresAdapter()
+        binding.recyclerView.adapter = genresAdapter
     }
 
     companion object {
