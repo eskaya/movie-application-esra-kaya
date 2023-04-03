@@ -1,5 +1,7 @@
 package com.example.movie_application_esra_kaya.presentation.home
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movie_application_esra_kaya.domain.use_case.GetPopularMovieListUseCase
@@ -12,8 +14,10 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getPopularMovieListUseCase: GetPopularMovieListUseCase
 ) : ViewModel() {
-     val _state = MutableStateFlow<PopularMovieListViewState>(PopularMovieListViewState.Init)
-    fun getViewState(): StateFlow<PopularMovieListViewState> = _state.asStateFlow()
+
+
+    private val _state = MutableLiveData<PopularMovieListViewState>(PopularMovieListViewState.Init)
+    val getViewState: LiveData<PopularMovieListViewState> get() = _state
 
     init {
         getPopularMovieList()
