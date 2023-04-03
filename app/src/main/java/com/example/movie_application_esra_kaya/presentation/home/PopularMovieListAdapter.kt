@@ -47,7 +47,6 @@ class PopularMovieListHistoryViewHolder(
         binding.tvTitle.text = item.title
         binding.tvContent.text = item.overview
         binding.tvPopularity.text = item.popularity.toString() + " popularity"
-        //  binding.tvImdb.text = item.
         Glide.with(binding.root.context)
             .load(Constants.POSTER_PATH + item.posterPath)
             .into(binding.ivMovie)

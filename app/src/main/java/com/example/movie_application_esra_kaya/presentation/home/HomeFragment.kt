@@ -1,16 +1,20 @@
 package com.example.movie_application_esra_kaya.presentation.home
 
 import android.os.Bundle
+import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.request.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentMovieListBinding
+import com.example.movie_application_esra_kaya.presentation.popular_movie_detail.PopularMovieDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -57,7 +61,8 @@ class HomeFragment : Fragment() {
         popularMovieListAdapter = PopularMovieListAdapter(data,
             object : PopularMovieAdapterListener {
                 override fun onClickedItem(movieId: Int) {
-                    Toast.makeText(context, movieId.toString(), Toast.LENGTH_SHORT).show()
+                    //  Toast.makeText(context, movieId.toString(), Toast.LENGTH_SHORT).show()
+                    navigationMovieDetailPage(movieId)
                 }
 
             })
@@ -71,6 +76,15 @@ class HomeFragment : Fragment() {
 
     private fun handleError(error: Any) {
         Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun navigationMovieDetailPage(movieId: Int) {
+        val fragment = PopularMovieDetailFragment.newInstance(movieId)
+        parentFragmentManager.commit {
+            replace(R.id.frameLayout, fragment)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
     }
 
 }

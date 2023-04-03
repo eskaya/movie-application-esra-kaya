@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         val fragment = HomeFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, fragment)
-        transaction.addToBackStack(null)
         transaction.commit()
     }
 }
