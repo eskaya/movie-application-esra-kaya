@@ -23,12 +23,19 @@ class PopularMovieDetailFragment : Fragment() {
             movieId = it.getInt(Constants.MOVIE_ID)
         }
         init()
+        listener()
         return binding.root
     }
 
     private fun init() {
         if (movieId != null) {
             Toast.makeText(context, "movieId: ${movieId.toString()}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun listener() {
+        binding.ivClose.setOnClickListener {
+            parentFragmentManager.popBackStack()
         }
     }
 
