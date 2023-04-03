@@ -1,0 +1,10 @@
+package com.example.movie_application_esra_kaya.presentation.popular_movie_detail
+
+import com.example.movie_application_esra_kaya.data.remote.models.request.MovieDetailDto
+
+sealed class MovieDetailViewState {
+    object Init : MovieDetailViewState()
+    data class Success(val data: MovieDetailDto?) : MovieDetailViewState()
+    data class IsLoading(val isLoading: Boolean) : MovieDetailViewState()
+    data class Error(val error: Any) : MovieDetailViewState()
+}
