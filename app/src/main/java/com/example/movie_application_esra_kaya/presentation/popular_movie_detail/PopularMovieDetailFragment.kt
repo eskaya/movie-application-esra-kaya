@@ -1,12 +1,16 @@
 package com.example.movie_application_esra_kaya.presentation.popular_movie_detail
 
+import android.icu.text.MessagePattern.ArgType
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.lifecycle.DEFAULT_ARGS_KEY
 import com.example.movie_application_esra_kaya.databinding.FragmentPopularMovieDetailBinding
+import com.example.movie_application_esra_kaya.utils.Constants
 
 
 class PopularMovieDetailFragment : Fragment() {
@@ -19,7 +23,7 @@ class PopularMovieDetailFragment : Fragment() {
     ): View {
         binding = FragmentPopularMovieDetailBinding.inflate(layoutInflater)
         arguments?.let {
-            movieId = it.getInt(movieId.toString())
+            movieId = it.getInt(Constants.MOVIE_ID)
         }
         init()
         return binding.root
@@ -27,7 +31,7 @@ class PopularMovieDetailFragment : Fragment() {
 
     private fun init() {
         if (movieId != null) {
-            Toast.makeText(context, "movieId: $movieId", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "movieId: ${movieId.toString()}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -35,8 +39,9 @@ class PopularMovieDetailFragment : Fragment() {
         fun newInstance(movieId: Int) =
             PopularMovieDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(movieId.toString(), null)
+                    putInt(Constants.MOVIE_ID, movieId)
                 }
             }
+
     }
 }

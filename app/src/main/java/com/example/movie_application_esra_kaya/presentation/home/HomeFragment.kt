@@ -61,7 +61,6 @@ class HomeFragment : Fragment() {
         popularMovieListAdapter = PopularMovieListAdapter(data,
             object : PopularMovieAdapterListener {
                 override fun onClickedItem(movieId: Int) {
-                    //  Toast.makeText(context, movieId.toString(), Toast.LENGTH_SHORT).show()
                     navigationMovieDetailPage(movieId)
                 }
 
@@ -80,11 +79,20 @@ class HomeFragment : Fragment() {
 
     private fun navigationMovieDetailPage(movieId: Int) {
         val fragment = PopularMovieDetailFragment.newInstance(movieId)
+
         parentFragmentManager.commit {
             replace(R.id.frameLayout, fragment)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
+
+
+        /*
+        val transaction = parentFragmentManager.beginTransaction()
+        transaction.replace(R.id.frameLayout, fragment)
+        transaction.commit()
+
+         */
     }
 
 }
