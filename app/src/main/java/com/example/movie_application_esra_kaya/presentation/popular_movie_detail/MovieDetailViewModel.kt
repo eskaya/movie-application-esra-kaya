@@ -23,7 +23,7 @@ class MovieDetailViewModel @Inject constructor(
         _state.value = MovieDetailViewState.IsLoading(isLoading)
     }
 
-    private fun getPopularMovieList(movie_id:Int) {
+    fun getMovieDetail(movie_id:Int) {
         movieDetailUseCase.invoke(movie_id).onEach {
             when (it) {
                 is Resource.Error -> {

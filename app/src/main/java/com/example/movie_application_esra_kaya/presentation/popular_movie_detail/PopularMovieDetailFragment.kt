@@ -6,8 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movie_application_esra_kaya.data.remote.models.request.Genre
+import com.example.movie_application_esra_kaya.data.remote.models.request.MovieDetailDto
 import com.example.movie_application_esra_kaya.databinding.FragmentPopularMovieDetailBinding
 import com.example.movie_application_esra_kaya.utils.Constants
 
@@ -17,6 +22,7 @@ class PopularMovieDetailFragment : Fragment() {
     private var movieId: Int? = null
     private var layoutManager: RecyclerView.LayoutManager? = null
     private lateinit var genresAdapter: GenresAdapter
+    private val viewModel: MovieDetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +32,10 @@ class PopularMovieDetailFragment : Fragment() {
         arguments?.let {
             movieId = it.getInt(Constants.MOVIE_ID)
         }
+        if (movieId != null) {
+            viewModel.getMovieDetail(movieId!!.toInt())
+        }
+        setUpObservers()
         init()
         listener()
         return binding.root
@@ -34,8 +44,22 @@ class PopularMovieDetailFragment : Fragment() {
     private fun init() {
         layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
-        if (movieId != null) {
-            Toast.makeText(context, "movieId: ${movieId.toString()}", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setUpObservers() {
+        viewModel.getViewState.observe(
+            viewLifecycleOwner
+        ) { it ->
+            when (it) {
+                MovieDetailViewState.Init -> Unit
+                is MovieDetailViewState.Error -> handleError(it.error)
+                is MovieDetailViewState.IsLoading -> handleLoading(it.isLoading)
+                is MovieDetailViewState.Success -> it.data?.let {
+                    handleSuccess(
+                        it
+                    )
+                }
+            }
         }
     }
 
@@ -45,8 +69,31 @@ class PopularMovieDetailFragment : Fragment() {
         }
     }
 
-    private fun setupRecyclerView(){
-       // genresAdapter = GenresAdapter()
+    private fun handleSuccess(data: MovieDetailDto) {
+        binding.tvTitle.text = data.title
+        binding.tvOverview.text = data.overview
+        //TODO --> hatalı olabilir kontrol edilecek
+        binding.root.setBackgroundDrawable(context?.let {
+            ContextCompat.getDrawable(
+                it, (Constants.POSTER_PATH + data.backdropPath).toInt()
+            )
+        });
+
+        setupRecyclerView(data.genres as ArrayList<Genre>)
+    }
+
+
+    private fun handleLoading(loading: Boolean) {
+        binding.containerProgress.isVisible = loading
+    }
+
+    private fun handleError(error: Any) {
+        Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
+    }
+
+
+    private fun setupRecyclerView(data: ArrayList<Genre>) {
+        genresAdapter = GenresAdapter(data)
         binding.recyclerView.adapter = genresAdapter
     }
 

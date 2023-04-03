@@ -3,11 +3,11 @@ package com.example.movie_application_esra_kaya.presentation.popular_movie_detai
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movie_application_esra_kaya.data.remote.models.request.MovieItem
+import com.example.movie_application_esra_kaya.data.remote.models.request.Genre
 import com.example.movie_application_esra_kaya.databinding.ListItemGenresBinding
 
 class GenresAdapter(
-    val data: List<MovieItem>
+    val data: ArrayList<Genre>
 ) : RecyclerView.Adapter<GenresViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -30,7 +30,8 @@ class GenresViewHolder(
     private val binding: ListItemGenresBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: MovieItem) {
+    fun bind(item: Genre) {
+        binding.tvGenres.text = item.name
     }
 
 
