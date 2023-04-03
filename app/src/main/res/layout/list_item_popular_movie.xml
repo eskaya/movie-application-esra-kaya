@@ -84,7 +84,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         app:cardBackgroundColor="@color/charade"
         app:cardCornerRadius="20dp"
@@ -98,9 +98,9 @@
             android:fontFamily="@font/lato_regular"
             android:paddingHorizontal="12dp"
             android:paddingVertical="6dp"
-            tools:text="435"
             android:textColor="@color/white"
-            android:textSize="10dp" />
+            android:textSize="10dp"
+            tools:text="435" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -121,8 +121,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:src="@drawable/start_icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

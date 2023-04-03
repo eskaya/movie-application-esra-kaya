@@ -1,6 +1,7 @@
 package com.example.movie_application_esra_kaya.presentation.home
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -9,7 +10,8 @@ import com.example.movie_application_esra_kaya.databinding.ListItemPopularMovieB
 import com.example.movie_application_esra_kaya.utils.Constants
 
 class PopularMovieListAdapter(
-    val data: List<MovieItem>
+    val data: List<MovieItem>,
+    private val listener: PopularMovieAdapterListener
 ) : RecyclerView.Adapter<PopularMovieListHistoryViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -19,7 +21,7 @@ class PopularMovieListAdapter(
         val binding = ListItemPopularMovieBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return PopularMovieListHistoryViewHolder(binding, data)
+        return PopularMovieListHistoryViewHolder(binding, data, listener)
     }
 
     override fun onBindViewHolder(holder: PopularMovieListHistoryViewHolder, position: Int) =
@@ -30,10 +32,18 @@ class PopularMovieListAdapter(
 
 class PopularMovieListHistoryViewHolder(
     private val binding: ListItemPopularMovieBinding,
-    private val data: List<MovieItem>
-) : RecyclerView.ViewHolder(binding.root) {
+    private val data: List<MovieItem>,
+    private val listener: PopularMovieAdapterListener
+) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+
+    private lateinit var item: MovieItem
+
+    init {
+        binding.root.setOnClickListener(this)
+    }
 
     fun bind(item: MovieItem) {
+        this.item = item
         binding.tvTitle.text = item.title
         binding.tvContent.text = item.overview
         binding.tvPopularity.text = item.popularity.toString() + " popularity"
@@ -43,4 +53,12 @@ class PopularMovieListHistoryViewHolder(
             .into(binding.ivMovie)
     }
 
+    override fun onClick(v: View?) {
+        listener.onClickedItem(item.id)
+    }
+
+}
+
+interface PopularMovieAdapterListener {
+    fun onClickedItem(movieId: Int)
 }

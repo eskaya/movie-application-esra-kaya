@@ -31,14 +31,15 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun init(){
-            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-            binding.recyclerView.layoutManager = layoutManager
+    private fun init() {
+        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        binding.recyclerView.layoutManager = layoutManager
     }
+
     private fun setUpObservers() {
         viewModel.getViewState.observe(
             viewLifecycleOwner
-        ){ it ->
+        ) { it ->
             when (it) {
                 PopularMovieListViewState.Init -> Unit
                 is PopularMovieListViewState.Error -> handleError(it.error)
@@ -53,9 +54,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleSuccess(data: List<MovieItem>) {
-        popularMovieListAdapter = PopularMovieListAdapter(data)
+        popularMovieListAdapter = PopularMovieListAdapter(data,
+            object : PopularMovieAdapterListener {
+                override fun onClickedItem(movieId: Int) {
+                    Toast.makeText(context, movieId.toString(), Toast.LENGTH_SHORT).show()
+                }
+
+            })
         binding.recyclerView.adapter = popularMovieListAdapter
     }
+
 
     private fun handleLoading(loading: Boolean) {
 
