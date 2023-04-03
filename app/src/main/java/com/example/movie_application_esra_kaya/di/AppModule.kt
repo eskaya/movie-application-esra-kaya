@@ -30,11 +30,13 @@ object AppModule {
         })
         .addInterceptor(interceptor).build()
 
+    //TODO --> builde.gradle'a eklediğim değişkenler okunmuyor
     @Provides
     @Singleton
-     fun providePaprikaApi(): MovieApi {
+    fun providePaprikaApi(): MovieApi {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
+           // .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -46,6 +48,6 @@ object AppModule {
     fun provideMovieRepository(api: MovieApi): MovieRepository {
         return MovieRepositoryImpl(api)
     }
-    
+
 
 }
