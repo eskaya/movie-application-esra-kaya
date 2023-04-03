@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movie_application_esra_kaya.data.remote.dto.MovieItem
+import com.example.movie_application_esra_kaya.data.remote.models.request.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentMovieListBinding
 import dagger.hilt.android.AndroidEntryPoint
 

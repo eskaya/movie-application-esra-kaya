@@ -1,6 +1,6 @@
 package com.example.movie_application_esra_kaya.data.remote.services
 
-import com.example.movie_application_esra_kaya.data.remote.dto.MovieListDto
+import com.example.movie_application_esra_kaya.data.remote.models.request.MovieListDto
 import retrofit2.http.GET
 
 interface MovieApi {

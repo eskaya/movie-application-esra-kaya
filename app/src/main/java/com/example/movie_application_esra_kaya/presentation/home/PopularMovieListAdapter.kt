@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.movie_application_esra_kaya.data.remote.dto.MovieItem
+import com.example.movie_application_esra_kaya.data.remote.models.request.MovieItem
 import com.example.movie_application_esra_kaya.databinding.ListItemPopularMovieBinding
 import com.example.movie_application_esra_kaya.utils.Constants
 
@@ -39,7 +39,7 @@ class PopularMovieListHistoryViewHolder(
         binding.tvPopularity.text = item.popularity.toString() + " popularity"
         //  binding.tvImdb.text = item.
         Glide.with(binding.root.context)
-            .load(Constants.POSTER_PATH + item.poster_path)
+            .load(Constants.POSTER_PATH + item.posterPath)
             .into(binding.ivMovie)
     }
 

@@ -1,8 +1,9 @@
-package com.example.movie_application_esra_kaya.utils
+package com.example.movie_application_esra_kaya.di
 
 import com.example.movie_application_esra_kaya.domain.repository.MovieRepository
 import MovieRepositoryImpl
 import com.example.movie_application_esra_kaya.data.remote.services.MovieApi
+import com.example.movie_application_esra_kaya.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +18,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DependencyInjection {
+object AppModule {
 
     private val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     private val okHttpClient = OkHttpClient.Builder()
@@ -31,7 +32,6 @@ object DependencyInjection {
 
     @Provides
     @Singleton
-
      fun providePaprikaApi(): MovieApi {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
