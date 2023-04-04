@@ -1,4 +1,4 @@
-package com.example.movie_application_esra_kaya.presentation.home
+package com.example.movie_application_esra_kaya.presentation.movie
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,14 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.request.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentMovieListBinding
-import com.example.movie_application_esra_kaya.presentation.movie_detail.PopularMovieDetailFragment
+import com.example.movie_application_esra_kaya.presentation.movie_detail.MovieDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class MovieFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieListBinding
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: MovieViewModel by viewModels()
     private var layoutManager: RecyclerView.LayoutManager? = null
     private lateinit var popularMovieListAdapter: PopularMovieListAdapter
 
@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigationMovieDetailPage(movieId: Int) {
-        val fragment = PopularMovieDetailFragment.newInstance(movieId)
+        val fragment = MovieDetailFragment.newInstance(movieId)
 
         parentFragmentManager.commit {
             replace(R.id.frameLayout, fragment)

@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class PopularMovieDetailFragment : Fragment() {
+class MovieDetailFragment : Fragment() {
     private lateinit var binding: FragmentPopularMovieDetailBinding
     private var movieId: Int? = null
     private var layoutManager: RecyclerView.LayoutManager? = null
@@ -103,7 +103,7 @@ class PopularMovieDetailFragment : Fragment() {
 
     companion object {
         fun newInstance(movieId: Int) =
-            PopularMovieDetailFragment().apply {
+            MovieDetailFragment().apply {
                 arguments = Bundle().apply {
                     putInt(Constants.MOVIE_ID, movieId)
                 }

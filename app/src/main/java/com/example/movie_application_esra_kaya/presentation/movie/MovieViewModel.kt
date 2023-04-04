@@ -1,4 +1,4 @@
-package com.example.movie_application_esra_kaya.presentation.home
+package com.example.movie_application_esra_kaya.presentation.movie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class MovieViewModel @Inject constructor(
     private val getPopularMovieListUseCase: GetPopularMovieListUseCase
 ) : ViewModel() {
 

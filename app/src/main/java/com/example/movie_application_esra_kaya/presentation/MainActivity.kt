@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.databinding.ActivityMainBinding
-import com.example.movie_application_esra_kaya.presentation.home.HomeFragment
+import com.example.movie_application_esra_kaya.presentation.movie.MovieFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        val fragment = HomeFragment()
+        val fragment = MovieFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, fragment)
         transaction.commit()

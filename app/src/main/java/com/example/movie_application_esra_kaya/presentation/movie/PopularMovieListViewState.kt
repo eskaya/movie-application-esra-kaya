@@ -1,4 +1,4 @@
-package com.example.movie_application_esra_kaya.presentation.home
+package com.example.movie_application_esra_kaya.presentation.movie
 
 import com.example.movie_application_esra_kaya.data.remote.models.request.MovieListDto
 
