@@ -74,6 +74,7 @@ class MovieDetailFragment : Fragment() {
     private fun handleSuccess(data: MovieDetailDto) {
         binding.tvTitle.text = data.title
         binding.tvOverview.text = data.overview
+        binding.tvImdb.text = data.voteCount.toString()
         if (data.belongsToCollection != null) {
             Glide.with(binding.root.context)
                 .load(Constants.POSTER_PATH + data.belongsToCollection.posterPath)
