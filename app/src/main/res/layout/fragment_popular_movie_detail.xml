@@ -45,6 +45,7 @@
         app:layout_constraintTop_toTopOf="@+id/ivClose" />
 
     <TextView
+        android:id="@+id/tvDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -52,7 +53,7 @@
         tools:text="2022-12-14"
         android:textAlignment="textEnd"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_18"
+        android:textSize="@dimen/text_14"
         app:layout_constraintEnd_toEndOf="@+id/tvTitle"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
