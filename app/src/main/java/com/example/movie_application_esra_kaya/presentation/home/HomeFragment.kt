@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.request.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentMovieListBinding
-import com.example.movie_application_esra_kaya.presentation.popular_movie_detail.PopularMovieDetailFragment
+import com.example.movie_application_esra_kaya.presentation.movie_detail.PopularMovieDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -70,7 +69,7 @@ class HomeFragment : Fragment() {
 
 
     private fun handleLoading(loading: Boolean) {
-        binding.containerProgress.isVisible = loading
+      //  binding.containerProgress.isVisible = loading
     }
 
     private fun handleError(error: Any) {

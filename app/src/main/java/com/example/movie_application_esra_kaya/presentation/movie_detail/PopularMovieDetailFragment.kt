@@ -1,4 +1,4 @@
-package com.example.movie_application_esra_kaya.presentation.popular_movie_detail
+package com.example.movie_application_esra_kaya.presentation.movie_detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,17 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.movie_application_esra_kaya.data.remote.models.request.Genre
 import com.example.movie_application_esra_kaya.data.remote.models.request.MovieDetailDto
 import com.example.movie_application_esra_kaya.databinding.FragmentPopularMovieDetailBinding
 import com.example.movie_application_esra_kaya.utils.Constants
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class PopularMovieDetailFragment : Fragment() {
     private lateinit var binding: FragmentPopularMovieDetailBinding
     private var movieId: Int? = null
@@ -42,7 +44,7 @@ class PopularMovieDetailFragment : Fragment() {
     }
 
     private fun init() {
-        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.recyclerView.layoutManager = layoutManager
     }
 
@@ -72,13 +74,15 @@ class PopularMovieDetailFragment : Fragment() {
     private fun handleSuccess(data: MovieDetailDto) {
         binding.tvTitle.text = data.title
         binding.tvOverview.text = data.overview
-        //TODO --> hatalı olabilir kontrol edilecek
-        binding.root.setBackgroundDrawable(context?.let {
-            ContextCompat.getDrawable(
-                it, (Constants.POSTER_PATH + data.backdropPath).toInt()
-            )
-        });
-
+        if (data.belongsToCollection != null) {
+            Glide.with(binding.root.context)
+                .load(Constants.POSTER_PATH + data.belongsToCollection.posterPath)
+                .into(binding.ivMoviePoster)
+        } else {
+            Glide.with(binding.root.context)
+                .load(Constants.POSTER_PATH + data.posterPath)
+                .into(binding.ivMoviePoster)
+        }
         setupRecyclerView(data.genres as ArrayList<Genre>)
     }
 
@@ -104,6 +108,5 @@ class PopularMovieDetailFragment : Fragment() {
                     putInt(Constants.MOVIE_ID, movieId)
                 }
             }
-
     }
 }

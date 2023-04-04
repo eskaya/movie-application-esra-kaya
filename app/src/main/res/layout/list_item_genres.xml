@@ -20,5 +20,5 @@
         android:paddingVertical="6dp"
         android:text="2019"
         android:textColor="@color/white"
-        android:textSize="10dp" />
+        android:textSize="14dp" />
 </androidx.cardview.widget.CardView>

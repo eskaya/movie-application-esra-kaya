@@ -1,4 +1,4 @@
-package com.example.movie_application_esra_kaya.presentation.popular_movie_detail
+package com.example.movie_application_esra_kaya.presentation.movie_detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

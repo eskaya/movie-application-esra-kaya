@@ -22,7 +22,8 @@
         android:id="@+id/containerProgress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/charade">
+        android:background="@color/charade"
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/progressBar"

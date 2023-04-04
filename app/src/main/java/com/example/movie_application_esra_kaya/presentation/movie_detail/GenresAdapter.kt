@@ -1,4 +1,4 @@
-package com.example.movie_application_esra_kaya.presentation.popular_movie_detail
+package com.example.movie_application_esra_kaya.presentation.movie_detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import com.example.movie_application_esra_kaya.data.remote.models.request.Genre
 import com.example.movie_application_esra_kaya.databinding.ListItemGenresBinding
 
 class GenresAdapter(
-    val data: ArrayList<Genre>
+    val data: List<Genre>
 ) : RecyclerView.Adapter<GenresViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -17,22 +17,20 @@ class GenresAdapter(
         val binding = ListItemGenresBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return GenresViewHolder(binding)
+        return GenresViewHolder(binding, data)
     }
 
     override fun onBindViewHolder(holder: GenresViewHolder, position: Int) =
         holder.bind(data[position])
-
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = data.size
 }
 
 class GenresViewHolder(
     private val binding: ListItemGenresBinding,
+    private val data: List<Genre>
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Genre) {
         binding.tvGenres.text = item.name
     }
-
-
 }
