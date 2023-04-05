@@ -2,6 +2,7 @@ package com.example.movie_application_esra_kaya.di
 
 import com.example.movie_application_esra_kaya.domain.repository.MovieRepository
 import MovieRepositoryImpl
+import com.example.movie_application_esra_kaya.BuildConfig
 import com.example.movie_application_esra_kaya.data.remote.services.MovieApi
 import com.example.movie_application_esra_kaya.utils.Constants
 import dagger.Module
@@ -30,13 +31,12 @@ object AppModule {
         })
         .addInterceptor(interceptor).build()
 
-    //TODO --> builde.gradle'a eklediğim değişkenler okunmuyor
     @Provides
     @Singleton
     fun providePaprikaApi(): MovieApi {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
-           // .baseUrl(BuildConfig.BASE_URL)
+            //.baseUrl(Constants.BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
