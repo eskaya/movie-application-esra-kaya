@@ -2,7 +2,6 @@
     <string name="app_name">movie-application-esra-kaya</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
     <string name="searchMoviePage_search">Search</string>
     <string name="searchMoviePage_notFound">Not found movie.. :(</string>
 </resources>

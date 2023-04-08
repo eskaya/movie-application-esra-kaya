@@ -1,5 +1,6 @@
 import com.example.movie_application_esra_kaya.data.remote.models.request.MovieDetailDto
 import com.example.movie_application_esra_kaya.data.remote.models.request.MovieListDto
+import com.example.movie_application_esra_kaya.data.remote.models.request.SearchDto
 import com.example.movie_application_esra_kaya.data.remote.services.MovieApi
 import com.example.movie_application_esra_kaya.domain.repository.MovieRepository
 import javax.inject.Inject
@@ -13,7 +14,11 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMovieDetail(movie_id: Int): MovieDetailDto {
-       return api.getMovieDetail(movie_id)
+        return api.getMovieDetail(movie_id)
+    }
+
+    override suspend fun getSearchResult(query: String): SearchDto {
+        return api.getSearchResult(query)
     }
 
 }
