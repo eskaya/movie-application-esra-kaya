@@ -30,6 +30,7 @@ class MovieFragment : Fragment() {
     ): View {
         binding = FragmentMovieListBinding.inflate(inflater, container, false)
         init()
+        listener()
         setUpObservers()
         return binding.root
     }
@@ -37,6 +38,12 @@ class MovieFragment : Fragment() {
     private fun init() {
         layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
+    }
+
+    private fun listener() {
+        binding.cvSearch.setOnClickListener {
+          //TODO --> arama sayfasına yönlendirme yapılacak
+        }
     }
 
     private fun setUpObservers() {
@@ -69,7 +76,7 @@ class MovieFragment : Fragment() {
 
 
     private fun handleLoading(loading: Boolean) {
-      //  binding.containerProgress.isVisible = loading
+        //  binding.containerProgress.isVisible = loading
     }
 
     private fun handleError(error: Any) {
