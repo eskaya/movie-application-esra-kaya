@@ -14,6 +14,7 @@ import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.request.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentMovieListBinding
 import com.example.movie_application_esra_kaya.presentation.movie_detail.MovieDetailFragment
+import com.example.movie_application_esra_kaya.presentation.search.SearchMovieFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,7 +43,11 @@ class MovieFragment : Fragment() {
 
     private fun listener() {
         binding.cvSearch.setOnClickListener {
-          //TODO --> arama sayfasına yönlendirme yapılacak
+            parentFragmentManager.commit {
+                replace(R.id.frameLayout, SearchMovieFragment())
+                setReorderingAllowed(true)
+                addToBackStack(null)
+            }
         }
     }
 
@@ -51,10 +56,10 @@ class MovieFragment : Fragment() {
             viewLifecycleOwner
         ) { it ->
             when (it) {
-                PopularMovieListViewState.Init -> Unit
-                is PopularMovieListViewState.Error -> handleError(it.error)
-                is PopularMovieListViewState.IsLoading -> handleLoading(it.isLoading)
-                is PopularMovieListViewState.Success -> it.data?.let {
+                MovieListViewState.Init -> Unit
+                is MovieListViewState.Error -> handleError(it.error)
+                is MovieListViewState.IsLoading -> handleLoading(it.isLoading)
+                is MovieListViewState.Success -> it.data?.let {
                     handleSuccess(
                         it.results
                     )
