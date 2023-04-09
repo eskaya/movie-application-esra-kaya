@@ -72,20 +72,13 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun handleSuccess(data: MovieDetailDto) {
-        binding.tvTagline.text = data.tagline
         binding.tvTitle.text = data.title
         binding.tvDate.text = data.releaseDate
         binding.tvOverview.text = data.overview
         binding.tvImdb.text = data.voteCount.toString()
-        if (data.belongsToCollection != null) {
-            Glide.with(binding.root.context)
-                .load(Constants.POSTER_PATH + data.belongsToCollection.posterPath)
-                .into(binding.ivMoviePoster)
-        } else {
-            Glide.with(binding.root.context)
-                .load(Constants.POSTER_PATH + data.posterPath)
-                .into(binding.ivMoviePoster)
-        }
+        Glide.with(binding.root.context)
+            .load(Constants.POSTER_PATH + data.backdropPath)
+            .into(binding.ivMoviePoster)
         setupRecyclerView(data.genres as ArrayList<Genre>)
     }
 

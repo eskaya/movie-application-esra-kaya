@@ -6,72 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".presentation.movie_detail.MovieDetailFragment">
 
-    <ImageView
-        android:id="@+id/ivMoviePoster"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:src="@drawable/poser_path"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="centerCrop"/>
-
-    <ImageView
-        android:id="@+id/ivClose"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ic_cancel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="24dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/lato_bold"
-        android:maxLines="4"
-        android:text="Avatar Collection"
-        android:textAlignment="textEnd"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_28"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivClose"
-        app:layout_constraintTop_toTopOf="@+id/ivClose" />
-
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/lato_regular"
-        tools:text="2022-12-14"
-        android:textAlignment="textEnd"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_14"
-        app:layout_constraintEnd_toEndOf="@+id/tvTitle"
-        app:layout_constraintStart_toStartOf="@+id/tvTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="300dp"
-            android:layout_marginBottom="30dp"
-            app:cardBackgroundColor="@color/charade"
-            app:cardCornerRadius="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="match_parent"
+        android:background="@color/charade">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -85,23 +24,55 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/tvTagline"
+                    <ImageView
+                        android:id="@+id/ivMoviePoster"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/horizontal_offset"
-                        android:layout_marginTop="@dimen/vertical_offset"
-                        android:layout_marginEnd="@dimen/horizontal_offset"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/lato_bold"
-                        android:maxLines="3"
-                        tools:text="Return to Pandora"
-                        android:textAlignment="center"
-                        android:textColor="@color/piper"
-                        android:textSize="@dimen/text_18"
+                        android:layout_height="450dp"
+                        android:background="@color/black"
+                        android:scaleType="centerCrop"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/viewGradient"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:background="@drawable/shape_item_gradient"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivMoviePoster"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/lato_bold"
+                        android:maxLines="4"
+                        android:text="Avatar Collection"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_28"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivMoviePoster" />
+
+                    <TextView
+                        android:id="@+id/tvDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_14"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                        tools:text="2022-12-14" />
 
                     <ImageView
                         android:id="@+id/ivLike"
@@ -111,7 +82,7 @@
                         android:layout_marginTop="16dp"
                         android:src="@drawable/vote_icon"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvTagline" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
                     <TextView
                         android:id="@+id/tvImdb"
@@ -121,21 +92,20 @@
                         android:fontFamily="@font/lato_regular"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_14"
-                        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-                        app:layout_constraintStart_toEndOf="@+id/imageView2"
-                        app:layout_constraintTop_toTopOf="@+id/imageView2" />
-
+                        app:layout_constraintBottom_toBottomOf="@+id/ivLike"
+                        app:layout_constraintStart_toEndOf="@+id/ivLike"
+                        app:layout_constraintTop_toTopOf="@+id/ivLike" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/horizontal_offset"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="@dimen/horizontal_offset"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                        app:layout_constraintTop_toBottomOf="@+id/ivLike" />
 
                     <TextView
                         android:id="@+id/tvOverview"
@@ -155,11 +125,21 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
+                    <ImageView
+                        android:id="@+id/ivClose"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/ic_cancel"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white"/>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </ScrollView>
-
-        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -167,7 +147,8 @@
         android:id="@+id/containerProgress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/charade">
+        android:background="@color/charade"
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/progressBar"
