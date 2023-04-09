@@ -34,6 +34,17 @@
 
     </androidx.cardview.widget.CardView>
 
+
+    <View
+        android:visibility="gone"
+        android:id="@+id/viewGradient"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/shape_item_gradient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvSearchInput" />
+
     <TextView
         android:id="@+id/tvNotFoundMovie"
         android:layout_width="0dp"
@@ -55,8 +66,29 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvSearchInput" />
+
+    <FrameLayout
+        android:id="@+id/containerProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/charade"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
