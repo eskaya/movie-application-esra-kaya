@@ -33,8 +33,7 @@
             android:textSize="@dimen/text_16" />
 
     </androidx.cardview.widget.CardView>
-
-
+    
     <View
         android:visibility="gone"
         android:id="@+id/viewGradient"
