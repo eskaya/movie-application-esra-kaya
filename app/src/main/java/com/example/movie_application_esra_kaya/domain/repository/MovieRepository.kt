@@ -9,6 +9,6 @@ interface MovieRepository {
 
     suspend fun getMovieList(): MovieListDto
 
-    suspend fun getMovieDetail(movie_id: Int): MovieDetailDto
+    suspend fun getMovieDetail(movieId: Int): MovieDetailDto
     suspend fun getSearchResult(query: String): SearchDto
 }

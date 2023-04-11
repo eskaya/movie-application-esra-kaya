@@ -12,10 +12,10 @@ import javax.inject.Inject
 class GetMovieDetailUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
-    operator fun invoke(movie_id: Int): Flow<Resource<MovieDetailDto>> = flow {
+    operator fun invoke(movieId: Int): Flow<Resource<MovieDetailDto>> = flow {
         try {
             emit(Resource.Loading())
-            val movieDetail = repository.getMovieDetail(movie_id)
+            val movieDetail = repository.getMovieDetail(movieId)
             emit(Resource.Success(data = movieDetail))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))

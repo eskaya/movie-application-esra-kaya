@@ -13,7 +13,7 @@ interface MovieApi {
     suspend fun getMovieList(): MovieListDto
 
     @GET("movie/{movie_id}?api_key=46d0b7df20b6dca0b123566e3d926b4b")
-    suspend fun getMovieDetail(@Path("movie_id") movie_id: Int): MovieDetailDto
+    suspend fun getMovieDetail(@Path("movieId") movieId: Int): MovieDetailDto
 
     @GET("search/movie?api_key=46d0b7df20b6dca0b123566e3d926b4b")
     suspend fun getSearchResult(@Query("query") query: String): SearchDto

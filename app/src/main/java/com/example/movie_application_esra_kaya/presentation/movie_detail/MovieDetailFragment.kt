@@ -1,6 +1,7 @@
 package com.example.movie_application_esra_kaya.presentation.movie_detail
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.request.Genre
 import com.example.movie_application_esra_kaya.data.remote.models.request.MovieDetailDto
 import com.example.movie_application_esra_kaya.databinding.FragmentPopularMovieDetailBinding
@@ -34,7 +36,7 @@ class MovieDetailFragment : Fragment() {
         arguments?.let {
             movieId = it.getInt(Constants.MOVIE_ID)
         }
-        if (movieId != null) {
+        movieId.let {
             viewModel.getMovieDetail(movieId!!.toInt())
         }
         setUpObservers()
@@ -76,9 +78,14 @@ class MovieDetailFragment : Fragment() {
         binding.tvDate.text = data.releaseDate
         binding.tvOverview.text = data.overview
         binding.tvImdb.text = data.voteCount.toString()
+
+
         Glide.with(binding.root.context)
             .load(Constants.POSTER_PATH + data.backdropPath)
+            .centerCrop()
+            .placeholder(R.drawable.ic_cinema)
             .into(binding.ivMoviePoster)
+
         setupRecyclerView(data.genres as ArrayList<Genre>)
     }
 
