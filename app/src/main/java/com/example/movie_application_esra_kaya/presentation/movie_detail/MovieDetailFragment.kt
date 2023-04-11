@@ -35,9 +35,11 @@ class MovieDetailFragment : Fragment() {
         arguments?.let {
             movieId = it.getInt(Constants.MOVIE_ID)
         }
-        movieId.let {
+
+        if (movieId != null) {
             viewModel.getMovieDetail(movieId!!.toInt())
         }
+
         setUpObservers()
         init()
         listener()

@@ -23,8 +23,8 @@ class MovieDetailViewModel @Inject constructor(
         _state.value = MovieDetailViewState.IsLoading(isLoading)
     }
 
-    fun getMovieDetail(movie_id:Int) {
-        movieDetailUseCase.invoke(movie_id).onEach {
+    fun getMovieDetail(movieId:Int) {
+        movieDetailUseCase.invoke(movieId).onEach {
             when (it) {
                 is Resource.Error -> {
                     setLoadingState(false)
