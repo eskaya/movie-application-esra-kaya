@@ -1,4 +1,4 @@
-package com.example.movie_application_esra_kaya.data.remote.models.request
+package com.example.movie_application_esra_kaya.data.remote.models.response
 
 data class ProductionCountry(
     val iso_3166_1: String,

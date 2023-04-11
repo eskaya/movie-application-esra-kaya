@@ -1,4 +1,4 @@
-package com.example.movie_application_esra_kaya.data.remote.models.request
+package com.example.movie_application_esra_kaya.data.remote.models.response
 
 import com.google.gson.annotations.SerializedName
 
