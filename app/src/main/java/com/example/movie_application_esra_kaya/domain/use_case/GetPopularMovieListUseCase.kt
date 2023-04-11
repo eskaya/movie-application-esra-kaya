@@ -1,7 +1,7 @@
 package com.example.movie_application_esra_kaya.domain.use_case
 
 import com.example.movie_application_esra_kaya.domain.repository.MovieRepository
-import com.example.movie_application_esra_kaya.data.remote.models.request.MovieListDto
+import com.example.movie_application_esra_kaya.data.remote.models.response.MovieListDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

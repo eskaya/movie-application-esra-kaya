@@ -1,9 +1,8 @@
 package com.example.movie_application_esra_kaya.domain.repository
 
-import com.example.movie_application_esra_kaya.data.remote.models.request.MovieDetailDto
-import com.example.movie_application_esra_kaya.data.remote.models.request.MovieListDto
-import com.example.movie_application_esra_kaya.data.remote.models.request.SearchDto
-import retrofit2.http.Query
+import com.example.movie_application_esra_kaya.data.remote.models.response.MovieDetailDto
+import com.example.movie_application_esra_kaya.data.remote.models.response.MovieListDto
+import com.example.movie_application_esra_kaya.data.remote.models.response.SearchDto
 
 interface MovieRepository {
 

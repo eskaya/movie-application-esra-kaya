@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_application_esra_kaya.R
-import com.example.movie_application_esra_kaya.data.remote.models.request.MovieItem
+import com.example.movie_application_esra_kaya.data.remote.models.response.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentMovieListBinding
 import com.example.movie_application_esra_kaya.presentation.movie_detail.MovieDetailFragment
 import com.example.movie_application_esra_kaya.presentation.search.SearchMovieFragment

@@ -1,7 +1,6 @@
 package com.example.movie_application_esra_kaya.presentation.movie_detail
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movie_application_esra_kaya.R
-import com.example.movie_application_esra_kaya.data.remote.models.request.Genre
-import com.example.movie_application_esra_kaya.data.remote.models.request.MovieDetailDto
+import com.example.movie_application_esra_kaya.data.remote.models.response.Genre
+import com.example.movie_application_esra_kaya.data.remote.models.response.MovieDetailDto
 import com.example.movie_application_esra_kaya.databinding.FragmentPopularMovieDetailBinding
 import com.example.movie_application_esra_kaya.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint

@@ -8,14 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_application_esra_kaya.R
-import com.example.movie_application_esra_kaya.data.remote.models.request.MovieItem
+import com.example.movie_application_esra_kaya.data.remote.models.response.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentSearchMovieBinding
 import com.example.movie_application_esra_kaya.presentation.movie.PopularMovieAdapterListener
 import com.example.movie_application_esra_kaya.presentation.movie.PopularMovieListAdapter
