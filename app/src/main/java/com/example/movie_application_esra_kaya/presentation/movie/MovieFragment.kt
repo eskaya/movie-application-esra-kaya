@@ -1,6 +1,5 @@
 package com.example.movie_application_esra_kaya.presentation.movie
 
-import android.graphics.Movie
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.response.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentMovieListBinding
+import com.example.movie_application_esra_kaya.presentation.adapter.MovieListAdapter
+import com.example.movie_application_esra_kaya.presentation.adapter.PopularMovieAdapterListener
 import com.example.movie_application_esra_kaya.presentation.movie_detail.MovieDetailFragment
 import com.example.movie_application_esra_kaya.presentation.search.SearchMovieFragment
 import dagger.hilt.android.AndroidEntryPoint
