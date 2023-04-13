@@ -17,12 +17,13 @@ import com.example.movie_application_esra_kaya.data.remote.models.response.Movie
 import com.example.movie_application_esra_kaya.databinding.FragmentPopularMovieDetailBinding
 import com.example.movie_application_esra_kaya.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.properties.Delegates
 
 
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
     private lateinit var binding: FragmentPopularMovieDetailBinding
-    private var movieId: Int? = null
+    private var movieId by Delegates.notNull<Int>()
     private var layoutManager: RecyclerView.LayoutManager? = null
     private lateinit var genresAdapter: GenresAdapter
     private val viewModel: MovieDetailViewModel by viewModels()
@@ -36,8 +37,8 @@ class MovieDetailFragment : Fragment() {
             movieId = it.getInt(Constants.MOVIE_ID)
         }
 
-        if (movieId != null) {
-            viewModel.getMovieDetail(movieId!!.toInt())
+        movieId.let {
+            viewModel.getMovieDetail(it)
         }
 
         setUpObservers()

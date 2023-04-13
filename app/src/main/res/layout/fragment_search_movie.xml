@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/charade"
+    android:background="@color/woodsmoke"
     tools:context=".presentation.search.SearchMovieFragment">
 
     <androidx.cardview.widget.CardView
@@ -14,32 +14,58 @@
         android:layout_marginStart="@dimen/horizontal_offset"
         android:layout_marginTop="@dimen/vertical_offset"
         android:layout_marginEnd="@dimen/horizontal_offset"
-        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/charade"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/etSearch"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/lato_regular"
-            android:hint="@string/searchMoviePage_search"
-            android:padding="10dp"
-            android:paddingStart="10dp"
-            android:textColor="@color/charade"
-            android:textColorHint="@color/charade"
-            android:textSize="@dimen/text_16" />
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="16dp">
+
+            <ImageView
+                android:id="@+id/ivSearch"
+                android:layout_width="26dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/primary_color_text" />
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/lato_regular"
+                android:hint="@string/searchMoviePage_search"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/charade"
+                android:textSize="@dimen/text_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivSearch"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.cardview.widget.CardView>
-    
+
     <View
-        android:visibility="gone"
         android:id="@+id/viewGradient"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:background="@drawable/shape_item_gradient"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvSearchInput" />
@@ -61,7 +87,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
