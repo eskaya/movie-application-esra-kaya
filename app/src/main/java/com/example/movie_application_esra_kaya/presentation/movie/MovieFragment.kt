@@ -1,5 +1,6 @@
 package com.example.movie_application_esra_kaya.presentation.movie
 
+import android.graphics.Movie
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,7 +24,7 @@ class MovieFragment : Fragment() {
     private lateinit var binding: FragmentMovieListBinding
     private val viewModel: MovieViewModel by viewModels()
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private lateinit var popularMovieListAdapter: PopularMovieListAdapter
+    private lateinit var popularMovieListAdapter: MovieListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,7 +70,7 @@ class MovieFragment : Fragment() {
     }
 
     private fun handleSuccess(data: List<MovieItem>) {
-        popularMovieListAdapter = PopularMovieListAdapter(data,
+        popularMovieListAdapter = MovieListAdapter(data,
             object : PopularMovieAdapterListener {
                 override fun onClickedItem(movieId: Int) {
                     navigationMovieDetailPage(movieId)

@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.response.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentSearchMovieBinding
+import com.example.movie_application_esra_kaya.presentation.movie.MovieListAdapter
 import com.example.movie_application_esra_kaya.presentation.movie.PopularMovieAdapterListener
-import com.example.movie_application_esra_kaya.presentation.movie.PopularMovieListAdapter
 import com.example.movie_application_esra_kaya.presentation.movie_detail.MovieDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchMovieFragment : Fragment() {
     private lateinit var binding: FragmentSearchMovieBinding
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private lateinit var movieListAdapter: PopularMovieListAdapter
+    private lateinit var movieListAdapter: MovieListAdapter
     private val viewModel: SearchViewModel by viewModels()
 
     override fun onCreateView(
@@ -79,7 +79,7 @@ class SearchMovieFragment : Fragment() {
 
     private fun handleSuccess(data: List<MovieItem>) {
         binding.tvNotFoundMovie.visibility = View.GONE
-        movieListAdapter = PopularMovieListAdapter(data,
+        movieListAdapter = MovieListAdapter(data,
             object : PopularMovieAdapterListener {
                 override fun onClickedItem(movieId: Int) {
                     navigationMovieDetailPage(movieId)

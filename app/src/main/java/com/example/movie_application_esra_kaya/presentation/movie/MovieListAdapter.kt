@@ -10,7 +10,7 @@ import com.example.movie_application_esra_kaya.data.remote.models.response.Movie
 import com.example.movie_application_esra_kaya.databinding.ListItemPopularMovieBinding
 import com.example.movie_application_esra_kaya.utils.Constants
 
-class PopularMovieListAdapter(
+class MovieListAdapter(
     val data: List<MovieItem>,
     private val listener: PopularMovieAdapterListener
 ) : RecyclerView.Adapter<PopularMovieListHistoryViewHolder>() {
