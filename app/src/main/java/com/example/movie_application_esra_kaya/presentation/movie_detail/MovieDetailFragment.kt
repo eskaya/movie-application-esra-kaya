@@ -80,7 +80,7 @@ class MovieDetailFragment : Fragment() {
         binding.tvDate.text = data.releaseDate
         binding.tvOverview.text = data.overview
         binding.tvImdb.text = data.voteCount.toString()
-
+        binding.ratingBar.rating = (data.voteAverage/2).toFloat()
 
         Glide.with(binding.root.context)
             .load(Constants.POSTER_PATH + data.posterPath)

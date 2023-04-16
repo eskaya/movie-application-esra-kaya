@@ -43,12 +43,12 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
+                      <TextView
                         android:id="@+id/tvTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="24dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/lato_bold"
@@ -74,15 +74,32 @@
                         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
                         tools:text="2022-12-14" />
 
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="?android:attr/ratingBarStyleIndicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="10dp"
+                        android:max="5"
+                        android:rating="3.5"
+                        android:scaleX=".5"
+                        android:scaleY=".5"
+                        android:progressTint="@color/yellow"
+                        android:progressBackgroundTint="@color/yellow"
+                        android:transformPivotX="0dp"
+                        android:transformPivotY="0dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+
                     <ImageView
                         android:id="@+id/ivLike"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="16dp"
                         android:src="@drawable/vote_icon"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+                        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+                        app:layout_constraintStart_toEndOf="@+id/ratingBar"
+                        app:layout_constraintTop_toTopOf="@+id/ratingBar" />
 
                     <TextView
                         android:id="@+id/tvImdb"
