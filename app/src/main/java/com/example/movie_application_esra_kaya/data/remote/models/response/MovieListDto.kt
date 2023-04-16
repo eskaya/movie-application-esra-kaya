@@ -1,4 +1,5 @@
 package com.example.movie_application_esra_kaya.data.remote.models.response
+import com.example.movie_application_esra_kaya.data.remote.models.models.MovieItem
 import com.google.gson.annotations.SerializedName
 
 data class MovieListDto(

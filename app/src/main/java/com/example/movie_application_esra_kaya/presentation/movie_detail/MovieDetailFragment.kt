@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movie_application_esra_kaya.R
-import com.example.movie_application_esra_kaya.data.remote.models.response.Genre
+import com.example.movie_application_esra_kaya.data.remote.models.models.Genre
 import com.example.movie_application_esra_kaya.data.remote.models.response.MovieDetailDto
 import com.example.movie_application_esra_kaya.databinding.FragmentPopularMovieDetailBinding
 import com.example.movie_application_esra_kaya.utils.Constants

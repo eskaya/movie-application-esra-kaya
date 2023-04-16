@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movie_application_esra_kaya.R
-import com.example.movie_application_esra_kaya.data.remote.models.response.MovieItem
+import com.example.movie_application_esra_kaya.data.remote.models.models.MovieItem
 import com.example.movie_application_esra_kaya.databinding.ListItemPopularMovieBinding
 import com.example.movie_application_esra_kaya.utils.Constants
 

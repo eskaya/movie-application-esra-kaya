@@ -3,7 +3,7 @@ package com.example.movie_application_esra_kaya.presentation.movie_detail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movie_application_esra_kaya.data.remote.models.response.Genre
+import com.example.movie_application_esra_kaya.data.remote.models.models.Genre
 import com.example.movie_application_esra_kaya.databinding.ListItemGenresBinding
 
 class GenresAdapter(

@@ -1,5 +1,10 @@
 package com.example.movie_application_esra_kaya.data.remote.models.response
 
+import com.example.movie_application_esra_kaya.data.remote.models.models.Genre
+import com.example.movie_application_esra_kaya.data.remote.models.models.ProductionCompany
+import com.example.movie_application_esra_kaya.data.remote.models.models.ProductionCountry
+import com.example.movie_application_esra_kaya.data.remote.models.models.SpokenLanguage
+import com.example.movie_application_esra_kaya.data.remote.models.models.BelongsToCollection
 import com.google.gson.annotations.SerializedName
 
 data class MovieDetailDto(
