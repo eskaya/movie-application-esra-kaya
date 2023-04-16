@@ -16,6 +16,7 @@ import com.example.movie_application_esra_kaya.data.remote.models.models.Genre
 import com.example.movie_application_esra_kaya.data.remote.models.response.MovieDetailDto
 import com.example.movie_application_esra_kaya.databinding.FragmentPopularMovieDetailBinding
 import com.example.movie_application_esra_kaya.utils.Constants
+import com.example.movie_application_esra_kaya.utils.extensions.toFullImageLink
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
 
@@ -83,7 +84,7 @@ class MovieDetailFragment : Fragment() {
         binding.ratingBar.rating = (data.voteAverage/2).toFloat()
 
         Glide.with(binding.root.context)
-            .load(Constants.POSTER_PATH + data.posterPath)
+            .load( data.posterPath.toFullImageLink())
             .centerCrop()
             .placeholder(R.drawable.ic_cinema_placeholder)
             .into(binding.ivMoviePoster)
