@@ -52,6 +52,7 @@ class ImageSliderViewHolder(
             .into(binding.imageView)
 
     }
+
 }
 
 

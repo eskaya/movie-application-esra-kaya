@@ -26,6 +26,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private var layoutManager: RecyclerView.LayoutManager? = null
     private lateinit var imageSliderAdapter: ImageSliderAdapter
+    val handler = Handler()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,9 +62,20 @@ class HomeFragment : Fragment() {
         }
     }
 
+    val runnable = Runnable {
+        binding.viewPager2.setCurrentItem(binding.viewPager2.currentItem + 1, true)
+    }
+
     private fun handleSuccess(data: List<MovieItem>) {
         imageSliderAdapter = ImageSliderAdapter(data, binding.viewPager2)
         binding.viewPager2.adapter = imageSliderAdapter
+        binding.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                handler.removeCallbacks(runnable)
+                handler.postDelayed(runnable, 5000)
+            }
+        })
     }
 
 
