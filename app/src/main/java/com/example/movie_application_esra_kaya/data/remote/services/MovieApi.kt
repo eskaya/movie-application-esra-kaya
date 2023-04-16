@@ -9,8 +9,8 @@ import retrofit2.http.Query
 
 interface MovieApi {
 
-    @GET("movie/popular?api_key=46d0b7df20b6dca0b123566e3d926b4b")
-    suspend fun getMovieList(): MovieListDto
+    @GET("movie/{type}?api_key=46d0b7df20b6dca0b123566e3d926b4b")
+    suspend fun getMovieList(@Path("type") type: String): MovieListDto
 
     @GET("movie/{movieId}?api_key=46d0b7df20b6dca0b123566e3d926b4b")
     suspend fun getMovieDetail(@Path("movieId") movieId: Int): MovieDetailDto

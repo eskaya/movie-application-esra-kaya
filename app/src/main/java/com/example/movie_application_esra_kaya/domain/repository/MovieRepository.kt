@@ -6,8 +6,7 @@ import com.example.movie_application_esra_kaya.data.remote.models.response.Searc
 
 interface MovieRepository {
 
-    suspend fun getMovieList(): MovieListDto
-
+    suspend fun getMovieList(type: String): MovieListDto
     suspend fun getMovieDetail(movieId: Int): MovieDetailDto
     suspend fun getSearchResult(query: String): SearchDto
 }

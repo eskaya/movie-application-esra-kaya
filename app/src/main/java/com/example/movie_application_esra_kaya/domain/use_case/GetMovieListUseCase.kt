@@ -9,13 +9,13 @@ import java.io.IOException
 import javax.inject.Inject
 import com.example.movie_application_esra_kaya.utils.Resource
 
-class GetPopularMovieListUseCase @Inject constructor(
+class GetMovieListUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
-    operator fun invoke(): Flow<Resource<MovieListDto>> = flow {
+    operator fun invoke(type: String): Flow<Resource<MovieListDto>> = flow {
         try {
             emit(Resource.Loading())
-            val movies = repository.getMovieList()
+            val movies = repository.getMovieList(type)
             emit(Resource.Success(data = movies))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))
