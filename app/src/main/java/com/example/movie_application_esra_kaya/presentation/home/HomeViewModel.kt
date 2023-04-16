@@ -16,30 +16,48 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private val _state = MutableLiveData<HomeViewState>(HomeViewState.Init)
-    val getViewState: LiveData<HomeViewState> get() = _state
+    private val _state = MutableLiveData<PopularMovieViewState>(PopularMovieViewState.Init)
+    val getViewState: LiveData<PopularMovieViewState> get() = _state
 
-    init {
-        getPopularMovieList("popular")
-    }
+    private val _topRatedState = MutableLiveData<TopRatedMovieViewState>(TopRatedMovieViewState.Init)
+    val getTopRatedViewState: LiveData<TopRatedMovieViewState> get() = _topRatedState
+
 
     private fun setLoadingState(isLoading: Boolean) {
-        _state.value = HomeViewState.IsLoading(isLoading)
+        _state.value = PopularMovieViewState.IsLoading(isLoading)
     }
 
-    private fun getPopularMovieList(type: String) {
+     fun getPopularMovieList(type: String) {
         getPopularMovieListUseCase.invoke(type).onEach {
             when (it) {
                 is Resource.Error -> {
                     setLoadingState(false)
-                    _state.value = HomeViewState.Error(it.message as Any)
+                    _state.value = PopularMovieViewState.Error(it.message as Any)
                 }
                 is Resource.Loading -> {
                     setLoadingState(true)
                 }
                 is Resource.Success -> {
                     setLoadingState(false)
-                    _state.value = HomeViewState.Success(it.data)
+                    _state.value = PopularMovieViewState.Success(it.data)
+                }
+            }
+
+        }.launchIn(viewModelScope)
+    }
+    fun getTopRatedMovieList(type: String) {
+        getPopularMovieListUseCase.invoke(type).onEach {
+            when (it) {
+                is Resource.Error -> {
+                    setLoadingState(false)
+                    _topRatedState.value = TopRatedMovieViewState.Error(it.message as Any)
+                }
+                is Resource.Loading -> {
+                    setLoadingState(true)
+                }
+                is Resource.Success -> {
+                    setLoadingState(false)
+                    _topRatedState.value = TopRatedMovieViewState.Success(it.data)
                 }
             }
 
