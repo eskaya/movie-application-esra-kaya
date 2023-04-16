@@ -1,6 +1,5 @@
 package com.example.movie_application_esra_kaya.presentation.search
 
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
@@ -10,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
@@ -23,8 +21,6 @@ import com.example.movie_application_esra_kaya.presentation.adapter.MovieListAda
 import com.example.movie_application_esra_kaya.presentation.adapter.PopularMovieAdapterListener
 import com.example.movie_application_esra_kaya.presentation.movie_detail.MovieDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent.setEventListener
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 
 
 @AndroidEntryPoint
@@ -63,6 +59,7 @@ class SearchMovieFragment : Fragment() {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                binding.tvSearchResult.text = s
                 if (s.length >= 2) {
                     Handler().postDelayed({
                         viewModel.getSearchList(s.toString())
@@ -94,7 +91,9 @@ class SearchMovieFragment : Fragment() {
     }
 
     private fun handleSuccess(data: List<MovieItem>) {
-        binding.tvNotFoundMovie.visibility = View.GONE
+      if(data.isEmpty()){
+          binding.tvNotFoundMovie.visibility = View.VISIBLE
+      }
         movieListAdapter = MovieListAdapter(data,
             object : PopularMovieAdapterListener {
                 override fun onClickedItem(movieId: Int) {

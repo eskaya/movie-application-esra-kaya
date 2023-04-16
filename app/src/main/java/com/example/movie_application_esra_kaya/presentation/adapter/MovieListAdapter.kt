@@ -51,7 +51,7 @@ class PopularMovieListHistoryViewHolder(
         Glide.with(binding.root.context)
             .load(Constants.POSTER_PATH + item.posterPath)
             .centerCrop()
-            .placeholder(R.drawable.ic_cinema)
+            .placeholder(R.drawable.ic_cinema_placeholder)
             .into(binding.ivMovie)
     }
 
