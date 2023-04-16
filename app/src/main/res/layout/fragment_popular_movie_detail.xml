@@ -152,7 +152,8 @@
                         android:src="@drawable/ic_cancel"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/white"/>
+                        app:tint="@color/white"
+                        android:background="@drawable/shape_item_ripple"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

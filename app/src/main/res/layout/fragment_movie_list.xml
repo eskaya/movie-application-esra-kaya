@@ -23,7 +23,8 @@
             android:layout_height="24dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_search"
-            app:tint="@color/charade" />
+            app:tint="@color/charade"
+            android:background="@drawable/shape_item_ripple"/>
 
     </androidx.cardview.widget.CardView>
 

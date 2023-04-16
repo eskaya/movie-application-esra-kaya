@@ -21,6 +21,7 @@ import com.example.movie_application_esra_kaya.presentation.adapter.MovieListAda
 import com.example.movie_application_esra_kaya.presentation.adapter.PopularMovieAdapterListener
 import com.example.movie_application_esra_kaya.presentation.movie_detail.MovieDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -29,6 +30,7 @@ class SearchMovieFragment : Fragment() {
     private var layoutManager: RecyclerView.LayoutManager? = null
     private lateinit var movieListAdapter: MovieListAdapter
     private val viewModel: SearchViewModel by viewModels()
+    private var timer: Timer? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,14 +58,25 @@ class SearchMovieFragment : Fragment() {
     private fun listener() {
 
         binding.etSearch.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
+            override fun afterTextChanged(s: Editable) {
+                if (s != null && s.length >= 2) {
+                    timer = Timer()
+                    timer?.schedule(
+                        object : TimerTask() {
+                            override fun run() {
+                                viewModel.getSearchList(s.toString())
+                            }
+
+                        }, 1000
+                    )
+                }
+            }
+
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 binding.tvSearchResult.text = s
-                if (s.length >= 2) {
-                    Handler().postDelayed({
-                        viewModel.getSearchList(s.toString())
-                    }, 500L)
+                if (timer != null) {
+                    timer?.cancel()
                 }
             }
         })
@@ -91,9 +104,9 @@ class SearchMovieFragment : Fragment() {
     }
 
     private fun handleSuccess(data: List<MovieItem>) {
-      if(data.isEmpty()){
-          binding.tvNotFoundMovie.visibility = View.VISIBLE
-      }
+        if (data.isEmpty()) {
+            binding.tvNotFoundMovie.visibility = View.VISIBLE
+        }
         movieListAdapter = MovieListAdapter(data,
             object : PopularMovieAdapterListener {
                 override fun onClickedItem(movieId: Int) {
