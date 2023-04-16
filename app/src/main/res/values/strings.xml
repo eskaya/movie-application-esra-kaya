@@ -4,4 +4,5 @@
 
     <string name="searchMoviePage_search">Search</string>
     <string name="searchMoviePage_notFound">Movie not found.. :(</string>
+    <string name="searchMoviePage_result">Result</string>
 </resources>

@@ -70,6 +70,10 @@ class SearchMovieFragment : Fragment() {
                 }
             }
         })
+
+        binding.cvBack.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     private fun setUpObservers() {
