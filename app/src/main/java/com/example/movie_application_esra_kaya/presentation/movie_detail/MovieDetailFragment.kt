@@ -15,6 +15,7 @@ import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.models.Genre
 import com.example.movie_application_esra_kaya.data.remote.models.response.MovieDetailDto
 import com.example.movie_application_esra_kaya.databinding.FragmentPopularMovieDetailBinding
+import com.example.movie_application_esra_kaya.presentation.adapter.GenresAdapter
 import com.example.movie_application_esra_kaya.utils.Constants
 import com.example.movie_application_esra_kaya.utils.extensions.toFullImageLink
 import dagger.hilt.android.AndroidEntryPoint

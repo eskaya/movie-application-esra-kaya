@@ -1,4 +1,4 @@
-package com.example.movie_application_esra_kaya.presentation.movie_detail
+package com.example.movie_application_esra_kaya.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
