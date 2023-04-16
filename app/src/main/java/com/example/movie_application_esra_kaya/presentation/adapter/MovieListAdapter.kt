@@ -9,6 +9,7 @@ import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.models.MovieItem
 import com.example.movie_application_esra_kaya.databinding.ListItemPopularMovieBinding
 import com.example.movie_application_esra_kaya.utils.Constants
+import com.example.movie_application_esra_kaya.utils.extensions.oneDigit
 
 class MovieListAdapter(
     val data: List<MovieItem>,
@@ -47,7 +48,7 @@ class PopularMovieListHistoryViewHolder(
         this.item = item
         binding.tvTitle.text = item.title
         binding.tvContent.text = item.overview
-        binding.tvPopularity.text = item.popularity.toString() + " popularity"
+        binding.tvPopularity.text = item.popularity.oneDigit + " popularity"
         binding.ratingBar.rating = (item.voteAverage/2).toFloat()
         Glide.with(binding.root.context)
             .load(Constants.POSTER_PATH + item.posterPath)
