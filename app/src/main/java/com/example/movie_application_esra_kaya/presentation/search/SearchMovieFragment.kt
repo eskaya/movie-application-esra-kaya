@@ -128,7 +128,6 @@ class SearchMovieFragment : Fragment() {
 
     private fun navigationMovieDetailPage(movieId: Int) {
         val fragment = MovieDetailFragment.newInstance(movieId)
-
         parentFragmentManager.commit {
             replace(R.id.frameLayout, fragment)
             setReorderingAllowed(true)

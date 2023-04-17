@@ -7,17 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.models.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentHomeBinding
 import com.example.movie_application_esra_kaya.presentation.adapter.*
-import com.example.movie_application_esra_kaya.presentation.movie_detail.MovieDetailFragment
-import com.example.movie_application_esra_kaya.utils.Constants
+import com.example.movie_application_esra_kaya.presentation.movie.MovieFragment
+import com.example.movie_application_esra_kaya.utils.MovieTypes
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -36,9 +39,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        viewModel.getPopularMovieList("popular")
-        viewModel.getTopRatedMovieList("top_rated")
-        viewModel.getUpComingMovieList("upcoming")
+        viewModel.getPopularMovieList(MovieTypes.POPULAR)
+        viewModel.getTopRatedMovieList(MovieTypes.TOP_RATED)
+        viewModel.getUpComingMovieList(MovieTypes.UPCOMING)
         init()
         listener()
         setUpObserversPopularMovies()
@@ -52,7 +55,20 @@ class HomeFragment : Fragment() {
         binding.recyclerviewUpComing.layoutManager = layoutManager
     }
 
-    private fun listener() {}
+    private fun listener() {
+        binding.tvSeeMoreTopRated.setOnClickListener {
+            val fragment = MovieFragment.newInstance(MovieTypes.TOP_RATED)
+            navigate(fragment)
+        }
+        binding.tvSeeMoreUpcoming.setOnClickListener {
+            val fragment = MovieFragment.newInstance(MovieTypes.UPCOMING)
+            navigate(fragment)
+        }
+        binding.tvSeeMorePopular.setOnClickListener {
+            val fragment = MovieFragment.newInstance(MovieTypes.POPULAR)
+            navigate(fragment)
+        }
+    }
 
     private fun setUpObserversPopularMovies() {
         viewModel.getViewState.observe(
@@ -133,7 +149,7 @@ class HomeFragment : Fragment() {
         val transform = CompositePageTransformer()
         transform.addTransformer(MarginPageTransformer(50))
         transform.addTransformer { page, position ->
-            var r: Float = 1 - kotlin.math.abs(position)
+            val r: Float = 1 - kotlin.math.abs(position)
             page.scaleY = 0.85f + r * 0.14f
         }
         binding.viewPagerTopRated.setPageTransformer(transform)
@@ -144,9 +160,17 @@ class HomeFragment : Fragment() {
         binding.recyclerviewUpComing.adapter = upComingAdapter
     }
 
-    private fun handleLoadingPopularMovies(loading: Boolean) {}
-    private fun handleLoadingTopRatedMovies(loading: Boolean) {}
-    private fun handleLoadingUpComingMovies(loading: Boolean) {}
+    private fun handleLoadingPopularMovies(loading: Boolean) {
+        binding.containerProgress.isVisible = loading
+    }
+
+    private fun handleLoadingTopRatedMovies(loading: Boolean) {
+        binding.containerProgress.isVisible = loading
+    }
+
+    private fun handleLoadingUpComingMovies(loading: Boolean) {
+        binding.containerProgress.isVisible = loading
+    }
 
     private fun handleErrorPopularMovies(error: Any) {
         Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
@@ -160,15 +184,13 @@ class HomeFragment : Fragment() {
         Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
     }
 
-    companion object {
-        fun newInstance(type: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(Constants.MOVIE_TYPE, type)
-                }
-            }
+    private fun navigate(fragment: Fragment) {
+        parentFragmentManager.commit {
+            replace(R.id.frameLayout, fragment)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
     }
-
 
 }
 

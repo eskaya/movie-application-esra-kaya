@@ -18,6 +18,8 @@ import com.example.movie_application_esra_kaya.presentation.adapter.MovieListAda
 import com.example.movie_application_esra_kaya.presentation.adapter.PopularMovieAdapterListener
 import com.example.movie_application_esra_kaya.presentation.movie_detail.MovieDetailFragment
 import com.example.movie_application_esra_kaya.presentation.search.SearchMovieFragment
+import com.example.movie_application_esra_kaya.utils.Constants
+import com.example.movie_application_esra_kaya.utils.MovieTypes
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,12 +29,19 @@ class MovieFragment : Fragment() {
     private val viewModel: MovieViewModel by viewModels()
     private var layoutManager: RecyclerView.LayoutManager? = null
     private lateinit var popularMovieListAdapter: MovieListAdapter
+    private var type: String = MovieTypes.POPULAR
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMovieListBinding.inflate(inflater, container, false)
+        arguments?.let {
+            type = it.getString(Constants.MOVIE_TYPE).toString()
+        }
+        type.let {
+            viewModel.getPopularMovieList(type)
+        }
         init()
         listener()
         setUpObservers()
@@ -84,7 +93,7 @@ class MovieFragment : Fragment() {
 
 
     private fun handleLoading(loading: Boolean) {
-          binding.containerProgress.isVisible = loading
+        binding.containerProgress.isVisible = loading
     }
 
     private fun handleError(error: Any) {
@@ -99,14 +108,15 @@ class MovieFragment : Fragment() {
             setReorderingAllowed(true)
             addToBackStack(null)
         }
+    }
 
-
-        /*
-        val transaction = parentFragmentManager.beginTransaction()
-        transaction.replace(R.id.frameLayout, fragment)
-        transaction.commit()
-
-         */
+    companion object {
+        fun newInstance(type: String) =
+            MovieFragment().apply {
+                arguments = Bundle().apply {
+                    putString(Constants.MOVIE_TYPE, type)
+                }
+            }
     }
 
 }

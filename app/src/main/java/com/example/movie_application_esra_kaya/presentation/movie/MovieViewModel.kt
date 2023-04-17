@@ -19,15 +19,12 @@ class MovieViewModel @Inject constructor(
     private val _state = MutableLiveData<MovieListViewState>(MovieListViewState.Init)
     val getViewState: LiveData<MovieListViewState> get() = _state
 
-    init {
-        getPopularMovieList("popular")
-    }
 
     private fun setLoadingState(isLoading: Boolean) {
         _state.value = MovieListViewState.IsLoading(isLoading)
     }
 
-    private fun getPopularMovieList(type: String) {
+     fun getPopularMovieList(type: String) {
         getPopularMovieListUseCase.invoke(type).onEach {
             when (it) {
                 is Resource.Error -> {
