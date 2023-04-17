@@ -61,6 +61,9 @@ class MovieFragment : Fragment() {
                 addToBackStack(null)
             }
         }
+        binding.cvBack.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     private fun setUpObservers() {
