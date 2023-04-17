@@ -15,8 +15,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.movie_application_esra_kaya.data.remote.models.models.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentHomeBinding
-import com.example.movie_application_esra_kaya.presentation.adapter.ImageSliderAdapter
-import com.example.movie_application_esra_kaya.presentation.adapter.TopRatedAdapter
+import com.example.movie_application_esra_kaya.presentation.adapter.*
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -27,6 +26,7 @@ class HomeFragment : Fragment() {
     private var layoutManager: RecyclerView.LayoutManager? = null
     private lateinit var imageSliderAdapter: ImageSliderAdapter
     private lateinit var topRatedAdapter: TopRatedAdapter
+    private lateinit var upComingAdapter: UpComingMovieAdapter
     val handler = Handler()
 
     override fun onCreateView(
@@ -36,15 +36,18 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         viewModel.getPopularMovieList("popular")
         viewModel.getTopRatedMovieList("top_rated")
+        viewModel.getUpComingMovieList("upcoming")
         init()
         listener()
         setUpObserversPopularMovies()
         setUpObserverTopRatedMovies()
+        setUpObserverUpComingMovies()
         return binding.root
     }
 
     private fun init() {
-        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        binding.recyclerviewUpComing.layoutManager = layoutManager
     }
 
     private fun listener() {}
@@ -76,6 +79,23 @@ class HomeFragment : Fragment() {
                 is TopRatedMovieViewState.IsLoading -> handleLoadingTopRatedMovies(it.isLoading)
                 is TopRatedMovieViewState.Success -> it.data?.let {
                     handleSuccessTopRatedMovies(
+                        it.results
+                    )
+                }
+            }
+        }
+    }
+
+    private fun setUpObserverUpComingMovies() {
+        viewModel.getUpComingViewState.observe(
+            viewLifecycleOwner
+        ) { it ->
+            when (it) {
+                UpComingMovieViewState.Init -> Unit
+                is UpComingMovieViewState.Error -> handleErrorUpComingMovies(it.error)
+                is UpComingMovieViewState.IsLoading -> handleLoadingUpComingMovies(it.isLoading)
+                is UpComingMovieViewState.Success -> it.data?.let {
+                    handleSuccessUpComingMovies(
                         it.results
                     )
                 }
@@ -117,14 +137,24 @@ class HomeFragment : Fragment() {
         binding.viewPagerTopRated.setPageTransformer(transform)
     }
 
+    private fun handleSuccessUpComingMovies(data: List<MovieItem>) {
+        upComingAdapter = UpComingMovieAdapter(data)
+        binding.recyclerviewUpComing.adapter = upComingAdapter
+    }
+
     private fun handleLoadingPopularMovies(loading: Boolean) {}
     private fun handleLoadingTopRatedMovies(loading: Boolean) {}
+    private fun handleLoadingUpComingMovies(loading: Boolean) {}
 
     private fun handleErrorPopularMovies(error: Any) {
         Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
     }
 
     private fun handleErrorTopRatedMovies(error: Any) {
+        Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun handleErrorUpComingMovies(error: Any) {
         Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
     }
 
