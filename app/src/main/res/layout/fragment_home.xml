@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.home.HomeFragment"
-    android:background="@color/woodsmoke">
+    android:background="@color/woodsmoke"
+    tools:context=".presentation.home.HomeFragment">
 
     <TextView
         android:id="@+id/tvTopRated"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/lato_regular"
-        android:text="Top Rated Movies"
+        android:text="@string/homePage_topRatedMovies"
         android:textColor="@color/white"
         android:textSize="@dimen/text_20"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerTopRated"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTopRated" />
@@ -32,19 +32,20 @@
         android:id="@+id/tvUpComing"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/lato_regular"
-        android:text="Upcoming Movies"
+        android:text="@string/homePage_upcomingMovies"
         android:textColor="@color/white"
         android:textSize="@dimen/text_20"
-        app:layout_constraintTop_toBottomOf="@+id/tvTopRated"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerTopRated" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewUpComing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUpComing" />
@@ -55,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/lato_regular"
-        android:text="Popular Movies"
+        android:text="@string/homePage_popularMovies"
         android:textColor="@color/white"
         android:textSize="@dimen/text_20"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,13 +67,10 @@
         android:id="@+id/viewPagerPopular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

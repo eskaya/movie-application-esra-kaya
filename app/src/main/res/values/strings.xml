@@ -5,4 +5,7 @@
     <string name="searchMoviePage_search">Search</string>
     <string name="searchMoviePage_notFound">Movie not found.. :(</string>
     <string name="searchMoviePage_result">Result</string>
+    <string name="homePage_topRatedMovies">Top Rated Movies</string>
+    <string name="homePage_upcomingMovies">Upcoming Movies</string>
+    <string name="homePage_popularMovies">Popular Movies</string>
 </resources>

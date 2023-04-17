@@ -18,7 +18,6 @@ import com.example.movie_application_esra_kaya.databinding.FragmentHomeBinding
 import com.example.movie_application_esra_kaya.presentation.adapter.ImageSliderAdapter
 import com.example.movie_application_esra_kaya.presentation.adapter.TopRatedAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Math.abs
 
 
 @AndroidEntryPoint
@@ -105,12 +104,12 @@ class HomeFragment : Fragment() {
         topRatedAdapter = TopRatedAdapter(data, binding.viewPagerTopRated)
         binding.viewPagerTopRated.adapter = imageSliderAdapter
 
-        binding.viewPagerTopRated.offscreenPageLimit = 3
+        binding.viewPagerTopRated.offscreenPageLimit = 5
         binding.viewPagerTopRated.clipChildren = false
         binding.viewPagerTopRated.clipToPadding = false
         binding.viewPagerTopRated.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         val transform = CompositePageTransformer()
-        transform.addTransformer(MarginPageTransformer(40))
+        transform.addTransformer(MarginPageTransformer(50))
         transform.addTransformer { page, position ->
             var r: Float = 1 - kotlin.math.abs(position)
             page.scaleY = 0.85f + r * 0.14f
