@@ -1,9 +1,9 @@
 package com.example.movie_application_esra_kaya.presentation.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.models.MovieItem
@@ -13,8 +13,7 @@ import com.example.movie_application_esra_kaya.utils.extensions.toFullImageLink
 
 class TopRatedAdapter(
     val data: List<MovieItem>,
-    private val viewPager2: ViewPager2
-    //  private val listener: PopularMovieAdapterListener
+    private val listener: TopRatedMovieAdapterListener
 ) : RecyclerView.Adapter<TopRatedViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -24,7 +23,7 @@ class TopRatedAdapter(
         val binding = ListItemTopRatedBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return TopRatedViewHolder(binding, data, viewPager2)
+        return TopRatedViewHolder(binding, data, listener)
     }
 
     override fun onBindViewHolder(holder: TopRatedViewHolder, position: Int) {
@@ -37,23 +36,31 @@ class TopRatedAdapter(
 class TopRatedViewHolder(
     private val binding: ListItemTopRatedBinding,
     private var data: List<MovieItem>,
-    var viewPager2: ViewPager2
-    //  private val listener: PopularMovieAdapterListener
-) : RecyclerView.ViewHolder(binding.root) {
+    private val listener: TopRatedMovieAdapterListener
+) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
     private lateinit var item: MovieItem
 
-    fun bind(item: MovieItem) {
-        //  binding.imageView.setImageResource(item.posterPath.toFullImageLink())
+    init {
+        binding.root.setOnClickListener(this)
+    }
 
+    fun bind(item: MovieItem) {
+        this.item = item
         Glide.with(binding.root.context)
             .load(item.backdropPath.toFullImageLink())
             .centerCrop()
             .placeholder(R.drawable.ic_cinema_placeholder)
             .into(binding.imageView)
-
     }
 
+    override fun onClick(v: View?) {
+        listener.onClickedItem(item.id)
+    }
+}
+
+interface TopRatedMovieAdapterListener {
+    fun onClickedItem(movieId: Int)
 }
 
 

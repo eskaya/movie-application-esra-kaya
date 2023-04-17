@@ -20,6 +20,7 @@ import com.example.movie_application_esra_kaya.data.remote.models.models.MovieIt
 import com.example.movie_application_esra_kaya.databinding.FragmentHomeBinding
 import com.example.movie_application_esra_kaya.presentation.adapter.*
 import com.example.movie_application_esra_kaya.presentation.movie.MovieFragment
+import com.example.movie_application_esra_kaya.presentation.movie_detail.MovieDetailFragment
 import com.example.movie_application_esra_kaya.utils.MovieTypes
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -126,7 +127,13 @@ class HomeFragment : Fragment() {
         val runnable = Runnable {
             binding.viewPagerPopular.setCurrentItem(binding.viewPagerPopular.currentItem + 1, true)
         }
-        imageSliderAdapter = ImageSliderAdapter(data, binding.viewPagerPopular)
+        imageSliderAdapter = ImageSliderAdapter(data,
+            object : PopularMoviesAdapterListener {
+                override fun onClickedItem(movieId: Int) {
+                    navigationMovieDetailPage(movieId)
+                }
+            }
+        )
         binding.viewPagerPopular.adapter = imageSliderAdapter
         binding.viewPagerPopular.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
@@ -139,7 +146,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleSuccessTopRatedMovies(data: List<MovieItem>) {
-        topRatedAdapter = TopRatedAdapter(data, binding.viewPagerTopRated)
+        topRatedAdapter = TopRatedAdapter(data,
+            object : TopRatedMovieAdapterListener {
+                override fun onClickedItem(movieId: Int) {
+                    navigationMovieDetailPage(movieId)
+                }
+            }
+        )
         binding.viewPagerTopRated.adapter = imageSliderAdapter
 
         binding.viewPagerTopRated.offscreenPageLimit = 5
@@ -156,7 +169,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleSuccessUpComingMovies(data: List<MovieItem>) {
-        upComingAdapter = UpComingMovieAdapter(data)
+        upComingAdapter = UpComingMovieAdapter(data,
+            object : UpComingMoviesAdapterListener {
+                override fun onClickedItem(movieId: Int) {
+                    navigationMovieDetailPage(movieId)
+                }
+            }
+        )
         binding.recyclerviewUpComing.adapter = upComingAdapter
     }
 
@@ -192,5 +211,13 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun navigationMovieDetailPage(movieId: Int) {
+        val fragment = MovieDetailFragment.newInstance(movieId)
+        parentFragmentManager.commit {
+            replace(R.id.frameLayout, fragment)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
+    }
 }
 

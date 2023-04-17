@@ -1,9 +1,9 @@
 package com.example.movie_application_esra_kaya.presentation.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.movie_application_esra_kaya.R
 import com.example.movie_application_esra_kaya.data.remote.models.models.MovieItem
@@ -13,8 +13,7 @@ import com.example.movie_application_esra_kaya.utils.extensions.toFullImageLink
 
 class ImageSliderAdapter(
     val data: List<MovieItem>,
-    val viewPager2: ViewPager2
-    //  private val listener: PopularMovieAdapterListener
+    private val listener: PopularMoviesAdapterListener
 ) : RecyclerView.Adapter<ImageSliderViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -24,7 +23,7 @@ class ImageSliderAdapter(
         val binding = ListItemRoundedImageBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return ImageSliderViewHolder(binding, data, viewPager2)
+        return ImageSliderViewHolder(binding, data, listener)
     }
 
     override fun onBindViewHolder(holder: ImageSliderViewHolder, position: Int) =
@@ -36,15 +35,17 @@ class ImageSliderAdapter(
 class ImageSliderViewHolder(
     private val binding: ListItemRoundedImageBinding,
     private var data: List<MovieItem>,
-    var viewPager2: ViewPager2
-    //  private val listener: PopularMovieAdapterListener
-) : RecyclerView.ViewHolder(binding.root) {
+    private val listener: PopularMoviesAdapterListener
+) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
     private lateinit var item: MovieItem
 
-    fun bind(item: MovieItem) {
-        //  binding.imageView.setImageResource(item.posterPath.toFullImageLink())
+    init {
+        binding.root.setOnClickListener(this)
+    }
 
+    fun bind(item: MovieItem) {
+        this.item = item
         Glide.with(binding.root.context)
             .load(item.backdropPath.toFullImageLink())
             .centerCrop()
@@ -53,6 +54,13 @@ class ImageSliderViewHolder(
 
     }
 
+    override fun onClick(v: View?) {
+        listener.onClickedItem(item.id)
+    }
+}
+
+interface PopularMoviesAdapterListener {
+    fun onClickedItem(movieId: Int)
 }
 
 
