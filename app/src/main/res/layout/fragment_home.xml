@@ -35,18 +35,31 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="See More"
+            android:textColor="@color/piper"
+            android:textSize="@dimen/text_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewPagerPopular" />
+
+        <TextView
             android:id="@+id/tvUpComing"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/lato_bold"
             android:text="@string/homePage_upcomingMovies"
             android:textColor="@color/white"
             android:textSize="@dimen/text_18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewPagerPopular" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewUpComing"
@@ -58,28 +71,52 @@
             app:layout_constraintTop_toBottomOf="@+id/tvUpComing" />
 
         <TextView
+            android:id="@+id/tvSeeMoreUpcoming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="See More"
+            android:textColor="@color/piper"
+            android:textSize="@dimen/text_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerviewUpComing" />
+
+        <TextView
             android:id="@+id/tvTopRated"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/lato_bold"
             android:text="@string/homePage_topRatedMovies"
             android:textColor="@color/white"
             android:textSize="@dimen/text_18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerviewUpComing" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSeeMoreUpcoming" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPagerTopRated"
             android:layout_width="wrap_content"
             android:layout_height="250dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTopRated" />
+
+        <TextView
+            android:id="@+id/tvSeeMoreTopRated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="See More"
+            android:textColor="@color/piper"
+            android:textSize="@dimen/text_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPagerTopRated" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

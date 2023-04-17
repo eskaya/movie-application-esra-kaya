@@ -16,6 +16,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.movie_application_esra_kaya.data.remote.models.models.MovieItem
 import com.example.movie_application_esra_kaya.databinding.FragmentHomeBinding
 import com.example.movie_application_esra_kaya.presentation.adapter.*
+import com.example.movie_application_esra_kaya.presentation.movie_detail.MovieDetailFragment
+import com.example.movie_application_esra_kaya.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -156,6 +158,15 @@ class HomeFragment : Fragment() {
 
     private fun handleErrorUpComingMovies(error: Any) {
         Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        fun newInstance(type: String) =
+            HomeFragment().apply {
+                arguments = Bundle().apply {
+                    putString(Constants.MOVIE_TYPE, type)
+                }
+            }
     }
 
 
