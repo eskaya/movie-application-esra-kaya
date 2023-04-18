@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.movie_application_esra_kaya'
+    namespace 'com.eskaya.movie_application'
     compileSdk 33
 
     defaultConfig {
@@ -92,5 +92,5 @@ dependencies {
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2'
 
     implementation 'com.makeramen:roundedimageview:2.3.0'
-    
+
 }
