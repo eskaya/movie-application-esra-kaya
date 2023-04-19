@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/woodsmoke"
-    tools:context="com.eskaya.movie_application.presentation.movie.MovieFragment">
+    tools:context="com.eskaya.movie_application.presentation.movie_list.MovieListFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvBack"

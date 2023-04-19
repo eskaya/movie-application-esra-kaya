@@ -1,4 +1,4 @@
-package com.eskaya.movie_application.presentation.movie
+package com.eskaya.movie_application.presentation.movie_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieViewModel @Inject constructor(
-    private val getPopularMovieListUseCase: GetMovieListUseCase
+    private val getMovieListUseCase: GetMovieListUseCase
 ) : ViewModel() {
 
 
@@ -24,8 +24,8 @@ class MovieViewModel @Inject constructor(
         _state.value = MovieListViewState.IsLoading(isLoading)
     }
 
-     fun getPopularMovieList(type: String) {
-        getPopularMovieListUseCase.invoke(type).onEach {
+     fun getMovieList(type: String) {
+        getMovieListUseCase.invoke(type).onEach {
             when (it) {
                 is Resource.Error -> {
                     setLoadingState(false)

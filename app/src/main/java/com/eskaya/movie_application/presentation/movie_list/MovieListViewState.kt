@@ -1,4 +1,4 @@
-package com.eskaya.movie_application.presentation.movie
+package com.eskaya.movie_application.presentation.movie_list
 
 import com.eskaya.movie_application.data.remote.models.response.MovieListDto
 

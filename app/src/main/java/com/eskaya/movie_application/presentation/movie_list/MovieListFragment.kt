@@ -1,4 +1,4 @@
-package com.eskaya.movie_application.presentation.movie
+package com.eskaya.movie_application.presentation.movie_list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,8 +15,8 @@ import com.eskaya.movie_application.R
 
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.FragmentMovieListBinding
+import com.eskaya.movie_application.presentation.adapter.MovieAdapterListener
 import com.eskaya.movie_application.presentation.adapter.MovieListAdapter
-import com.eskaya.movie_application.presentation.adapter.PopularMovieAdapterListener
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
 import com.eskaya.movie_application.presentation.search.SearchMovieFragment
 import com.eskaya.movie_application.utils.Constants
@@ -24,12 +24,12 @@ import com.eskaya.movie_application.utils.MovieTypes
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieFragment : Fragment() {
+class MovieListFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieListBinding
     private val viewModel: MovieViewModel by viewModels()
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private lateinit var popularMovieListAdapter: MovieListAdapter
+    private lateinit var movieListAdapter: MovieListAdapter
     private var type: String = MovieTypes.POPULAR
 
     override fun onCreateView(
@@ -41,7 +41,7 @@ class MovieFragment : Fragment() {
             type = it.getString(Constants.MOVIE_TYPE).toString()
         }
         type.let {
-            viewModel.getPopularMovieList(type)
+            viewModel.getMovieList(type)
         }
         init()
         listener()
@@ -85,14 +85,14 @@ class MovieFragment : Fragment() {
     }
 
     private fun handleSuccess(data: List<MovieItem>) {
-        popularMovieListAdapter = MovieListAdapter(data,
-            object : PopularMovieAdapterListener {
+        movieListAdapter = MovieListAdapter(data,
+            object : MovieAdapterListener {
                 override fun onClickedItem(movieId: Int) {
                     navigationMovieDetailPage(movieId)
                 }
 
             })
-        binding.recyclerView.adapter = popularMovieListAdapter
+        binding.recyclerView.adapter = movieListAdapter
     }
 
 
@@ -116,7 +116,7 @@ class MovieFragment : Fragment() {
 
     companion object {
         fun newInstance(type: String) =
-            MovieFragment().apply {
+            MovieListFragment().apply {
                 arguments = Bundle().apply {
                     putString(Constants.MOVIE_TYPE, type)
                 }

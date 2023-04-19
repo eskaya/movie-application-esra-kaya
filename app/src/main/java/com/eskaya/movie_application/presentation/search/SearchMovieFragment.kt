@@ -17,8 +17,8 @@ import com.eskaya.movie_application.R
 
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.FragmentSearchMovieBinding
+import com.eskaya.movie_application.presentation.adapter.MovieAdapterListener
 import com.eskaya.movie_application.presentation.adapter.MovieListAdapter
-import com.eskaya.movie_application.presentation.adapter.PopularMovieAdapterListener
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -108,7 +108,7 @@ class SearchMovieFragment : Fragment() {
             binding.tvNotFoundMovie.visibility = View.VISIBLE
         }
         movieListAdapter = MovieListAdapter(data,
-            object : PopularMovieAdapterListener {
+            object : MovieAdapterListener {
                 override fun onClickedItem(movieId: Int) {
                     navigationMovieDetailPage(movieId)
                 }

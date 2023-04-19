@@ -24,7 +24,7 @@ import com.eskaya.movie_application.presentation.adapter.ImageSliderAdapter
 import com.eskaya.movie_application.presentation.adapter.PopularMoviesAdapterListener
 import com.eskaya.movie_application.presentation.adapter.UpComingMovieAdapter
 import com.eskaya.movie_application.presentation.adapter.UpComingMoviesAdapterListener
-import com.eskaya.movie_application.presentation.movie.MovieFragment
+import com.eskaya.movie_application.presentation.movie_list.MovieListFragment
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
 import com.eskaya.movie_application.utils.MovieTypes
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,15 +63,15 @@ class HomeFragment : Fragment() {
 
     private fun listener() {
         binding.tvSeeMoreTopRated.setOnClickListener {
-            val fragment = MovieFragment.newInstance(MovieTypes.TOP_RATED)
+            val fragment = MovieListFragment.newInstance(MovieTypes.TOP_RATED)
             navigate(fragment)
         }
         binding.tvSeeMoreUpcoming.setOnClickListener {
-            val fragment = MovieFragment.newInstance(MovieTypes.UPCOMING)
+            val fragment = MovieListFragment.newInstance(MovieTypes.UPCOMING)
             navigate(fragment)
         }
         binding.tvSeeMorePopular.setOnClickListener {
-            val fragment = MovieFragment.newInstance(MovieTypes.POPULAR)
+            val fragment = MovieListFragment.newInstance(MovieTypes.POPULAR)
             navigate(fragment)
         }
     }

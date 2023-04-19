@@ -8,35 +8,34 @@ import com.bumptech.glide.Glide
 import com.eskaya.movie_application.R
 
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
-import com.eskaya.movie_application.databinding.ListItemPopularMovieBinding
+import com.eskaya.movie_application.databinding.ListItemMovieBinding
 import com.eskaya.movie_application.utils.extensions.oneDigit
 import com.eskaya.movie_application.utils.extensions.toFullImageLink
-
 class MovieListAdapter(
     val data: List<MovieItem>,
-    private val listener: PopularMovieAdapterListener
-) : RecyclerView.Adapter<PopularMovieListHistoryViewHolder>() {
+    private val listener: MovieAdapterListener
+) : RecyclerView.Adapter<MovieListHistoryViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PopularMovieListHistoryViewHolder {
-        val binding = ListItemPopularMovieBinding.inflate(
+    ): MovieListHistoryViewHolder {
+        val binding = ListItemMovieBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return PopularMovieListHistoryViewHolder(binding, data, listener)
+        return MovieListHistoryViewHolder(binding, data, listener)
     }
 
-    override fun onBindViewHolder(holder: PopularMovieListHistoryViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: MovieListHistoryViewHolder, position: Int) =
         holder.bind(data[position])
 
     override fun getItemCount(): Int = data.size
 }
 
-class PopularMovieListHistoryViewHolder(
-    private val binding: ListItemPopularMovieBinding,
+class MovieListHistoryViewHolder(
+    private val binding: ListItemMovieBinding,
     private val data: List<MovieItem>,
-    private val listener: PopularMovieAdapterListener
+    private val listener: MovieAdapterListener
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
     private lateinit var item: MovieItem
@@ -64,6 +63,6 @@ class PopularMovieListHistoryViewHolder(
 
 }
 
-interface PopularMovieAdapterListener {
+interface MovieAdapterListener {
     fun onClickedItem(movieId: Int)
 }
