@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.eskaya.movie_application.R
 import com.eskaya.movie_application.databinding.ActivityMainBinding
 
-import com.eskaya.movie_application.presentation.home.HomeFragment
+import com.eskaya.movie_application.presentation.dashboard.DashboardFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        val fragment = HomeFragment()
+        val fragment = DashboardFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, fragment)
         transaction.commit()

@@ -1,4 +1,4 @@
-package com.eskaya.movie_application.presentation.home
+package com.eskaya.movie_application.presentation.dashboard
 
 import android.os.Bundle
 import android.os.Handler
@@ -19,7 +19,7 @@ import com.eskaya.movie_application.R
 import com.eskaya.movie_application.presentation.adapter.TopRatedAdapter
 import com.eskaya.movie_application.presentation.adapter.TopRatedMovieAdapterListener
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
-import com.eskaya.movie_application.databinding.FragmentHomeBinding
+import com.eskaya.movie_application.databinding.FragmentDashboardBinding
 import com.eskaya.movie_application.presentation.adapter.ImageSliderAdapter
 import com.eskaya.movie_application.presentation.adapter.PopularMoviesAdapterListener
 import com.eskaya.movie_application.presentation.adapter.UpComingMovieAdapter
@@ -31,9 +31,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentHomeBinding
-    private val viewModel: HomeViewModel by viewModels()
+class DashboardFragment : Fragment() {
+    private lateinit var binding: FragmentDashboardBinding
+    private val viewModel: DashboardViewModel by viewModels()
     private var layoutManager: RecyclerView.LayoutManager? = null
     private lateinit var imageSliderAdapter: ImageSliderAdapter
     private lateinit var topRatedAdapter: TopRatedAdapter
@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentDashboardBinding.inflate(inflater, container, false)
         viewModel.getPopularMovieList(MovieTypes.POPULAR)
         viewModel.getTopRatedMovieList(MovieTypes.TOP_RATED)
         viewModel.getUpComingMovieList(MovieTypes.UPCOMING)

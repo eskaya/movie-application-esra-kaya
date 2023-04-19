@@ -1,4 +1,4 @@
-package com.eskaya.movie_application.presentation.home
+package com.eskaya.movie_application.presentation.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class DashboardViewModel @Inject constructor(
     private val getPopularMovieListUseCase: GetMovieListUseCase
 ) : ViewModel() {
 
