@@ -19,7 +19,8 @@
             android:id="@+id/ivMovie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@color/black" />
+            android:src="@drawable/ic_cinema_placeholder"
+            android:scaleType="centerCrop"/>
 
     </androidx.cardview.widget.CardView>
 

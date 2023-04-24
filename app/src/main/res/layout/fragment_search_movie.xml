@@ -15,6 +15,7 @@
         android:layout_marginTop="24dp"
         app:cardBackgroundColor="@color/charade"
         app:cardCornerRadius="10dp"
+        android:foreground="@drawable/shape_item_ripple"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,8 +23,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_back_left"
-            android:background="@drawable/shape_item_ripple"/>
+            android:src="@drawable/ic_back_left" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -31,12 +31,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="64dp"
         android:fontFamily="@font/lato_bold"
         android:lineSpacingExtra="6dp"
         android:text="@string/searchMoviePage_result"
         android:textColor="@color/white"
         android:textSize="@dimen/text_16"
-        app:layout_constraintEnd_toStartOf="@+id/cvBackFake"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cvBack"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,17 +54,6 @@
         app:layout_constraintStart_toStartOf="@+id/tvResult"
         app:layout_constraintTop_toBottomOf="@+id/tvResult" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvBackFake"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvSearchInput"
@@ -148,7 +138,6 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
