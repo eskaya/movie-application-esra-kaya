@@ -45,14 +45,14 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        viewModel.getPopularMovieList(MovieTypes.POPULAR)
-        viewModel.getTopRatedMovieList(MovieTypes.TOP_RATED)
-        viewModel.getUpComingMovieList(MovieTypes.UPCOMING)
         init()
         listener()
         setUpObserversPopularMovies()
         setUpObserverTopRatedMovies()
         setUpObserverUpComingMovies()
+        viewModel.getPopularMovieList(MovieTypes.POPULAR)
+        viewModel.getTopRatedMovieList(MovieTypes.TOP_RATED)
+        viewModel.getUpComingMovieList(MovieTypes.UPCOMING)
         return binding.root
     }
 
@@ -158,7 +158,7 @@ class DashboardFragment : Fragment() {
                 }
             }
         )
-        binding.viewPagerTopRated.adapter = imageSliderAdapter
+      //  binding.viewPagerTopRated.adapter = imageSliderAdapter
 
         binding.viewPagerTopRated.offscreenPageLimit = 5
         binding.viewPagerTopRated.clipChildren = false
