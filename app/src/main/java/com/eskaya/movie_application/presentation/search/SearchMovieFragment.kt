@@ -1,5 +1,6 @@
 package com.eskaya.movie_application.presentation.search
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -30,6 +32,7 @@ class SearchMovieFragment : Fragment() {
     private lateinit var movieListAdapter: MovieListAdapter
     private val viewModel: SearchViewModel by viewModels()
     private var timer: Timer? = null
+    private lateinit var manager: InputMethodManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,9 +47,9 @@ class SearchMovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //TODO --> keyboard not open
+        manager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         binding.etSearch.requestFocus()
-        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+        manager?.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
 
     private fun init() {
@@ -81,6 +84,7 @@ class SearchMovieFragment : Fragment() {
         })
 
         binding.cvBack.setOnClickListener {
+            manager.hideSoftInputFromWindow(it?.windowToken, 0)
             parentFragmentManager.popBackStack()
         }
     }
