@@ -14,7 +14,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eskaya.movie_application.R
-
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.FragmentSearchMovieBinding
 import com.eskaya.movie_application.presentation.adapter.MovieAdapterListener
@@ -59,7 +58,7 @@ class SearchMovieFragment : Fragment() {
 
         binding.etSearch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                if (s != null && s.length >= 2) {
+                if (s.length >= 2) {
                     timer = Timer()
                     timer?.schedule(
                         object : TimerTask() {
@@ -107,6 +106,7 @@ class SearchMovieFragment : Fragment() {
         if (data.isEmpty()) {
             binding.tvNotFoundMovie.visibility = View.VISIBLE
         }
+        binding.tvNotFoundMovie.visibility = View.GONE
         movieListAdapter = MovieListAdapter(data,
             object : MovieAdapterListener {
                 override fun onClickedItem(movieId: Int) {
@@ -134,5 +134,4 @@ class SearchMovieFragment : Fragment() {
             addToBackStack(null)
         }
     }
-
 }

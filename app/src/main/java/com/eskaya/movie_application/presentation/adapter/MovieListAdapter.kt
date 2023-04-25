@@ -3,7 +3,6 @@ package com.eskaya.movie_application.presentation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.MarginLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eskaya.movie_application.R
@@ -41,14 +40,6 @@ class MovieListHistoryViewHolder(
     private lateinit var item: MovieItem
 
     init {
-        /*
-        if(adapterPosition == 0 ){
-            val marginLayoutParams = MarginLayoutParams(binding.root.layoutParams)
-            marginLayoutParams.setMargins(0, 100, 0, 10)
-            binding.root.layoutParams = marginLayoutParams
-        }
-
-         */
         binding.root.setOnClickListener(this)
     }
 
@@ -65,6 +56,13 @@ class MovieListHistoryViewHolder(
                 .placeholder(R.drawable.ic_cinema_placeholder)
                 .into(binding.ivMovie)
         }
+        val layoutParams = binding.root.layoutParams as RecyclerView.LayoutParams
+        if (adapterPosition == 0) {
+            layoutParams.setMargins(0, 36, 0, 36)
+        } else {
+            layoutParams.setMargins(0, 0, 0, 36)
+        }
+        binding.root.layoutParams = layoutParams
     }
 
     override fun onClick(v: View?) {
