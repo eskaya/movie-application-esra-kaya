@@ -40,9 +40,7 @@ class MovieListFragment : Fragment() {
         arguments?.let {
             type = it.getString(Constants.MOVIE_TYPE).toString()
         }
-        type.let {
-            viewModel.getMovieList(type)
-        }
+        viewModel.getMovieList(type)
         init()
         listener()
         setUpObservers()
@@ -55,13 +53,6 @@ class MovieListFragment : Fragment() {
     }
 
     private fun listener() {
-        binding.cvSearch.setOnClickListener {
-            parentFragmentManager.commit {
-                replace(R.id.frameLayout, SearchMovieFragment())
-                setReorderingAllowed(true)
-                addToBackStack(null)
-            }
-        }
         binding.cvBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }

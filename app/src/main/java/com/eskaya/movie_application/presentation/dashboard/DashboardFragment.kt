@@ -26,6 +26,7 @@ import com.eskaya.movie_application.presentation.adapter.UpComingMovieAdapter
 import com.eskaya.movie_application.presentation.adapter.UpComingMoviesAdapterListener
 import com.eskaya.movie_application.presentation.movie_list.MovieListFragment
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
+import com.eskaya.movie_application.presentation.search.SearchMovieFragment
 import com.eskaya.movie_application.utils.MovieTypes
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -73,6 +74,13 @@ class DashboardFragment : Fragment() {
         binding.tvSeeMorePopular.setOnClickListener {
             val fragment = MovieListFragment.newInstance(MovieTypes.POPULAR)
             navigate(fragment)
+        }
+        binding.cvSearch.setOnClickListener {
+            parentFragmentManager.commit {
+                replace(R.id.frameLayout, SearchMovieFragment())
+                setReorderingAllowed(true)
+                addToBackStack(null)
+            }
         }
     }
 
@@ -158,8 +166,7 @@ class DashboardFragment : Fragment() {
                 }
             }
         )
-      //  binding.viewPagerTopRated.adapter = imageSliderAdapter
-
+       // binding.viewPagerTopRated.adapter = topRatedAdapter
         binding.viewPagerTopRated.offscreenPageLimit = 5
         binding.viewPagerTopRated.clipChildren = false
         binding.viewPagerTopRated.clipToPadding = false
@@ -225,4 +232,3 @@ class DashboardFragment : Fragment() {
         }
     }
 }
-

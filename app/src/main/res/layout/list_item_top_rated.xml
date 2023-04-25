@@ -5,5 +5,4 @@
     android:layout_height="200dp"
     android:adjustViewBounds="true"
     android:scaleType="fitCenter">
-
 </com.makeramen.roundedimageview.RoundedImageView>
