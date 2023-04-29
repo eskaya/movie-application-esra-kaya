@@ -3,6 +3,7 @@ package com.eskaya.movie_application.presentation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.MarginLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eskaya.movie_application.R
@@ -50,12 +51,20 @@ class UpComingMovieViewHolder(
         this.item = item
         binding.tvTitle.text = item.title
         binding.tvOriginalLngValue.text = item.originalLanguage
-        binding.ratingBar.rating = (item.voteAverage/2).toFloat()
+        binding.ratingBar.rating = (item.voteAverage / 2).toFloat()
         Glide.with(binding.root.context)
             .load(item.backdropPath.toFullImageLink())
             .centerCrop()
             .placeholder(R.drawable.ic_cinema_placeholder)
             .into(binding.ivMoviePoster)
+
+        val marginLayoutParams = MarginLayoutParams(binding.root.layoutParams)
+        if (adapterPosition == 0) {
+            marginLayoutParams.setMargins(36, 0, 36, 0)
+        } else {
+            marginLayoutParams.setMargins(0, 0, 36, 0)
+        }
+        binding.root.layoutParams = marginLayoutParams
     }
 
     override fun onClick(v: View?) {
