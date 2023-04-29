@@ -2,6 +2,7 @@ package com.eskaya.movie_application.presentation.dashboard
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +40,7 @@ class DashboardFragment : Fragment() {
     private lateinit var imageSliderAdapter: ImageSliderAdapter
     private lateinit var topRatedAdapter: TopRatedAdapter
     private lateinit var upComingAdapter: UpComingMovieAdapter
-    val handler = Handler()
+    val handler = Handler(Looper.getMainLooper())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
