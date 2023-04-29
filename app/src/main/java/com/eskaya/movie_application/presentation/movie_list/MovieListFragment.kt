@@ -18,7 +18,6 @@ import com.eskaya.movie_application.databinding.FragmentMovieListBinding
 import com.eskaya.movie_application.presentation.adapter.MovieAdapterListener
 import com.eskaya.movie_application.presentation.adapter.MovieListAdapter
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
-import com.eskaya.movie_application.presentation.search.SearchMovieFragment
 import com.eskaya.movie_application.utils.Constants
 import com.eskaya.movie_application.utils.MovieTypes
 import dagger.hilt.android.AndroidEntryPoint
