@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -18,7 +19,7 @@
         android:fontFamily="@font/lato_regular"
         android:paddingHorizontal="12dp"
         android:paddingVertical="6dp"
-        android:text="2019"
+        tools:text="2019"
         android:textColor="@color/white"
         android:textSize="14dp" />
 </androidx.cardview.widget.CardView>

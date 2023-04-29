@@ -23,7 +23,7 @@ class MovieListAdapter(
         val binding = ListItemMovieBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return MovieListHistoryViewHolder(binding, listener)
+        return MovieListHistoryViewHolder(binding, listener, data)
     }
 
     override fun onBindViewHolder(holder: MovieListHistoryViewHolder, position: Int) =
@@ -34,7 +34,8 @@ class MovieListAdapter(
 
 class MovieListHistoryViewHolder(
     private val binding: ListItemMovieBinding,
-    private val listener: MovieAdapterListener
+    private val listener: MovieAdapterListener,
+    val data: List<MovieItem>,
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
     private lateinit var item: MovieItem
@@ -49,6 +50,11 @@ class MovieListHistoryViewHolder(
         binding.tvContent.text = item.overview
         binding.tvPopularity.text = "${item.popularity.oneDigit} popularity"
         binding.ratingBar.rating = (item.voteAverage / 2).toFloat()
+
+
+        val str = item.releaseDate
+        val parts = str.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        binding.tvDate.text = parts[0]
         item.posterPath.let {
             Glide.with(binding.root.context)
                 .load(item.posterPath.toFullImageLink())
@@ -57,10 +63,16 @@ class MovieListHistoryViewHolder(
                 .into(binding.ivMovie)
         }
         val layoutParams = binding.root.layoutParams as RecyclerView.LayoutParams
-        if (adapterPosition == 0) {
-            layoutParams.setMargins(0, 36, 0, 36)
-        } else {
-            layoutParams.setMargins(0, 0, 0, 36)
+        when (adapterPosition) {
+            0 -> {
+                layoutParams.setMargins(0, 36, 0, 36)
+            }
+            (data.size) - 1 -> {
+                layoutParams.setMargins(0, 0, 0, 236)
+            }
+            else -> {
+                layoutParams.setMargins(0, 0, 0, 36)
+            }
         }
         binding.root.layoutParams = layoutParams
     }
