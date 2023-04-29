@@ -10,6 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -168,8 +169,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="50dp"
         android:background="@color/white"
-        app:cardCornerRadius="50dp"
         android:foreground="@drawable/shape_item_ripple"
+        app:cardCornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
