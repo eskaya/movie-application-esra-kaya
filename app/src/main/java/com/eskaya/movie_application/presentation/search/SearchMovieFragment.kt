@@ -2,17 +2,15 @@ package com.eskaya.movie_application.presentation.search
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethod.SHOW_FORCED
 import android.view.inputmethod.InputMethodManager
-import android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
@@ -26,6 +24,7 @@ import com.eskaya.movie_application.R
 import com.eskaya.movie_application.databinding.FragmentSearchMovieBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
@@ -42,14 +41,14 @@ class SearchMovieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchMovieBinding.inflate(layoutInflater)
-        init()
-        listener()
-        setUpObservers()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
+        listener()
+        setUpObservers()
         binding.etSearch.requestFocus()
         manager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         manager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
@@ -72,6 +71,9 @@ class SearchMovieFragment : Fragment() {
                             }
                         }, 1000
                     )
+                }
+                if (s.isEmpty()) {
+                    movieListAdapter.clear()
                 }
             }
 
@@ -99,7 +101,7 @@ class SearchMovieFragment : Fragment() {
                 is SearchViewState.IsLoading -> handleLoading(it.isLoading)
                 is SearchViewState.Success -> it.data?.let {
                     handleSuccess(
-                        it.results
+                        it.results as ArrayList<MovieItem>
                     )
                 }
             }
@@ -107,7 +109,7 @@ class SearchMovieFragment : Fragment() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun handleSuccess(data: List<MovieItem>) {
+    private fun handleSuccess(data: ArrayList<MovieItem>) {
         binding.tvNotFoundMovie.visibility = View.GONE
         movieListAdapter = MovieListAdapter(data,
             object : MovieAdapterListener {
@@ -115,15 +117,15 @@ class SearchMovieFragment : Fragment() {
                     navigationMovieDetailPage(movieId)
                 }
             })
-        movieListAdapter.notifyDataSetChanged()
         binding.recyclerView.adapter = movieListAdapter
+        movieListAdapter.notifyDataSetChanged()
         if (data.isEmpty()) {
             binding.tvNotFoundMovie.visibility = View.VISIBLE
         }
     }
 
     private fun handleLoading(loading: Boolean) {
-        // binding.containerProgress.isVisible = loading
+        binding.containerProgress.isVisible = loading
     }
 
     private fun handleError(error: Any) {

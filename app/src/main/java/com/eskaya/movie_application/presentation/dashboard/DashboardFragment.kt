@@ -47,15 +47,19 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        viewModel.getPopularMovieList(MovieTypes.POPULAR)
+        viewModel.getTopRatedMovieList(MovieTypes.TOP_RATED)
+        viewModel.getUpComingMovieList(MovieTypes.UPCOMING)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         init()
         listener()
         setUpObserversPopularMovies()
         setUpObserverTopRatedMovies()
         setUpObserverUpComingMovies()
-        viewModel.getPopularMovieList(MovieTypes.POPULAR)
-        viewModel.getTopRatedMovieList(MovieTypes.TOP_RATED)
-        viewModel.getUpComingMovieList(MovieTypes.UPCOMING)
-        return binding.root
     }
 
     private fun init() {

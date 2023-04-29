@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eskaya.movie_application.R
-
 import com.eskaya.movie_application.data.remote.models.models.Genre
 import com.eskaya.movie_application.data.remote.models.response.MovieDetailDto
 import com.eskaya.movie_application.databinding.FragmentPopularMovieDetailBinding
@@ -39,15 +38,17 @@ class MovieDetailFragment : Fragment() {
         arguments?.let {
             movieId = it.getInt(Constants.MOVIE_ID)
         }
-
         movieId.let {
             viewModel.getMovieDetail(it)
         }
+        return binding.root
+    }
 
-        setUpObservers()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         init()
         listener()
-        return binding.root
+        setUpObservers()
     }
 
     private fun init() {

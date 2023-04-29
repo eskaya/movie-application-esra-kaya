@@ -12,7 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eskaya.movie_application.R
-
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.FragmentMovieListBinding
 import com.eskaya.movie_application.presentation.adapter.MovieAdapterListener
@@ -40,10 +39,14 @@ class MovieListFragment : Fragment() {
             type = it.getString(Constants.MOVIE_TYPE).toString()
         }
         viewModel.getMovieList(type)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         init()
         listener()
         setUpObservers()
-        return binding.root
     }
 
     private fun init() {
@@ -75,7 +78,8 @@ class MovieListFragment : Fragment() {
     }
 
     private fun handleSuccess(data: List<MovieItem>) {
-        movieListAdapter = MovieListAdapter(data,
+        movieListAdapter = MovieListAdapter(
+            data as ArrayList<MovieItem>,
             object : MovieAdapterListener {
                 override fun onClickedItem(movieId: Int) {
                     navigationMovieDetailPage(movieId)

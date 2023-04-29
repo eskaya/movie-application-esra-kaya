@@ -12,10 +12,15 @@ import com.eskaya.movie_application.utils.extensions.oneDigit
 import com.eskaya.movie_application.utils.extensions.toFullImageLink
 
 class MovieListAdapter(
-    val data: List<MovieItem>,
+    val data: ArrayList<MovieItem>,
     private val listener: MovieAdapterListener
 ) : RecyclerView.Adapter<MovieListHistoryViewHolder>() {
 
+    fun clear() {
+        val size: Int = data.size
+        data.clear()
+        notifyItemRangeRemoved(0, size)
+    }
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
