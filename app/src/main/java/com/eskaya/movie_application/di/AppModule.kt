@@ -2,8 +2,8 @@ package com.eskaya.movie_application.di
 
 import com.eskaya.movie_application.domain.repository.MovieRepository
 import MovieRepositoryImpl
+import com.eskaya.movie_application.BuildConfig
 import com.eskaya.movie_application.data.remote.services.MovieApi
-import com.eskaya.movie_application.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +24,7 @@ object AppModule {
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(Interceptor { chain ->
             val newRequest = chain.request().newBuilder()
-                .addHeader("api_key", Constants.API_KEY)
+                .addHeader("api_key", BuildConfig.API_KEY)
                 .build()
             chain.proceed(newRequest)
         })
@@ -34,8 +34,7 @@ object AppModule {
     @Singleton
     fun providePaprikaApi(): MovieApi {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
-           // .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
