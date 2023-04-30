@@ -1,5 +1,6 @@
 package com.eskaya.movie_application.data.remote.services
 
+import com.eskaya.movie_application.data.remote.models.response.ActorsDto
 import com.eskaya.movie_application.data.remote.models.response.MovieDetailDto
 import com.eskaya.movie_application.data.remote.models.response.MovieListDto
 import com.eskaya.movie_application.data.remote.models.response.SearchDto
@@ -19,5 +20,5 @@ interface MovieApi {
     suspend fun getSearchResult(@Query("query") query: String): SearchDto
 
     @GET("movie/{movieId}/credits?api_key=46d0b7df20b6dca0b123566e3d926b4b")
-    suspend fun getMovieActors(@Path("movieId") movieId: Int): MovieDetailDto
+    suspend fun getMovieActors(@Path("movieId") movieId: Int): ActorsDto
 }

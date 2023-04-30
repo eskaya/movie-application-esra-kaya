@@ -1,3 +1,4 @@
+import com.eskaya.movie_application.data.remote.models.response.ActorsDto
 import com.eskaya.movie_application.data.remote.models.response.MovieDetailDto
 import com.eskaya.movie_application.data.remote.models.response.MovieListDto
 import com.eskaya.movie_application.data.remote.models.response.SearchDto
@@ -20,5 +21,10 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getSearchResult(query: String): SearchDto {
         return api.getSearchResult(query)
     }
+
+    override suspend fun getMovieActors(movieId: Int): ActorsDto {
+        return api.getMovieActors(movieId)
+    }
+
 
 }
