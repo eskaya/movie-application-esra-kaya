@@ -17,4 +17,7 @@ interface MovieApi {
 
     @GET("search/movie?api_key=46d0b7df20b6dca0b123566e3d926b4b")
     suspend fun getSearchResult(@Query("query") query: String): SearchDto
+
+    @GET("movie/{movieId}/credits?api_key=46d0b7df20b6dca0b123566e3d926b4b")
+    suspend fun getMovieActors(@Path("movieId") movieId: Int): MovieDetailDto
 }
