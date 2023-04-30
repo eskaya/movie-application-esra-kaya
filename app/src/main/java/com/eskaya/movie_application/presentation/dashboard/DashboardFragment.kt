@@ -1,5 +1,6 @@
 package com.eskaya.movie_application.presentation.dashboard
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -29,6 +30,7 @@ import com.eskaya.movie_application.presentation.movie_list.MovieListFragment
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
 import com.eskaya.movie_application.presentation.search.SearchMovieFragment
 import com.eskaya.movie_application.utils.MovieTypes
+import com.eskaya.movie_application.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -47,9 +49,11 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        viewModel.getPopularMovieList(MovieTypes.POPULAR)
-        viewModel.getTopRatedMovieList(MovieTypes.TOP_RATED)
-        viewModel.getUpComingMovieList(MovieTypes.UPCOMING)
+        //  viewModel.getPopularMovieList(MovieTypes.POPULAR)
+        //  viewModel.getTopRatedMovieList(MovieTypes.TOP_RATED)
+        // viewModel.getUpComingMovieList(MovieTypes.UPCOMING)
+
+        viewModel.fetchUsers()
         return binding.root
     }
 
@@ -57,9 +61,33 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init()
         listener()
-        setUpObserversPopularMovies()
-        setUpObserverTopRatedMovies()
-        setUpObserverUpComingMovies()
+        // setUpObserversPopularMovies()
+        //  setUpObserverTopRatedMovies()
+        //  setUpObserverUpComingMovies()
+
+
+        setUpObserver()
+    }
+
+    @SuppressLint("FragmentLiveDataObserve")
+    private fun setUpObserver() {
+        viewModel.getUiState().observe(this) {
+            when (it) {
+                is Resource.Success -> {
+                    binding.containerProgress.visibility = View.GONE
+                    it.data?.get(0)?.let { it1 -> handleSuccessPopularMovies(it1.results) }
+                    it.data?.get(1)?.let { it1 -> handleSuccessUpComingMovies(it1.results) }
+                    // it.data?.get(2)?.let { it1 -> handleSuccessTopRatedMovies(it1.results) }
+                }
+                is Resource.Loading -> {
+                    binding.containerProgress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.containerProgress.visibility = View.GONE
+                    Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun init() {
@@ -89,57 +117,6 @@ class DashboardFragment : Fragment() {
         }
     }
 
-    private fun setUpObserversPopularMovies() {
-        viewModel.getViewState.observe(
-            viewLifecycleOwner
-        ) { it ->
-            when (it) {
-                PopularMovieViewState.Init -> Unit
-                is PopularMovieViewState.Error -> handleErrorPopularMovies(it.error)
-                is PopularMovieViewState.IsLoading -> handleLoadingPopularMovies(it.isLoading)
-                is PopularMovieViewState.Success -> it.data?.let {
-                    handleSuccessPopularMovies(
-                        it.results
-                    )
-                }
-            }
-        }
-    }
-
-    private fun setUpObserverTopRatedMovies() {
-        viewModel.getTopRatedViewState.observe(
-            viewLifecycleOwner
-        ) { it ->
-            when (it) {
-                TopRatedMovieViewState.Init -> Unit
-                is TopRatedMovieViewState.Error -> handleErrorTopRatedMovies(it.error)
-                is TopRatedMovieViewState.IsLoading -> handleLoadingTopRatedMovies(it.isLoading)
-                is TopRatedMovieViewState.Success -> it.data?.let {
-                    handleSuccessTopRatedMovies(
-                        it.results
-                    )
-                }
-            }
-        }
-    }
-
-    private fun setUpObserverUpComingMovies() {
-        viewModel.getUpComingViewState.observe(
-            viewLifecycleOwner
-        ) { it ->
-            when (it) {
-                UpComingMovieViewState.Init -> Unit
-                is UpComingMovieViewState.Error -> handleErrorUpComingMovies(it.error)
-                is UpComingMovieViewState.IsLoading -> handleLoadingUpComingMovies(it.isLoading)
-                is UpComingMovieViewState.Success -> it.data?.let {
-                    handleSuccessUpComingMovies(
-                        it.results
-                    )
-                }
-            }
-        }
-    }
-
 
     private fun handleSuccessPopularMovies(data: List<MovieItem>) {
         val runnable = Runnable {
@@ -163,6 +140,7 @@ class DashboardFragment : Fragment() {
         })
     }
 
+    //TODO --> bug fix!!!!!!
     private fun handleSuccessTopRatedMovies(data: List<MovieItem>) {
         topRatedAdapter = TopRatedAdapter(data,
             object : TopRatedMovieAdapterListener {
@@ -171,7 +149,7 @@ class DashboardFragment : Fragment() {
                 }
             }
         )
-       // binding.viewPagerTopRated.adapter = topRatedAdapter
+        // binding.viewPagerTopRated.adapter = topRatedAdapter
         binding.viewPagerTopRated.offscreenPageLimit = 5
         binding.viewPagerTopRated.clipChildren = false
         binding.viewPagerTopRated.clipToPadding = false
@@ -200,25 +178,10 @@ class DashboardFragment : Fragment() {
         binding.containerProgress.isVisible = loading
     }
 
-    private fun handleLoadingTopRatedMovies(loading: Boolean) {
-        binding.containerProgress.isVisible = loading
-    }
-
-    private fun handleLoadingUpComingMovies(loading: Boolean) {
-        binding.containerProgress.isVisible = loading
-    }
-
     private fun handleErrorPopularMovies(error: Any) {
         Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
     }
 
-    private fun handleErrorTopRatedMovies(error: Any) {
-        Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
-    }
-
-    private fun handleErrorUpComingMovies(error: Any) {
-        Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
-    }
 
     private fun navigate(fragment: Fragment) {
         parentFragmentManager.commit {
