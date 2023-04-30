@@ -9,6 +9,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@color/white"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

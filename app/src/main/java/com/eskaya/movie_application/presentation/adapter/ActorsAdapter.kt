@@ -1,7 +1,9 @@
 package com.eskaya.movie_application.presentation.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.NotificationCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eskaya.movie_application.R
@@ -42,7 +44,7 @@ class ActorsViewHolder(
                 .placeholder(R.drawable.ic_cinema_placeholder)
                 .into(binding.ivActor)
         } else {
-            binding.ivActor.setImageResource(R.drawable.ic_cinema_placeholder)
+            binding.ivActor.setImageResource(R.drawable.ic_question_mark)
         }
 
         val marginLayoutParams = ViewGroup.MarginLayoutParams(binding.root.layoutParams)
