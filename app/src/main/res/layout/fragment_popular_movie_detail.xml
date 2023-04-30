@@ -99,7 +99,8 @@
                         android:src="@drawable/vote_icon"
                         app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                         app:layout_constraintStart_toEndOf="@+id/ratingBar"
-                        app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+                        app:layout_constraintTop_toTopOf="@+id/ratingBar"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/tvImdb"
@@ -111,18 +112,22 @@
                         android:textSize="@dimen/text_14"
                         app:layout_constraintBottom_toBottomOf="@+id/ivLike"
                         app:layout_constraintStart_toEndOf="@+id/ivLike"
-                        app:layout_constraintTop_toTopOf="@+id/ivLike" />
+                        app:layout_constraintTop_toTopOf="@+id/ivLike"
+                        android:visibility="gone"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewActors"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="@dimen/horizontal_offset"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ivLike" />
+                        app:layout_constraintTop_toBottomOf="@+id/recyclerViewActors" />
 
                     <TextView
                         android:id="@+id/tvOverview"

@@ -25,6 +25,7 @@ class ActorsAdapter(
 
     override fun onBindViewHolder(holder: ActorsViewHolder, position: Int) =
         holder.bind(data[position])
+
     override fun getItemCount(): Int = data.size
 }
 
@@ -34,10 +35,22 @@ class ActorsViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Cast) {
-        Glide.with(binding.root.context)
-            .load(item.profilePath.toFullImageLink())
-            .centerCrop()
-            .placeholder(R.drawable.ic_cinema_placeholder)
-            .into(binding.ivActor)
+        if (item.profilePath != null) {
+            Glide.with(binding.root.context)
+                .load(item.profilePath.toFullImageLink())
+                .centerCrop()
+                .placeholder(R.drawable.ic_cinema_placeholder)
+                .into(binding.ivActor)
+        } else {
+            binding.ivActor.setImageResource(R.drawable.ic_cinema_placeholder)
+        }
+
+        val marginLayoutParams = ViewGroup.MarginLayoutParams(binding.root.layoutParams)
+        if (adapterPosition == 0) {
+            marginLayoutParams.setMargins(40, 0, 36, 0)
+        } else {
+            marginLayoutParams.setMargins(0, 0, 36, 0)
+        }
+        binding.root.layoutParams = marginLayoutParams
     }
 }
