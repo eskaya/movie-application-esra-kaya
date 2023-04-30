@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.eskaya.movie_application.data.remote.models.response.ActorsDto
 import com.eskaya.movie_application.domain.use_case.GetActorsUseCase
 import com.eskaya.movie_application.domain.use_case.GetMovieDetailUseCase
 import com.eskaya.movie_application.utils.Resource
