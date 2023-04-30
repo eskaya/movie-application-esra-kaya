@@ -22,6 +22,7 @@ class GenresAdapter(
 
     override fun onBindViewHolder(holder: GenresViewHolder, position: Int) =
         holder.bind(data[position])
+
     override fun getItemCount(): Int = data.size
 }
 
@@ -32,5 +33,12 @@ class GenresViewHolder(
 
     fun bind(item: Genre) {
         binding.tvGenres.text = item.name
+        val marginLayoutParams = ViewGroup.MarginLayoutParams(binding.root.layoutParams)
+        if (adapterPosition == 0) {
+            marginLayoutParams.setMargins(40, 0, 36, 0)
+        } else {
+            marginLayoutParams.setMargins(0, 0, 36, 0)
+        }
+        binding.root.layoutParams = marginLayoutParams
     }
 }
