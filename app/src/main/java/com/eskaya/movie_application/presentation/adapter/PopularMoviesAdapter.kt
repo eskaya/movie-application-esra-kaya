@@ -12,28 +12,28 @@ import com.eskaya.movie_application.databinding.ListItemRoundedImageBinding
 import com.eskaya.movie_application.utils.extensions.toFullImageLink
 
 
-class ImageSliderAdapter(
+class PopularMoviesAdapter(
     val data: List<MovieItem>,
     private val listener: PopularMoviesAdapterListener
-) : RecyclerView.Adapter<ImageSliderViewHolder>() {
+) : RecyclerView.Adapter<PopularMoviesViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ImageSliderViewHolder {
+    ): PopularMoviesViewHolder {
         val binding = ListItemRoundedImageBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return ImageSliderViewHolder(binding, data, listener)
+        return PopularMoviesViewHolder(binding, data, listener)
     }
 
-    override fun onBindViewHolder(holder: ImageSliderViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: PopularMoviesViewHolder, position: Int) =
         holder.bind(data[position])
 
     override fun getItemCount(): Int = data.size
 }
 
-class ImageSliderViewHolder(
+class PopularMoviesViewHolder(
     private val binding: ListItemRoundedImageBinding,
     private var data: List<MovieItem>,
     private val listener: PopularMoviesAdapterListener

@@ -18,14 +18,9 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.eskaya.movie_application.R
-import com.eskaya.movie_application.presentation.adapter.TopRatedAdapter
-import com.eskaya.movie_application.presentation.adapter.TopRatedMovieAdapterListener
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.FragmentDashboardBinding
-import com.eskaya.movie_application.presentation.adapter.ImageSliderAdapter
-import com.eskaya.movie_application.presentation.adapter.PopularMoviesAdapterListener
-import com.eskaya.movie_application.presentation.adapter.UpComingMovieAdapter
-import com.eskaya.movie_application.presentation.adapter.UpComingMoviesAdapterListener
+import com.eskaya.movie_application.presentation.adapter.*
 import com.eskaya.movie_application.presentation.movie_list.MovieListFragment
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
 import com.eskaya.movie_application.presentation.search.SearchMovieFragment
@@ -39,7 +34,7 @@ class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding
     private val viewModel: DashboardViewModel by viewModels()
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private lateinit var imageSliderAdapter: ImageSliderAdapter
+    private lateinit var popularMoviesAdapter: PopularMoviesAdapter
     private lateinit var topRatedAdapter: TopRatedAdapter
     private lateinit var upComingAdapter: UpComingMovieAdapter
     val handler = Handler(Looper.getMainLooper())
@@ -112,14 +107,14 @@ class DashboardFragment : Fragment() {
         val runnable = Runnable {
             binding.viewPagerPopular.setCurrentItem(binding.viewPagerPopular.currentItem + 1, true)
         }
-        imageSliderAdapter = ImageSliderAdapter(data,
+        popularMoviesAdapter = PopularMoviesAdapter(data,
             object : PopularMoviesAdapterListener {
                 override fun onClickedItem(movieId: Int) {
                     navigationMovieDetailPage(movieId)
                 }
             }
         )
-        binding.viewPagerPopular.adapter = imageSliderAdapter
+        binding.viewPagerPopular.adapter = popularMoviesAdapter
         binding.viewPagerPopular.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
