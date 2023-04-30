@@ -49,10 +49,6 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        //  viewModel.getPopularMovieList(MovieTypes.POPULAR)
-        //  viewModel.getTopRatedMovieList(MovieTypes.TOP_RATED)
-        // viewModel.getUpComingMovieList(MovieTypes.UPCOMING)
-
         viewModel.fetchUsers()
         return binding.root
     }
@@ -61,11 +57,6 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init()
         listener()
-        // setUpObserversPopularMovies()
-        //  setUpObserverTopRatedMovies()
-        //  setUpObserverUpComingMovies()
-
-
         setUpObserver()
     }
 
@@ -84,7 +75,7 @@ class DashboardFragment : Fragment() {
                 }
                 is Resource.Error -> {
                     binding.containerProgress.visibility = View.GONE
-                    Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
+                  //  Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -116,7 +107,6 @@ class DashboardFragment : Fragment() {
             }
         }
     }
-
 
     private fun handleSuccessPopularMovies(data: List<MovieItem>) {
         val runnable = Runnable {
