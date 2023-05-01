@@ -25,7 +25,6 @@ import com.eskaya.movie_application.presentation.movie_list.MovieListFragment
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
 import com.eskaya.movie_application.presentation.search.SearchMovieFragment
 import com.eskaya.movie_application.utils.MovieTypes
-import com.eskaya.movie_application.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -59,18 +58,21 @@ class DashboardFragment : Fragment() {
     private fun setUpObserver() {
         viewModel.getUiState().observe(this) {
             when (it) {
-                is Resource.Success -> {
+                MovieViewState.Init -> Unit
+                is MovieViewState.Success -> {
                     binding.containerProgress.visibility = View.GONE
                     it.data?.get(0)?.let { it1 -> handleSuccessPopularMovies(it1.results) }
                     it.data?.get(1)?.let { it1 -> handleSuccessUpComingMovies(it1.results) }
                     // it.data?.get(2)?.let { it1 -> handleSuccessTopRatedMovies(it1.results) }
                 }
-                is Resource.Loading -> {
-                    binding.containerProgress.visibility = View.VISIBLE
+                is MovieViewState.IsLoading -> {
+                    // binding.containerProgress.visibility = View.VISIBLE
+                    handleLoadingPopularMovies(it.isLoading)
                 }
-                is Resource.Error -> {
+                is MovieViewState.Error -> {
                     binding.containerProgress.visibility = View.GONE
-                  //  Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
+                    //  Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
+                    handleErrorPopularMovies(it.error)
                 }
             }
         }
