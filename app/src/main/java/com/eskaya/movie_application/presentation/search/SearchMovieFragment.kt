@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils.replace
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ import com.eskaya.movie_application.databinding.FragmentSearchMovieBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.text.Typography.dagger
 
 
 @AndroidEntryPoint
@@ -51,7 +53,7 @@ class SearchMovieFragment : Fragment() {
         setUpObservers()
         binding.etSearch.requestFocus()
         manager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        manager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        manager.showSoftInput(binding.etSearch, InputMethodManager.SHOW_IMPLICIT)
     }
 
     private fun init() {
