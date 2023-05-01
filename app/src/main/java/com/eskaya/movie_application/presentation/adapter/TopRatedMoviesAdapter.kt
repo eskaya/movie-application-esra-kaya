@@ -50,7 +50,7 @@ class TopRatedViewHolder(
         this.item = item
         Glide.with(binding.root.context)
             .load(item.backdropPath.toFullImageLink())
-            .fitCenter()
+            .centerCrop()
             .placeholder(R.drawable.ic_loading)
             .into(binding.imageView)
     }

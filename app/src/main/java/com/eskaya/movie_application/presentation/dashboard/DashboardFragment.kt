@@ -126,8 +126,7 @@ class DashboardFragment : Fragment() {
             }
         })
     }
-
-    //TODO --> bug fix!!!!!!
+    
     private fun handleSuccessTopRatedMovies(data: List<MovieItem>) {
         topRatedAdapter = TopRatedAdapter(data,
             object : TopRatedMovieAdapterListener {
