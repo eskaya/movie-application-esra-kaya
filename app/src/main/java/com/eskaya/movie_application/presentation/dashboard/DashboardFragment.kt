@@ -63,7 +63,7 @@ class DashboardFragment : Fragment() {
                     binding.containerProgress.visibility = View.GONE
                     it.data?.get(0)?.let { it1 -> handleSuccessPopularMovies(it1.results) }
                     it.data?.get(1)?.let { it1 -> handleSuccessUpComingMovies(it1.results) }
-                    // it.data?.get(2)?.let { it1 -> handleSuccessTopRatedMovies(it1.results) }
+                    it.data?.get(2)?.let { it1 -> handleSuccessTopRatedMovies(it1.results) }
                 }
                 is MovieViewState.IsLoading -> {
                     // binding.containerProgress.visibility = View.VISIBLE
@@ -136,7 +136,7 @@ class DashboardFragment : Fragment() {
                 }
             }
         )
-        // binding.viewPagerTopRated.adapter = topRatedAdapter
+        binding.viewPagerTopRated.adapter = topRatedAdapter
         binding.viewPagerTopRated.offscreenPageLimit = 5
         binding.viewPagerTopRated.clipChildren = false
         binding.viewPagerTopRated.clipToPadding = false
