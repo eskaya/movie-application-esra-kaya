@@ -74,6 +74,7 @@ class SearchMovieFragment : Fragment() {
                 }
                 if (s.isEmpty()) {
                     movieListAdapter.clear()
+                    binding.tvNotFoundMovie.visibility = View.GONE
                 }
             }
 

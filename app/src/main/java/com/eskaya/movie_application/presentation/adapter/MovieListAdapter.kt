@@ -56,17 +56,17 @@ class MovieListHistoryViewHolder(
         binding.tvPopularity.text = "${item.popularity.oneDigit} popularity"
         binding.ratingBar.rating = (item.voteAverage / 2).toFloat()
 
-
         val str = item.releaseDate
         val parts = str.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         binding.tvDate.text = parts[0]
-        item.posterPath.let {
+        if(item.posterPath!= null){
             Glide.with(binding.root.context)
                 .load(item.posterPath.toFullImageLink())
                 .centerCrop()
                 .placeholder(R.drawable.ic_cinema_placeholder)
                 .into(binding.ivMovie)
         }
+
         val layoutParams = binding.root.layoutParams as RecyclerView.LayoutParams
         when (adapterPosition) {
             0 -> {
