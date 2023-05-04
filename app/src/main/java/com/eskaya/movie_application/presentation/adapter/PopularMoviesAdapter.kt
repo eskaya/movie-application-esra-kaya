@@ -52,8 +52,8 @@ class PopularMoviesViewHolder(
         Glide.with(binding.root.context)
             .load(item.backdropPath.toFullImageLink())
             .centerCrop()
-          //  .placeholder(R.drawable.shape_item_placeholder)
-            .apply(RequestOptions().override(2000, 1000))
+           .placeholder(R.drawable.ic_cinema_placeholder)
+          //  .apply(RequestOptions().override(2000, 1000))
             .into(binding.imageView)
     }
 
