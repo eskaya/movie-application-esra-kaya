@@ -1,12 +1,14 @@
 package com.eskaya.movie_application.presentation.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 import com.eskaya.movie_application.R
-
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.ListItemRoundedImageBinding
 import com.eskaya.movie_application.utils.extensions.toFullImageLink
@@ -50,9 +52,9 @@ class PopularMoviesViewHolder(
         Glide.with(binding.root.context)
             .load(item.backdropPath.toFullImageLink())
             .centerCrop()
-            .placeholder(R.drawable.ic_cinema_placeholder)
+          //  .placeholder(R.drawable.shape_item_placeholder)
+            .apply(RequestOptions().override(2000, 1000))
             .into(binding.imageView)
-
     }
 
     override fun onClick(v: View?) {
