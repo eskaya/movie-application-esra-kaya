@@ -1,25 +1,19 @@
 package com.eskaya.movie_application.utils.extensions
 
 
-import okhttp3.ResponseBody
 import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Response
+import retrofit2.HttpException
 
+fun HttpException.handleError(): String {
 
+//TODO --> status_message alınamıyor
+    var errorMessage = ""
+    errorMessage = try {
+        val jObjError = JSONObject(this.response()?.errorBody()?.string())
+       jObjError.getJSONObject("status_message").getString("status_message")
 
-fun handleError(call: Call<ResponseBody?>?, response: Response<ResponseBody?>) {
-    if (response.isSuccessful) {
-        // Do your success stuff...
-    } else {
-        try {
-            val jObjError = JSONObject(response.errorBody()?.string())
-           // Toast.makeText(getContext(), jObjError.getJSONObject("error").getString("message"), Toast.LENGTH_LONG
-            println(jObjError.getJSONObject("error").getString("message"))
-
-        } catch (e: Exception) {
-          //  Toast.makeText(getContext(), e.message, Toast.LENGTH_LONG).show()
-            println( e.message)
-        }
+    } catch (e: Exception) {
+        e.message.toString()
     }
+    return errorMessage
 }

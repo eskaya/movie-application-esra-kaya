@@ -3,6 +3,7 @@ package com.eskaya.movie_application.domain.use_case
 import com.eskaya.movie_application.data.remote.models.response.ActorsDto
 import com.eskaya.movie_application.domain.repository.MovieRepository
 import com.eskaya.movie_application.utils.Resource
+import com.eskaya.movie_application.utils.extensions.handleError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -18,7 +19,7 @@ class GetActorsUseCase @Inject constructor(
             val actorList = repository.getMovieActors(movieId)
             emit(Resource.Success(data = actorList))
         } catch (e: HttpException) {
-            emit(Resource.Error(e.message() ?: "An unexpected error occured"))
+            emit(Resource.Error(e.handleError()))
         } catch (e: IOException) {
             emit(Resource.Error("Couldn't reach server. Check your internet connection."))
         }
