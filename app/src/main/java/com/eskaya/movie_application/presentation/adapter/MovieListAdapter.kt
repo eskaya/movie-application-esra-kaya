@@ -66,20 +66,6 @@ class MovieListHistoryViewHolder(
                 .placeholder(R.drawable.ic_cinema_placeholder)
                 .into(binding.ivMovie)
         }
-
-        val layoutParams = binding.root.layoutParams as RecyclerView.LayoutParams
-        when (adapterPosition) {
-            0 -> {
-                layoutParams.setMargins(0, 36, 0, 36)
-            }
-            (data.size) - 1 -> {
-                layoutParams.setMargins(0, 0, 0, 236)
-            }
-            else -> {
-                layoutParams.setMargins(0, 0, 0, 36)
-            }
-        }
-        binding.root.layoutParams = layoutParams
     }
 
     override fun onClick(v: View?) {

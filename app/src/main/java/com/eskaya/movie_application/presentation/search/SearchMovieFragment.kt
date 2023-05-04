@@ -22,6 +22,7 @@ import com.eskaya.movie_application.presentation.adapter.MovieListAdapter
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
 import com.eskaya.movie_application.R
 import com.eskaya.movie_application.databinding.FragmentSearchMovieBinding
+import com.eskaya.movie_application.utils.extensions.RecyclerViewItemDecorator
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
@@ -57,6 +58,12 @@ class SearchMovieFragment : Fragment() {
     private fun init() {
         layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
+        val decorator = RecyclerViewItemDecorator(
+            spaceBetween = 24,
+            spaceTop = 50,
+            spaceBottom = 200
+        )
+        binding.recyclerView.addItemDecoration(decorator)
     }
 
     private fun listener() {

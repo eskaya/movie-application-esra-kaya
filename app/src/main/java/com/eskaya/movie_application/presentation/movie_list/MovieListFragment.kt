@@ -19,6 +19,7 @@ import com.eskaya.movie_application.presentation.adapter.MovieListAdapter
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
 import com.eskaya.movie_application.utils.Constants
 import com.eskaya.movie_application.utils.MovieTypes
+import com.eskaya.movie_application.utils.extensions.RecyclerViewItemDecorator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,6 +53,12 @@ class MovieListFragment : Fragment() {
     private fun init() {
         layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
+        val decorator = RecyclerViewItemDecorator(
+            spaceBetween = 24,
+            spaceTop = 50,
+            spaceBottom = 200
+        )
+        binding.recyclerView.addItemDecoration(decorator)
     }
 
     private fun listener() {
