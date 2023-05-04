@@ -44,7 +44,6 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        viewModel.fetchUsers()
         return binding.root
     }
 
@@ -53,6 +52,7 @@ class DashboardFragment : Fragment() {
         init()
         listener()
         setUpObserver()
+        viewModel.getMovies()
     }
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -62,9 +62,9 @@ class DashboardFragment : Fragment() {
                 MovieViewState.Init -> Unit
                 is MovieViewState.Success -> {
                     binding.containerProgress.visibility = View.GONE
-                    it.data?.get(0)?.let { it1 -> handleSuccessPopularMovies(it1.results) }
-                    it.data?.get(1)?.let { it1 -> handleSuccessUpComingMovies(it1.results) }
-                    it.data?.get(2)?.let { it1 -> handleSuccessTopRatedMovies(it1.results) }
+                    handleSuccessPopularMovies(it.data[0].results)
+                    handleSuccessUpComingMovies(it.data[1].results)
+                    handleSuccessTopRatedMovies(it.data[0].results)
                 }
                 is MovieViewState.IsLoading -> {
                     // binding.containerProgress.visibility = View.VISIBLE
