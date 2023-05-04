@@ -19,6 +19,7 @@ import com.eskaya.movie_application.databinding.FragmentPopularMovieDetailBindin
 import com.eskaya.movie_application.presentation.adapter.ActorsAdapter
 import com.eskaya.movie_application.presentation.adapter.GenresAdapter
 import com.eskaya.movie_application.utils.Constants
+import com.eskaya.movie_application.utils.extensions.RecyclerViewItemDecorator
 import com.eskaya.movie_application.utils.extensions.toFullImageLink
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
@@ -60,6 +61,11 @@ class MovieDetailFragment : Fragment() {
         layoutManagerForActors = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerViewActors.layoutManager = layoutManagerForActors
+        val actorsDecoration = RecyclerViewItemDecorator(
+            spaceBetween = 24,
+            paddingStart = 50,
+        )
+        binding.recyclerViewActors.addItemDecoration(actorsDecoration)
     }
 
     private fun setUpObservers() {

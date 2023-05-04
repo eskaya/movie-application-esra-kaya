@@ -13,7 +13,7 @@ interface MovieApi {
     @GET("movie/{type}")
     suspend fun getMovieList(@Path("type") type: String): MovieListDto
 
-    @GET("moviey/{movieId}")
+    @GET("movie/{movieId}")
     suspend fun getMovieDetail(@Path("movieId") movieId: Int): MovieDetailDto
 
     @GET("search/movie")

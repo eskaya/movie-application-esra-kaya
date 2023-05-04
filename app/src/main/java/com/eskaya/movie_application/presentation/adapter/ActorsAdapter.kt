@@ -46,13 +46,5 @@ class ActorsViewHolder(
         } else {
             binding.ivActor.setImageResource(R.drawable.ic_question_mark)
         }
-
-        val marginLayoutParams = ViewGroup.MarginLayoutParams(binding.root.layoutParams)
-        if (adapterPosition == 0) {
-            marginLayoutParams.setMargins(40, 0, 36, 0)
-        } else {
-            marginLayoutParams.setMargins(0, 0, 36, 0)
-        }
-        binding.root.layoutParams = marginLayoutParams
     }
 }
