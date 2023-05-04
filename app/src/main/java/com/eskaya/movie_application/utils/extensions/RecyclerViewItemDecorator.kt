@@ -15,7 +15,12 @@ class RecyclerViewItemDecorator(
     private val spaceBottom: Int = spaceBetween
 ) : RecyclerView.ItemDecoration() {
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
         val position = parent.getChildAdapterPosition(view)
         val orientation = when (val layoutManager = parent.layoutManager) {
             is LinearLayoutManager -> {
@@ -31,25 +36,25 @@ class RecyclerViewItemDecorator(
         if (orientation == RecyclerView.HORIZONTAL) {
             when {
                 position == 0 -> {
-                    outRect.set(spaceStart, spaceTop, spaceBetween, spaceBottom)
+                    outRect.set(spaceStart, 0, 0, 0)
                 }
                 position < parent.adapter!!.itemCount - 1 -> {
-                    outRect.set(0, spaceTop, spaceBetween, spaceBottom)
+                    outRect.set(spaceBetween, 0, 0, 0)
                 }
                 else -> {
-                    outRect.set(0, spaceTop, spaceEnd, spaceBottom)
+                    outRect.set(spaceBetween, 0, spaceEnd, 0)
                 }
             }
         } else {
             when {
                 position == 0 -> {
-                    outRect.set(spaceStart, spaceTop, spaceEnd, spaceBottom)
+                    outRect.set(0, spaceTop, 0, 0)
                 }
                 position < parent.adapter!!.itemCount - 1 -> {
-                    outRect.set(spaceStart, 0, spaceEnd, spaceBetween)
+                    outRect.set(0, spaceBetween, 0, 0)
                 }
                 else -> {
-                    outRect.set(spaceStart, 0, spaceEnd, spaceBottom)
+                    outRect.set(0, spaceBetween, 0, spaceBottom)
                 }
             }
         }

@@ -61,10 +61,15 @@ class MovieDetailFragment : Fragment() {
         layoutManagerForActors = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerViewActors.layoutManager = layoutManagerForActors
+        val genresDecorator = RecyclerViewItemDecorator(
+            spaceBetween = 24,
+            spaceStart = 40
+        )
         val actorsDecoration = RecyclerViewItemDecorator(
             spaceBetween = 24,
-            paddingStart = 50,
+            spaceStart = 40,
         )
+        binding.recyclerView.addItemDecoration(genresDecorator)
         binding.recyclerViewActors.addItemDecoration(actorsDecoration)
     }
 

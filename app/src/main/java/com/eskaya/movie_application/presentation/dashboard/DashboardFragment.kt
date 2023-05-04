@@ -83,8 +83,9 @@ class DashboardFragment : Fragment() {
         layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.recyclerviewUpComing.layoutManager = layoutManager
         val actorsDecoration = RecyclerViewItemDecorator(
-            spaceBetween = 16,
+            spaceBetween = 24,
             spaceStart = 40,
+            spaceEnd = 40
         )
         binding.recyclerviewUpComing.addItemDecoration(actorsDecoration)
     }
