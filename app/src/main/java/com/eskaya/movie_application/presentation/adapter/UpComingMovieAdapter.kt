@@ -57,14 +57,6 @@ class UpComingMovieViewHolder(
             .centerCrop()
             .placeholder(R.drawable.ic_cinema_placeholder)
             .into(binding.ivMoviePoster)
-
-        val marginLayoutParams = MarginLayoutParams(binding.root.layoutParams)
-        if (adapterPosition == 0) {
-            marginLayoutParams.setMargins(36, 0, 36, 0)
-        } else {
-            marginLayoutParams.setMargins(0, 0, 36, 0)
-        }
-        binding.root.layoutParams = marginLayoutParams
     }
 
     override fun onClick(v: View?) {

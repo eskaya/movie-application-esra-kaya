@@ -25,6 +25,7 @@ import com.eskaya.movie_application.presentation.movie_list.MovieListFragment
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
 import com.eskaya.movie_application.presentation.search.SearchMovieFragment
 import com.eskaya.movie_application.utils.MovieTypes
+import com.eskaya.movie_application.utils.extensions.RecyclerViewItemDecorator
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -81,6 +82,11 @@ class DashboardFragment : Fragment() {
     private fun init() {
         layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.recyclerviewUpComing.layoutManager = layoutManager
+        val actorsDecoration = RecyclerViewItemDecorator(
+            spaceBetween = 16,
+            spaceStart = 40,
+        )
+        binding.recyclerviewUpComing.addItemDecoration(actorsDecoration)
     }
 
     private fun listener() {
@@ -126,7 +132,7 @@ class DashboardFragment : Fragment() {
             }
         })
     }
-    
+
     private fun handleSuccessTopRatedMovies(data: List<MovieItem>) {
         topRatedAdapter = TopRatedAdapter(data,
             object : TopRatedMovieAdapterListener {

@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerViewItemDecorator(
     private val spaceBetween: Int,
-    private val paddingStart: Int = spaceBetween,
-    private val paddingTop: Int = spaceBetween,
-    private val paddingEnd: Int = spaceBetween,
-    private val paddingBottom: Int = spaceBetween
+    private val spaceStart: Int = spaceBetween,
+    private val spaceTop: Int = spaceBetween,
+    private val spaceEnd: Int = spaceBetween,
+    private val spaceBottom: Int = spaceBetween
 ) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
@@ -31,25 +31,25 @@ class RecyclerViewItemDecorator(
         if (orientation == RecyclerView.HORIZONTAL) {
             when {
                 position == 0 -> {
-                    outRect.set(paddingStart, paddingTop, spaceBetween, paddingBottom)
+                    outRect.set(spaceStart, spaceTop, spaceBetween, spaceBottom)
                 }
                 position < parent.adapter!!.itemCount - 1 -> {
-                    outRect.set(0, paddingTop, spaceBetween, paddingBottom)
+                    outRect.set(0, spaceTop, spaceBetween, spaceBottom)
                 }
                 else -> {
-                    outRect.set(0, paddingTop, paddingEnd, paddingBottom)
+                    outRect.set(0, spaceTop, spaceEnd, spaceBottom)
                 }
             }
         } else {
             when {
                 position == 0 -> {
-                    outRect.set(paddingStart, paddingTop, paddingEnd, paddingBottom)
+                    outRect.set(spaceStart, spaceTop, spaceEnd, spaceBottom)
                 }
                 position < parent.adapter!!.itemCount - 1 -> {
-                    outRect.set(paddingStart, 0, paddingEnd, spaceBetween)
+                    outRect.set(spaceStart, 0, spaceEnd, spaceBetween)
                 }
                 else -> {
-                    outRect.set(paddingStart, 0, paddingEnd, paddingBottom)
+                    outRect.set(spaceStart, 0, spaceEnd, spaceBottom)
                 }
             }
         }
