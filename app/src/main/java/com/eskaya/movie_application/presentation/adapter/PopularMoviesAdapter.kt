@@ -1,13 +1,11 @@
 package com.eskaya.movie_application.presentation.adapter
 
-import android.graphics.drawable.Drawable
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
 import com.eskaya.movie_application.R
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.ListItemRoundedImageBinding
@@ -26,7 +24,7 @@ class PopularMoviesAdapter(
         val binding = ListItemRoundedImageBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return PopularMoviesViewHolder(binding, data, listener)
+        return PopularMoviesViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: PopularMoviesViewHolder, position: Int) =
@@ -37,7 +35,6 @@ class PopularMoviesAdapter(
 
 class PopularMoviesViewHolder(
     private val binding: ListItemRoundedImageBinding,
-    private var data: List<MovieItem>,
     private val listener: PopularMoviesAdapterListener
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 

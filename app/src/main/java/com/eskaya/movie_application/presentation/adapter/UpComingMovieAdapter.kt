@@ -3,11 +3,9 @@ package com.eskaya.movie_application.presentation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.MarginLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eskaya.movie_application.R
-
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.ListItemUpcomingMovieCardBinding
 import com.eskaya.movie_application.utils.extensions.toFullImageLink
@@ -25,7 +23,7 @@ class UpComingMovieAdapter(
         val binding = ListItemUpcomingMovieCardBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return UpComingMovieViewHolder(binding, data, listener)
+        return UpComingMovieViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: UpComingMovieViewHolder, position: Int) {
@@ -37,7 +35,6 @@ class UpComingMovieAdapter(
 
 class UpComingMovieViewHolder(
     private val binding: ListItemUpcomingMovieCardBinding,
-    private var data: List<MovieItem>,
     private val listener: UpComingMoviesAdapterListener
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 

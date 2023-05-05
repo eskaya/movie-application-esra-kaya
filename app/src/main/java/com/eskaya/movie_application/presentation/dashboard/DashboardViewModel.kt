@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
-    private val getPopularMovieListUseCase: GetMovieListUseCase,
+    private val getMovieListUseCase: GetMovieListUseCase,
     private val repository: MovieRepository
 ) : ViewModel() {
 

@@ -10,4 +10,5 @@
     <string name="homePage_popularMovies">Popular Movies</string>
     <string name="upComingItem_originalLanguage">Org. Lng:</string>
     <string name="homePage_seeMore">See More</string>
+    <string name="popularity">%1$d popularity</string>
 </resources>

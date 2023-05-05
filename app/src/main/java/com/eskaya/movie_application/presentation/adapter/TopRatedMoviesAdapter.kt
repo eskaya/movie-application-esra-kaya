@@ -24,7 +24,7 @@ class TopRatedAdapter(
         val binding = ListItemTopRatedBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return TopRatedViewHolder(binding, data, listener)
+        return TopRatedViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: TopRatedViewHolder, position: Int) {
@@ -36,7 +36,6 @@ class TopRatedAdapter(
 
 class TopRatedViewHolder(
     private val binding: ListItemTopRatedBinding,
-    private var data: List<MovieItem>,
     private val listener: TopRatedMovieAdapterListener
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 

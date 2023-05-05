@@ -1,9 +1,8 @@
 package com.eskaya.movie_application.presentation.adapter
 
-import android.content.Context
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.app.NotificationCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eskaya.movie_application.R
@@ -22,7 +21,7 @@ class ActorsAdapter(
         val binding = ListItemActorsBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return ActorsViewHolder(binding, data)
+        return ActorsViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ActorsViewHolder, position: Int) =
@@ -33,7 +32,6 @@ class ActorsAdapter(
 
 class ActorsViewHolder(
     private val binding: ListItemActorsBinding,
-    private val data: List<Cast>
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Cast) {

@@ -17,7 +17,7 @@ class GenresAdapter(
         val binding = ListItemGenresBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return GenresViewHolder(binding, data)
+        return GenresViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: GenresViewHolder, position: Int) =
@@ -28,7 +28,6 @@ class GenresAdapter(
 
 class GenresViewHolder(
     private val binding: ListItemGenresBinding,
-    private val data: List<Genre>
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Genre) {

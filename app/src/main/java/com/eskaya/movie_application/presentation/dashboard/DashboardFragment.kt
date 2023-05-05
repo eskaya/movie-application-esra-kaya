@@ -93,15 +93,15 @@ class DashboardFragment : Fragment() {
     private fun listener() {
         binding.tvSeeMoreTopRated.setOnClickListener {
             val fragment = MovieListFragment.newInstance(MovieTypes.TOP_RATED)
-            navigate(fragment)
+            navigateToMovieListPage(fragment)
         }
         binding.tvSeeMoreUpcoming.setOnClickListener {
             val fragment = MovieListFragment.newInstance(MovieTypes.UPCOMING)
-            navigate(fragment)
+            navigateToMovieListPage(fragment)
         }
         binding.tvSeeMorePopular.setOnClickListener {
             val fragment = MovieListFragment.newInstance(MovieTypes.POPULAR)
-            navigate(fragment)
+            navigateToMovieListPage(fragment)
         }
         binding.cvSearch.setOnClickListener {
             parentFragmentManager.commit {
@@ -176,7 +176,7 @@ class DashboardFragment : Fragment() {
     }
 
 
-    private fun navigate(fragment: Fragment) {
+    private fun navigateToMovieListPage(fragment: Fragment) {
         parentFragmentManager.commit {
             replace(R.id.frameLayout, fragment)
             setReorderingAllowed(true)
