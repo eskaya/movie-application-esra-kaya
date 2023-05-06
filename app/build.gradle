@@ -24,14 +24,14 @@ android {
         debug {
             buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
             buildConfigField "String", "API_KEY", "\"46d0b7df20b6dca0b123566e3d926b4b\""
-            buildConfigField "String", "POSTER_PATH", "\"https://image.tmdb.org/t/p/original/\""
+            buildConfigField "String", "POSTER_PATH", "\"https://image.tmdb.org/t/p/w500/\""
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
             buildConfigField "String", "API_KEY", "\"46d0b7df20b6dca0b123566e3d926b4b\""
-            buildConfigField "String", "POSTER_PATH", "\"https://image.tmdb.org/t/p/original/\""
+            buildConfigField "String", "POSTER_PATH", "\"https://image.tmdb.org/t/p/w500/\""
         }
     }
     compileOptions {
@@ -91,6 +91,9 @@ dependencies {
     implementation "com.google.accompanist:accompanist-flowlayout:0.17.0"
 
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2'
+
+    //YoutubePlayerView
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0'
 
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'

@@ -69,6 +69,7 @@ class MovieDetailFragment : Fragment() {
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerViewActors.layoutManager = layoutManagerForActors
         binding.recyclerViewTrailers.layoutManager = layoutManagerForTrailers
+        binding.recyclerViewTrailers.setHasFixedSize(true)
         val genresDecorator = RecyclerViewItemDecorator(
             spaceBetween = 24,
             spaceStart = 40

@@ -150,8 +150,11 @@
                     android:id="@+id/recyclerViewTrailers"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/tvOverview"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvOverview" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/ivClose"
