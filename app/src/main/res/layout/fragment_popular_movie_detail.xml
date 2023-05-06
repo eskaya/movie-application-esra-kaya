@@ -137,16 +137,21 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="20dp"
                     android:fontFamily="@font/lato_regular"
                     android:lineSpacingExtra="6dp"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_14"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerView"
                     tools:text="Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure." />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewTrailers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tvOverview"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/ivClose"

@@ -85,6 +85,6 @@ class MovieDetailViewModel @Inject constructor(
                     _trailersState.value = TrailersViewState.Success(it.data)
                 }
             }
-        }
+        }.launchIn(viewModelScope)
     }
 }

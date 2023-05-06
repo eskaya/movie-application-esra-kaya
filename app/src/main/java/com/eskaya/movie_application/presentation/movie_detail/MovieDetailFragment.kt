@@ -14,10 +14,12 @@ import com.bumptech.glide.Glide
 import com.eskaya.movie_application.R
 import com.eskaya.movie_application.data.remote.models.models.Cast
 import com.eskaya.movie_application.data.remote.models.models.Genre
+import com.eskaya.movie_application.data.remote.models.models.Trailer
 import com.eskaya.movie_application.data.remote.models.response.MovieDetailDto
 import com.eskaya.movie_application.databinding.FragmentPopularMovieDetailBinding
 import com.eskaya.movie_application.presentation.adapter.ActorsAdapter
 import com.eskaya.movie_application.presentation.adapter.GenresAdapter
+import com.eskaya.movie_application.presentation.adapter.TrailersAdapter
 import com.eskaya.movie_application.utils.Constants
 import com.eskaya.movie_application.utils.extensions.RecyclerViewItemDecorator
 import com.eskaya.movie_application.utils.extensions.toFullImageLink
@@ -31,8 +33,10 @@ class MovieDetailFragment : Fragment() {
     private var movieId by Delegates.notNull<Int>()
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var layoutManagerForActors: RecyclerView.LayoutManager? = null
+    private var layoutManagerForTrailers: RecyclerView.LayoutManager? = null
     private lateinit var genresAdapter: GenresAdapter
     private lateinit var actorsAdapter: ActorsAdapter
+    private lateinit var trailersAdapter: TrailersAdapter
     private val viewModel: MovieDetailViewModel by viewModels()
 
     override fun onCreateView(
@@ -40,11 +44,6 @@ class MovieDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPopularMovieDetailBinding.inflate(layoutInflater)
-        arguments?.let { movieId = it.getInt(Constants.MOVIE_ID) }
-        movieId.let {
-            viewModel.getMovieDetail(it)
-            viewModel.getActors(it)
-        }
         return binding.root
     }
 
@@ -54,13 +53,22 @@ class MovieDetailFragment : Fragment() {
         listener()
         setUpObservers()
         setUpObserversForActors()
+        setUpObserversTrailers()
+        arguments?.let { movieId = it.getInt(Constants.MOVIE_ID) }
+        movieId.let {
+            viewModel.getMovieDetail(it)
+            viewModel.getActors(it)
+            viewModel.getTrailers(it)
+        }
     }
 
     private fun init() {
         layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         layoutManagerForActors = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        layoutManagerForTrailers = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerViewActors.layoutManager = layoutManagerForActors
+        binding.recyclerViewTrailers.layoutManager = layoutManagerForTrailers
         val genresDecorator = RecyclerViewItemDecorator(
             spaceBetween = 24,
             spaceStart = 40
@@ -105,6 +113,21 @@ class MovieDetailFragment : Fragment() {
         }
     }
 
+    private fun setUpObserversTrailers() {
+        viewModel.getTrailersState.observe(
+            viewLifecycleOwner
+        ) { it ->
+            when (it) {
+                TrailersViewState.Init -> Unit
+                is TrailersViewState.Error -> handleErrorForTrailers(it.error)
+                is TrailersViewState.IsLoading -> handleLoading(it.isLoading)
+                is TrailersViewState.Success -> it.data?.let {
+                    handleSuccessForTrailers(it.results)
+                }
+            }
+        }
+    }
+
     private fun listener() {
         binding.ivClose.setOnClickListener {
             parentFragmentManager.popBackStack()
@@ -133,6 +156,12 @@ class MovieDetailFragment : Fragment() {
     }
 
 
+    private fun handleSuccessForTrailers(data: List<Trailer>) {
+        trailersAdapter = TrailersAdapter(data)
+        binding.recyclerViewTrailers.adapter = trailersAdapter
+    }
+
+
     private fun handleLoading(loading: Boolean) {
         binding.containerProgress.isVisible = loading
     }
@@ -142,6 +171,10 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun handleErrorForActors(error: Any) {
+        Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun handleErrorForTrailers(error: Any) {
         Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
     }
 
