@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.eskaya.movie_application.domain.use_case.GetActorsUseCase
 import com.eskaya.movie_application.domain.use_case.GetMovieDetailUseCase
+import com.eskaya.movie_application.domain.use_case.GetMovieTrailersUseCase
 import com.eskaya.movie_application.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
     private val movieDetailUseCase: GetMovieDetailUseCase,
-    private val actorsUseCase: GetActorsUseCase
+    private val actorsUseCase: GetActorsUseCase,
+    private val trailersUseCase: GetMovieTrailersUseCase
 ) : ViewModel() {
 
     private val _state = MutableLiveData<MovieDetailViewState>(MovieDetailViewState.Init)
@@ -23,6 +25,9 @@ class MovieDetailViewModel @Inject constructor(
 
     private val _actorsState = MutableLiveData<ActorsViewState>(ActorsViewState.Init)
     val getActorsState: LiveData<ActorsViewState> get() = _actorsState
+
+    private val _trailersState = MutableLiveData<TrailersViewState>(TrailersViewState.Init)
+    val getTrailersState: LiveData<TrailersViewState> get() = _trailersState
 
     private fun setLoadingState(isLoading: Boolean) {
         _state.value = MovieDetailViewState.IsLoading(isLoading)
@@ -64,5 +69,22 @@ class MovieDetailViewModel @Inject constructor(
             }
 
         }.launchIn(viewModelScope)
+    }
+
+    fun getTrailers(movieId: Int) {
+        trailersUseCase.invoke(movieId).onEach {
+            when (it) {
+                is Resource.Loading -> {
+                    setLoadingState(true)
+                }
+                is Resource.Error -> {
+                    setLoadingState(false)
+                    _trailersState.value = it.message?.let { it1 -> TrailersViewState.Error(it1) }
+                }
+                is Resource.Success -> {
+                    _trailersState.value = TrailersViewState.Success(it.data)
+                }
+            }
+        }
     }
 }
