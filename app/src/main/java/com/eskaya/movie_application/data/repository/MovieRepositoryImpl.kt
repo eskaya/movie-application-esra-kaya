@@ -1,7 +1,4 @@
-import com.eskaya.movie_application.data.remote.models.response.ActorsDto
-import com.eskaya.movie_application.data.remote.models.response.MovieDetailDto
-import com.eskaya.movie_application.data.remote.models.response.MovieListDto
-import com.eskaya.movie_application.data.remote.models.response.SearchDto
+import com.eskaya.movie_application.data.remote.models.response.*
 import com.eskaya.movie_application.data.remote.services.MovieApi
 import com.eskaya.movie_application.domain.repository.MovieRepository
 import javax.inject.Inject
@@ -24,6 +21,10 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getMovieActors(movieId: Int): ActorsDto {
         return api.getMovieActors(movieId)
+    }
+
+    override suspend fun getMovieTrailers(movieId: Int): TrailersDto {
+        return api.getMovieTrailers(movieId)
     }
 
 
