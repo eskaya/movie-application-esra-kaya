@@ -46,15 +46,6 @@ class TrailerFragment : Fragment() {
             position = it.getInt(Constants.POSITION)
             createYoutubePlayerAdapter(trailerList, position)
         }
-        val youTubePlayerView: YouTubePlayerView = binding.youtubePlayerView
-        lifecycle.addObserver(youTubePlayerView)
-        youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                val videoId = trailerList[position].key
-                youTubePlayer.loadVideo(videoId, 0f)
-                Toast.makeText(context, trailerList[position].key, Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 
     private fun createYoutubePlayerAdapter(trailerList: ArrayList<Trailer>, position: Int) {
