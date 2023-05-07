@@ -8,7 +8,8 @@ import com.eskaya.movie_application.data.remote.models.models.Trailer
 import com.eskaya.movie_application.databinding.ListItemYoutubeVideoPlayerBinding
 
 class TrailerYoutubeVideoPlayerAdapter(
-    val data: List<Trailer>
+    val data: List<Trailer>,
+    val position: Int
 ) : RecyclerView.Adapter<TrailerYoutubeVideoPlayerViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -30,6 +31,9 @@ class TrailerYoutubeVideoPlayerAdapter(
 class TrailerYoutubeVideoPlayerViewHolder(
     private val binding: ListItemYoutubeVideoPlayerBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
+
+    init{
+    }
 
     fun bind(item: Trailer) {
 
