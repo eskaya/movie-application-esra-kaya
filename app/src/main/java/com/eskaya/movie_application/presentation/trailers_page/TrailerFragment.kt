@@ -15,6 +15,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 class TrailerFragment : Fragment() {
     private lateinit var binding: FragmentTrailerBinding
+    private lateinit var key: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,12 +27,12 @@ class TrailerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.let { key = it.getString(Constants.YOUTUBE_VIDEO_KEY).toString() }
         val youTubePlayerView: YouTubePlayerView = binding.youtubePlayerView
         lifecycle.addObserver(youTubePlayerView)
-
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                val videoId = "LgZ2MDuJvhc"
+                val videoId = key
                 youTubePlayer.loadVideo(videoId, 0f)
             }
         })

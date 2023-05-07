@@ -73,7 +73,6 @@ class MovieDetailFragment : Fragment() {
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerViewActors.layoutManager = layoutManagerForActors
         binding.recyclerViewTrailers.layoutManager = layoutManagerForTrailers
-        binding.recyclerViewTrailers.setHasFixedSize(true)
         val genresDecorator = RecyclerViewItemDecorator(
             spaceBetween = 24,
             spaceStart = 40
@@ -82,8 +81,14 @@ class MovieDetailFragment : Fragment() {
             spaceBetween = 24,
             spaceStart = 40,
         )
+        val trailersDecoration = RecyclerViewItemDecorator(
+            spaceBetween = 24,
+            spaceStart = 40,
+            spaceEnd = 40
+        )
         binding.recyclerView.addItemDecoration(genresDecorator)
         binding.recyclerViewActors.addItemDecoration(actorsDecoration)
+        binding.recyclerViewTrailers.addItemDecoration(trailersDecoration)
     }
 
     private fun setUpObservers() {
@@ -160,7 +165,6 @@ class MovieDetailFragment : Fragment() {
         binding.recyclerViewActors.adapter = actorsAdapter
     }
 
-
     private fun handleSuccessForTrailers(data: List<Trailer>) {
         trailersAdapter = TrailersAdapter(data,
             object : TrailerAdapterListener {
@@ -182,7 +186,6 @@ class MovieDetailFragment : Fragment() {
         }
     }
 
-
     private fun handleLoading(loading: Boolean) {
         binding.containerProgress.isVisible = loading
     }
@@ -198,7 +201,6 @@ class MovieDetailFragment : Fragment() {
     private fun handleErrorForTrailers(error: Any) {
         Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
     }
-
 
     private fun setupRecyclerView(data: ArrayList<Genre>) {
         genresAdapter = GenresAdapter(data)
