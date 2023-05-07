@@ -2,6 +2,7 @@ package com.eskaya.movie_application.presentation.adapter
 
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +10,8 @@ import com.eskaya.movie_application.data.remote.models.models.Trailer
 import com.eskaya.movie_application.databinding.ListItemTrailerBinding
 
 class TrailersAdapter(
-    val data: List<Trailer>
+    val data: List<Trailer>,
+    private val listener: TrailerAdapterListener
 ) : RecyclerView.Adapter<TrailersViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -19,7 +21,7 @@ class TrailersAdapter(
         val binding = ListItemTrailerBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return TrailersViewHolder(binding)
+        return TrailersViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: TrailersViewHolder, position: Int) =
@@ -30,16 +32,19 @@ class TrailersAdapter(
 
 class TrailersViewHolder(
     private val binding: ListItemTrailerBinding,
-) : RecyclerView.ViewHolder(binding.root) {
+    private val listener: TrailerAdapterListener
+) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+    private lateinit var key: String
 
     init {
-        binding.webView.settings.javaScriptEnabled = true
-        binding.webView.webChromeClient = object : WebChromeClient() {
-        }
+        // binding.webView.settings.javaScriptEnabled = true
+        //  binding.webView.webChromeClient = object : WebChromeClient() {}
+        binding.root.setOnClickListener(this)
     }
 
     fun bind(item: Trailer) {
-        val key = item.key
+        key = item.key
+        /*
         binding.webView.loadData(
             "<iframe " +
                     "width=\"100%\"" +
@@ -52,5 +57,15 @@ class TrailersViewHolder(
             "text/html",
             "utf-8"
         )
+
+         */
     }
+
+    override fun onClick(v: View?) {
+        listener.onClickedItem(key)
+    }
+}
+
+interface TrailerAdapterListener {
+    fun onClickedItem(key: String)
 }
