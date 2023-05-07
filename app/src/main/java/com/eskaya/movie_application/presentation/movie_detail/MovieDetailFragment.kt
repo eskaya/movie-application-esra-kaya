@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,8 @@ import com.eskaya.movie_application.databinding.FragmentPopularMovieDetailBindin
 import com.eskaya.movie_application.presentation.adapter.ActorsAdapter
 import com.eskaya.movie_application.presentation.adapter.GenresAdapter
 import com.eskaya.movie_application.presentation.adapter.TrailersAdapter
+import com.eskaya.movie_application.presentation.search.SearchMovieFragment
+import com.eskaya.movie_application.presentation.trailers_page.TrailerFragment
 import com.eskaya.movie_application.utils.Constants
 import com.eskaya.movie_application.utils.extensions.RecyclerViewItemDecorator
 import com.eskaya.movie_application.utils.extensions.toFullImageLink
@@ -132,6 +135,13 @@ class MovieDetailFragment : Fragment() {
     private fun listener() {
         binding.ivClose.setOnClickListener {
             parentFragmentManager.popBackStack()
+        }
+        binding.tvTitle.setOnClickListener {
+            parentFragmentManager.commit {
+                replace(R.id.frameLayout, TrailerFragment())
+                setReorderingAllowed(true)
+                addToBackStack(null)
+            }
         }
     }
 
