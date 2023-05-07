@@ -20,6 +20,7 @@ import com.eskaya.movie_application.data.remote.models.response.MovieDetailDto
 import com.eskaya.movie_application.databinding.FragmentPopularMovieDetailBinding
 import com.eskaya.movie_application.presentation.adapter.ActorsAdapter
 import com.eskaya.movie_application.presentation.adapter.GenresAdapter
+import com.eskaya.movie_application.presentation.adapter.TrailerAdapterListener
 import com.eskaya.movie_application.presentation.adapter.TrailersAdapter
 import com.eskaya.movie_application.presentation.search.SearchMovieFragment
 import com.eskaya.movie_application.presentation.trailers_page.TrailerFragment
@@ -136,13 +137,6 @@ class MovieDetailFragment : Fragment() {
         binding.ivClose.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-        binding.tvTitle.setOnClickListener {
-            parentFragmentManager.commit {
-                replace(R.id.frameLayout, TrailerFragment())
-                setReorderingAllowed(true)
-                addToBackStack(null)
-            }
-        }
     }
 
     private fun handleSuccess(data: MovieDetailDto) {
@@ -168,8 +162,24 @@ class MovieDetailFragment : Fragment() {
 
 
     private fun handleSuccessForTrailers(data: List<Trailer>) {
-        trailersAdapter = TrailersAdapter(data)
+        trailersAdapter = TrailersAdapter(data,
+            object : TrailerAdapterListener {
+                override fun onClickedItem(key: String) {
+                    navigateTrailersPage(key)
+                }
+
+            })
         binding.recyclerViewTrailers.adapter = trailersAdapter
+    }
+
+    private fun navigateTrailersPage(key: String) {
+        val fragment = TrailerFragment.newInstance(key)
+
+        parentFragmentManager.commit {
+            replace(R.id.frameLayout, fragment)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
     }
 
 
