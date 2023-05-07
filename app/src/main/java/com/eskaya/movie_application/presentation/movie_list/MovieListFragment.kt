@@ -96,7 +96,6 @@ class MovieListFragment : Fragment() {
         binding.recyclerView.adapter = movieListAdapter
     }
 
-
     private fun handleLoading(loading: Boolean) {
         binding.containerProgress.isVisible = loading
     }

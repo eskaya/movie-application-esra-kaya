@@ -41,7 +41,6 @@ class MovieDetailFragment : Fragment() {
     private lateinit var actorsAdapter: ActorsAdapter
     private lateinit var trailersAdapter: TrailersAdapter
     private val viewModel: MovieDetailViewModel by viewModels()
-    private lateinit var trailerList: ArrayList<Trailer>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -166,11 +165,16 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun handleSuccessForTrailers(data: List<Trailer>) {
-        trailerList = data as ArrayList<Trailer>
+        val trailerList = arrayListOf<Trailer>()
+        for (trailer in data) {
+            if (trailer.site == "YouTube") {
+                trailerList.add(trailer)
+            }
+        }
         trailersAdapter = TrailersAdapter(data,
             object : TrailerAdapterListener {
                 override fun onClickedItem(position: Int) {
-                    navigateTrailersPage(data, position)
+                    navigateTrailersPage(trailerList, position)
                 }
 
             })
@@ -179,7 +183,6 @@ class MovieDetailFragment : Fragment() {
 
     private fun navigateTrailersPage(trailerList: ArrayList<Trailer>, position: Int) {
         val fragment = TrailerFragment.newInstance(trailerList, position)
-
         parentFragmentManager.commit {
             replace(R.id.frameLayout, fragment)
             setReorderingAllowed(true)

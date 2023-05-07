@@ -44,7 +44,6 @@ class TrailerYoutubeVideoPlayerViewHolder(
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 val videoId = data[position].key
                 youTubePlayer.loadVideo(videoId, 0f)
-                println("videoId$videoId")
             }
         })
     }
@@ -53,9 +52,7 @@ class TrailerYoutubeVideoPlayerViewHolder(
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 val videoId = data[adapterPosition].key
-                println(adapterPosition)
                 youTubePlayer.loadVideo(videoId, 0f)
-                println("videoId$videoId")
             }
         })
     }
