@@ -34,7 +34,6 @@ class TrailersViewHolder(
     private val binding: ListItemTrailerBinding,
     private val listener: TrailerAdapterListener
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
-    private lateinit var key: String
 
     init {
         // binding.webView.settings.javaScriptEnabled = true
@@ -43,7 +42,7 @@ class TrailersViewHolder(
     }
 
     fun bind(item: Trailer) {
-        key = item.key
+        val key = item.key
         /*
         binding.webView.loadData(
             "<iframe " +
@@ -62,10 +61,10 @@ class TrailersViewHolder(
     }
 
     override fun onClick(v: View?) {
-        listener.onClickedItem(key)
+        listener.onClickedItem(adapterPosition)
     }
 }
 
 interface TrailerAdapterListener {
-    fun onClickedItem(key: String)
+    fun onClickedItem(position: Int)
 }

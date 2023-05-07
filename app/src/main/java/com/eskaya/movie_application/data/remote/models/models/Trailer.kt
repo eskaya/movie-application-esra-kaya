@@ -1,8 +1,11 @@
 package com.eskaya.movie_application.data.remote.models.models
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Trailer(
     val id: String,
     @SerializedName("iso_3166_1")
@@ -17,4 +20,4 @@ data class Trailer(
     val site: String,
     val size: Int,
     val type: String
-)
+): Parcelable

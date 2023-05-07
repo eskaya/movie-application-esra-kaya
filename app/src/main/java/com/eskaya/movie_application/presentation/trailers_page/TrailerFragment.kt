@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.eskaya.movie_application.data.remote.models.models.Trailer
 import com.eskaya.movie_application.databinding.FragmentTrailerBinding
-import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
 import com.eskaya.movie_application.utils.Constants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -32,6 +32,7 @@ class TrailerFragment : Fragment() {
         lifecycle.addObserver(youTubePlayerView)
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
+                //TODO --> bu sayfaya trailersDto yu gönder, ardından videoId olarak dizi[position].key
                 val videoId = key
                 youTubePlayer.loadVideo(videoId, 0f)
             }
@@ -39,11 +40,14 @@ class TrailerFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(key: String) =
+        fun newInstance(trailerList: ArrayList<Trailer>, position: Int) =
             TrailerFragment().apply {
                 arguments = Bundle().apply {
-                    putString(Constants.YOUTUBE_VIDEO_KEY, key)
+                    putParcelableArrayList(Constants.YOUTUBE_VIDEO_KEY, trailerList)
+                    putInt(Constants.POSITION, position)
                 }
             }
     }
 }
+
+

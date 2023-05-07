@@ -22,7 +22,6 @@ import com.eskaya.movie_application.presentation.adapter.ActorsAdapter
 import com.eskaya.movie_application.presentation.adapter.GenresAdapter
 import com.eskaya.movie_application.presentation.adapter.TrailerAdapterListener
 import com.eskaya.movie_application.presentation.adapter.TrailersAdapter
-import com.eskaya.movie_application.presentation.search.SearchMovieFragment
 import com.eskaya.movie_application.presentation.trailers_page.TrailerFragment
 import com.eskaya.movie_application.utils.Constants
 import com.eskaya.movie_application.utils.extensions.RecyclerViewItemDecorator
@@ -42,6 +41,7 @@ class MovieDetailFragment : Fragment() {
     private lateinit var actorsAdapter: ActorsAdapter
     private lateinit var trailersAdapter: TrailersAdapter
     private val viewModel: MovieDetailViewModel by viewModels()
+    private lateinit var trailerList: ArrayList<Trailer>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -166,18 +166,19 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun handleSuccessForTrailers(data: List<Trailer>) {
+        trailerList = data as ArrayList<Trailer>
         trailersAdapter = TrailersAdapter(data,
             object : TrailerAdapterListener {
-                override fun onClickedItem(key: String) {
-                    navigateTrailersPage(key)
+                override fun onClickedItem(position: Int) {
+                    navigateTrailersPage(data, position)
                 }
 
             })
         binding.recyclerViewTrailers.adapter = trailersAdapter
     }
 
-    private fun navigateTrailersPage(key: String) {
-        val fragment = TrailerFragment.newInstance(key)
+    private fun navigateTrailersPage(trailerList: ArrayList<Trailer>, position: Int) {
+        val fragment = TrailerFragment.newInstance(trailerList, position)
 
         parentFragmentManager.commit {
             replace(R.id.frameLayout, fragment)
