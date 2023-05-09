@@ -21,6 +21,7 @@ class MovieListAdapter(
         data.clear()
         notifyItemRangeRemoved(0, size)
     }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -50,17 +51,19 @@ class MovieListHistoryViewHolder(
     }
 
     fun bind(item: MovieItem) {
+        val context = binding.root.context
         this.item = item
         binding.tvTitle.text = item.title
         binding.tvContent.text = item.overview
-        binding.tvPopularity.text = "${item.popularity.oneDigit} popularity"
+        binding.tvPopularity.text =
+            context.resources.getString(R.string.popularity, item.popularity.oneDigit)
         binding.ratingBar.rating = (item.voteAverage / 2).toFloat()
 
         val str = item.releaseDate
         val parts = str.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         binding.tvDate.text = parts[0]
-        if(item.posterPath!= null){
-            Glide.with(binding.root.context)
+        if (item.posterPath != null) {
+            Glide.with(context)
                 .load(item.posterPath.toFullImageLink())
                 .centerCrop()
                 .placeholder(R.drawable.ic_cinema_placeholder)
