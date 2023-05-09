@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.eskaya.movie_application.data.remote.models.models.Trailer
 import com.eskaya.movie_application.databinding.FragmentTrailerBinding
 import com.eskaya.movie_application.presentation.adapter.TrailerYoutubeVideoPlayerAdapter
@@ -44,9 +46,11 @@ class TrailerFragment : Fragment() {
     }
 
     private fun createYoutubePlayerAdapter(trailerList: ArrayList<Trailer>, position: Int) {
-        trailerYoutubeVideoPlayerAdapter = TrailerYoutubeVideoPlayerAdapter(trailerList)
+        trailerYoutubeVideoPlayerAdapter = TrailerYoutubeVideoPlayerAdapter(trailerList, position)
         binding.recyclerView.adapter = trailerYoutubeVideoPlayerAdapter
         binding.recyclerView.scrollToPosition(position)
+        val snapHelper: SnapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.recyclerView)
     }
 
     companion object {

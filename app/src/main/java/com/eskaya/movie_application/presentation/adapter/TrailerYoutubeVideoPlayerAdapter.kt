@@ -11,7 +11,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 class TrailerYoutubeVideoPlayerAdapter(
-    val data: List<Trailer>
+    val data: List<Trailer>,
+    val pos: Int
 ) : RecyclerView.Adapter<TrailerYoutubeVideoPlayerViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -21,7 +22,7 @@ class TrailerYoutubeVideoPlayerAdapter(
         val binding = ListItemYoutubeVideoPlayerBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return TrailerYoutubeVideoPlayerViewHolder(binding, data)
+        return TrailerYoutubeVideoPlayerViewHolder(binding, data, pos)
     }
 
     override fun onBindViewHolder(holder: TrailerYoutubeVideoPlayerViewHolder, position: Int) =
@@ -32,13 +33,14 @@ class TrailerYoutubeVideoPlayerAdapter(
 
 class TrailerYoutubeVideoPlayerViewHolder(
     private var binding: ListItemYoutubeVideoPlayerBinding,
-    private val data: List<Trailer>
+    private val data: List<Trailer>,
+    private val pos: Int
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private val youTubePlayerView: YouTubePlayerView = binding.youtubePlayerView
 
-
+    //TODO --> video oynamaya başladıktn sonra diğer video oynamaya başlıyor. Sayfadan çıkınca video kapanmıyor
     fun bind(item: Trailer) {
+        val youTubePlayerView: YouTubePlayerView = binding.youtubePlayerView
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 val videoId = data[adapterPosition].key
