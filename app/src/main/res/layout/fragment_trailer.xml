@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".presentation.trailers_page.TrailerFragment">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ivClose"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:alpha="0.4"
+        app:cardBackgroundColor="@color/charade"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_item_ripple"
+            android:src="@drawable/ic_back_left" />
+
+    </androidx.cardview.widget.CardView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
