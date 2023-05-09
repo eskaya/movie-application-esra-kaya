@@ -11,8 +11,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 class TrailerYoutubeVideoPlayerAdapter(
-    val data: List<Trailer>,
-    val position: Int
+    val data: List<Trailer>
 ) : RecyclerView.Adapter<TrailerYoutubeVideoPlayerViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -22,7 +21,7 @@ class TrailerYoutubeVideoPlayerAdapter(
         val binding = ListItemYoutubeVideoPlayerBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return TrailerYoutubeVideoPlayerViewHolder(binding, data, position)
+        return TrailerYoutubeVideoPlayerViewHolder(binding, data)
     }
 
     override fun onBindViewHolder(holder: TrailerYoutubeVideoPlayerViewHolder, position: Int) =
@@ -33,20 +32,11 @@ class TrailerYoutubeVideoPlayerAdapter(
 
 class TrailerYoutubeVideoPlayerViewHolder(
     private var binding: ListItemYoutubeVideoPlayerBinding,
-    private val data: List<Trailer>,
-    private val position: Int
+    private val data: List<Trailer>
 ) : RecyclerView.ViewHolder(binding.root) {
 
     private val youTubePlayerView: YouTubePlayerView = binding.youtubePlayerView
 
-    init {
-        youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                val videoId = data[position].key
-                youTubePlayer.loadVideo(videoId, 0f)
-            }
-        })
-    }
 
     fun bind(item: Trailer) {
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {

@@ -11,13 +11,12 @@ import com.eskaya.movie_application.data.remote.models.models.Trailer
 import com.eskaya.movie_application.databinding.FragmentTrailerBinding
 import com.eskaya.movie_application.presentation.adapter.TrailerYoutubeVideoPlayerAdapter
 import com.eskaya.movie_application.utils.Constants
-import kotlin.properties.Delegates
 
 
 class TrailerFragment : Fragment() {
     private lateinit var binding: FragmentTrailerBinding
     private lateinit var trailerList: ArrayList<Trailer>
-    private var position by Delegates.notNull<Int>()
+    private var position: Int = 0
     private var layoutManager: RecyclerView.LayoutManager? = null
     private lateinit var trailerYoutubeVideoPlayerAdapter: TrailerYoutubeVideoPlayerAdapter
 
@@ -45,8 +44,9 @@ class TrailerFragment : Fragment() {
     }
 
     private fun createYoutubePlayerAdapter(trailerList: ArrayList<Trailer>, position: Int) {
-        trailerYoutubeVideoPlayerAdapter = TrailerYoutubeVideoPlayerAdapter(trailerList, position)
+        trailerYoutubeVideoPlayerAdapter = TrailerYoutubeVideoPlayerAdapter(trailerList)
         binding.recyclerView.adapter = trailerYoutubeVideoPlayerAdapter
+        binding.recyclerView.scrollToPosition(position)
     }
 
     companion object {
