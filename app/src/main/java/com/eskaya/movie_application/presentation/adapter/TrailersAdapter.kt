@@ -4,10 +4,12 @@ package com.eskaya.movie_application.presentation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebChromeClient
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.eskaya.movie_application.R
 import com.eskaya.movie_application.data.remote.models.models.Trailer
 import com.eskaya.movie_application.databinding.ListItemTrailerBinding
+import com.eskaya.movie_application.utils.extensions.toFullImageLink
 
 class TrailersAdapter(
     val data: List<Trailer>,
@@ -36,28 +38,14 @@ class TrailersViewHolder(
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
     init {
-        // binding.webView.settings.javaScriptEnabled = true
-        //  binding.webView.webChromeClient = object : WebChromeClient() {}
         binding.root.setOnClickListener(this)
     }
 
     fun bind(item: Trailer) {
         val key = item.key
-        /*
-        binding.webView.loadData(
-            "<iframe " +
-                    "width=\"100%\"" +
-                    " height=\"100%\" " +
-                   // "style=\"background: #000000\" " +
-                    "src=\"https://www.youtube.com/embed/$key\" " +
-                    "title=\"YouTube video player\" " +
-                    "frameborder=\"0\" " +
-                    "allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen>" + "</iframe>",
-            "text/html",
-            "utf-8"
-        )
-
-         */
+        Glide.with(binding.root.context)
+            .load("https://i.ytimg.com/vi/$key/maxresdefault.jpg")
+            .into(binding.ivYoutube)
     }
 
     override fun onClick(v: View?) {
