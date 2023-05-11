@@ -33,7 +33,7 @@ import kotlin.properties.Delegates
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
     private lateinit var binding: FragmentPopularMovieDetailBinding
-    private var movieId by Delegates.notNull<Int>()
+    private var movieId: Int = 0
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var layoutManagerForActors: RecyclerView.LayoutManager? = null
     private var layoutManagerForTrailers: RecyclerView.LayoutManager? = null

@@ -10,28 +10,28 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
-class TrailerYoutubeVideoPlayerAdapter(
+class YouTubePlayerViewAdapter(
     val data: List<Trailer>,
     val pos: Int
-) : RecyclerView.Adapter<TrailerYoutubeVideoPlayerViewHolder>() {
+) : RecyclerView.Adapter<YouTubePlayerViewViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): TrailerYoutubeVideoPlayerViewHolder {
+    ): YouTubePlayerViewViewHolder {
         val binding = ListItemYoutubeVideoPlayerBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return TrailerYoutubeVideoPlayerViewHolder(binding, data, pos)
+        return YouTubePlayerViewViewHolder(binding, data, pos)
     }
 
-    override fun onBindViewHolder(holder: TrailerYoutubeVideoPlayerViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: YouTubePlayerViewViewHolder, position: Int) =
         holder.bind(data[position])
 
     override fun getItemCount(): Int = data.size
 }
 
-class TrailerYoutubeVideoPlayerViewHolder(
+class YouTubePlayerViewViewHolder(
     private var binding: ListItemYoutubeVideoPlayerBinding,
     private val data: List<Trailer>,
     private val pos: Int
