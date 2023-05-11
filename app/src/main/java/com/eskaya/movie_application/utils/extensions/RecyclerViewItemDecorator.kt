@@ -26,9 +26,6 @@ class RecyclerViewItemDecorator(
             is LinearLayoutManager -> {
                 layoutManager.orientation
             }
-            is GridLayoutManager -> {
-                layoutManager.orientation
-            }
             else -> {
                 RecyclerView.HORIZONTAL
             }
