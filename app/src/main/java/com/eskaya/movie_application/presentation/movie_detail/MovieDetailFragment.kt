@@ -44,7 +44,7 @@ class MovieDetailFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentPopularMovieDetailBinding.inflate(layoutInflater)
         return binding.root
@@ -73,17 +73,14 @@ class MovieDetailFragment : Fragment() {
         binding.recyclerViewActors.layoutManager = layoutManagerForActors
         binding.recyclerViewTrailers.layoutManager = layoutManagerForTrailers
         val genresDecorator = RecyclerViewItemDecorator(
-            spaceBetween = 24,
-            spaceStart = 40
+            spaceBetween = 24, spaceStart = 40
         )
         val actorsDecoration = RecyclerViewItemDecorator(
             spaceBetween = 24,
             spaceStart = 40,
         )
         val trailersDecoration = RecyclerViewItemDecorator(
-            spaceBetween = 24,
-            spaceStart = 40,
-            spaceEnd = 40
+            spaceBetween = 24, spaceStart = 40, spaceEnd = 40
         )
         binding.recyclerView.addItemDecoration(genresDecorator)
         binding.recyclerViewActors.addItemDecoration(actorsDecoration)
@@ -150,11 +147,8 @@ class MovieDetailFragment : Fragment() {
         binding.tvImdb.text = data.voteCount.toString()
         binding.ratingBar.rating = (data.voteAverage / 2).toFloat()
 
-        Glide.with(binding.root.context)
-            .load(data.posterPath.toFullImageLink())
-            .centerCrop()
-            .placeholder(R.drawable.ic_cinema_placeholder)
-            .into(binding.ivMoviePoster)
+        Glide.with(binding.root.context).load(data.posterPath.toFullImageLink()).centerCrop()
+            .placeholder(R.drawable.ic_cinema_placeholder).into(binding.ivMoviePoster)
 
         setupRecyclerView(data.genres as ArrayList<Genre>)
     }
@@ -171,13 +165,12 @@ class MovieDetailFragment : Fragment() {
                 trailerList.add(trailer)
             }
         }
-        trailersAdapter = TrailersAdapter(data,
-            object : TrailerAdapterListener {
-                override fun onClickedItem(position: Int) {
-                    navigateTrailersPage(trailerList, position)
-                }
+        trailersAdapter = TrailersAdapter(data, object : TrailerAdapterListener {
+            override fun onClickedItem(position: Int) {
+                navigateTrailersPage(trailerList, position)
+            }
 
-            })
+        })
         binding.recyclerViewTrailers.adapter = trailersAdapter
     }
 
@@ -212,11 +205,10 @@ class MovieDetailFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(movieId: Int) =
-            MovieDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(Constants.MOVIE_ID, movieId)
-                }
+        fun newInstance(movieId: Int) = MovieDetailFragment().apply {
+            arguments = Bundle().apply {
+                putInt(Constants.MOVIE_ID, movieId)
             }
+        }
     }
 }
