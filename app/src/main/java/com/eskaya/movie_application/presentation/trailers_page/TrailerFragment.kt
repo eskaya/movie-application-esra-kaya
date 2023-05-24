@@ -1,5 +1,7 @@
 package com.eskaya.movie_application.presentation.trailers_page
 
+import android.app.Activity
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import com.eskaya.movie_application.data.remote.models.models.Trailer
 import com.eskaya.movie_application.databinding.FragmentTrailerBinding
 import com.eskaya.movie_application.presentation.adapter.YouTubePlayerViewAdapter
 import com.eskaya.movie_application.utils.Constants
+import java.io.Serializable
 
 
 class TrailerFragment : Fragment() {
@@ -51,6 +54,17 @@ class TrailerFragment : Fragment() {
             createYoutubePlayerAdapter(trailerList, position)
         }
     }
+    /*
+    fun <T : Serializable?> getSerializable(activity: Activity, name: String, clazz: Class<T>): T
+    {
+        return if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+            activity.intent.getSerializableExtra(name, clazz)!!
+        else
+            activity.intent.getSerializableExtra(name) as T
+    }
+
+     */
+
 
     private fun createYoutubePlayerAdapter(trailerList: ArrayList<Trailer>, position: Int) {
         trailerYoutubeVideoPlayerAdapter = YouTubePlayerViewAdapter(trailerList, position)
