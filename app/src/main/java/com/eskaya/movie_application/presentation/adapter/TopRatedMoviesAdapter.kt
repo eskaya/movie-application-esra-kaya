@@ -10,7 +10,6 @@ import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.ListItemTopRatedBinding
 import com.eskaya.movie_application.utils.extensions.toFullImageLink
 
-
 class TopRatedAdapter(
     val data: List<MovieItem>,
     private val listener: TopRatedMovieAdapterListener

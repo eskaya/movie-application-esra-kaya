@@ -15,7 +15,6 @@ import com.eskaya.movie_application.data.remote.models.models.Trailer
 import com.eskaya.movie_application.databinding.FragmentTrailerBinding
 import com.eskaya.movie_application.presentation.adapter.YouTubePlayerViewAdapter
 import com.eskaya.movie_application.utils.Constants
-import java.io.Serializable
 
 
 class TrailerFragment : Fragment() {
@@ -23,7 +22,7 @@ class TrailerFragment : Fragment() {
     private lateinit var trailerList: ArrayList<Trailer>
     private var position: Int = 0
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private lateinit var trailerYoutubeVideoPlayerAdapter: YouTubePlayerViewAdapter
+    private lateinit var youtubePlayerViewAdapter: YouTubePlayerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,8 +66,8 @@ class TrailerFragment : Fragment() {
 
 
     private fun createYoutubePlayerAdapter(trailerList: ArrayList<Trailer>, position: Int) {
-        trailerYoutubeVideoPlayerAdapter = YouTubePlayerViewAdapter(trailerList, position)
-        binding.recyclerView.adapter = trailerYoutubeVideoPlayerAdapter
+        youtubePlayerViewAdapter = YouTubePlayerViewAdapter(trailerList)
+        binding.recyclerView.adapter = youtubePlayerViewAdapter
         binding.recyclerView.scrollToPosition(position)
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.recyclerView)

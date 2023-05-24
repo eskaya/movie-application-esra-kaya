@@ -11,7 +11,6 @@ import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.ListItemRoundedImageBinding
 import com.eskaya.movie_application.utils.extensions.toFullImageLink
 
-
 class PopularMoviesAdapter(
     val data: List<MovieItem>,
     private val listener: PopularMoviesAdapterListener

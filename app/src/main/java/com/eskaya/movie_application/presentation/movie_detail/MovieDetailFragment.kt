@@ -27,7 +27,6 @@ import com.eskaya.movie_application.utils.Constants
 import com.eskaya.movie_application.utils.extensions.RecyclerViewItemDecorator
 import com.eskaya.movie_application.utils.extensions.toFullImageLink
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.properties.Delegates
 
 
 @AndroidEntryPoint
