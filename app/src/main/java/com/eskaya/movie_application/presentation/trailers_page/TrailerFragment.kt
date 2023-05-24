@@ -28,12 +28,19 @@ class TrailerFragment : Fragment() {
     ): View {
         binding = FragmentTrailerBinding.inflate(layoutInflater)
         init()
+        listener()
         return binding.root
     }
 
     private fun init() {
         layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
+    }
+
+    private fun listener() {
+        binding.ivClose.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
