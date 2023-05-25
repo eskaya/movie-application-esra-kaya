@@ -159,10 +159,9 @@ class MovieDetailFragment : Fragment() {
 
     private fun handleSuccessForTrailers(data: List<Trailer>) {
         val trailerList = arrayListOf<Trailer>()
-        for (trailer in data) {
-            if (trailer.site == "YouTube") {
-                trailerList.add(trailer)
-            }
+        data.map {
+            it.site == "YouTube"
+            trailerList.add(it)
         }
         trailersAdapter = TrailersAdapter(data, object : TrailerAdapterListener {
             override fun onClickedItem(position: Int) {

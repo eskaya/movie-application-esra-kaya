@@ -1,7 +1,5 @@
 package com.eskaya.movie_application.presentation.trailers_page
 
-import android.app.Activity
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -63,7 +61,6 @@ class TrailerFragment : Fragment() {
     }
 
      */
-
 
     private fun createYoutubePlayerAdapter(trailerList: ArrayList<Trailer>, position: Int) {
         youtubePlayerViewAdapter = YouTubePlayerViewAdapter(trailerList)
