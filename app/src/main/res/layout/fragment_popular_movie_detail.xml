@@ -29,6 +29,7 @@
                 android:layout_gravity="center"
                 android:background="@drawable/shape_item_ripple"
                 android:src="@drawable/ic_back_left" />
+
         </androidx.cardview.widget.CardView>
 
         <ScrollView
@@ -199,6 +200,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -78,7 +78,8 @@
             android:paddingVertical="6dp"
             android:text="2019"
             android:textColor="@color/white"
-            android:textSize="10dp" />
+            android:textSize="@dimen/text_14" />
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -99,8 +100,9 @@
             android:paddingHorizontal="12dp"
             android:paddingVertical="6dp"
             android:textColor="@color/white"
-            android:textSize="10dp"
+            android:textSize="@dimen/text_10"
             tools:text="435" />
+
     </androidx.cardview.widget.CardView>
 
     <RatingBar
