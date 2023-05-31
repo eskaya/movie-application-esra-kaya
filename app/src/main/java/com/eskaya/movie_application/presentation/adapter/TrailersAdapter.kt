@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eskaya.movie_application.data.remote.models.models.Trailer
 import com.eskaya.movie_application.databinding.ListItemTrailerBinding
+import com.eskaya.movie_application.utils.extensions.toFullYoutubePlaceholderLink
 
 class TrailersAdapter(
     val data: List<Trailer>,
@@ -42,7 +43,7 @@ class TrailersViewHolder(
     fun bind(item: Trailer) {
         val key = item.key
         Glide.with(binding.root.context)
-            .load("https://i.ytimg.com/vi/$key/maxresdefault.jpg")
+            .load(key.toFullYoutubePlaceholderLink())
             .into(binding.ivYoutube)
     }
 
