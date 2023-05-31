@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">movie-application-esra-kaya</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="searchMoviePage_search">Search</string>
+    <string name="searchMoviePage_notFound">Movie not found.. :(</string>
+    <string name="searchMoviePage_result">Result</string>
+    <string name="homePage_topRatedMovies">Top Rated Movies</string>
+    <string name="homePage_upcomingMovies">Upcoming Movies</string>
+    <string name="homePage_popularMovies">Popular Movies</string>
+    <string name="upComingItem_originalLanguage">Org. Lng:</string>
+    <string name="homePage_seeMore">See More</string>
+    <string name="popularity">%s popularity</string>
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1010613383730",
+    "project_id": "movieapp-5594b",
+    "storage_bucket": "movieapp-5594b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010613383730:android:088465900942eb7ee6022b",
+        "android_client_info": {
+          "package_name": "com.example.movie_application_esra_kaya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1010613383730-qeru122do6hqngf6rmds7dqjmmvaue3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEBqR_D_LXLfUR7j_K3AmxKsIuT-uKvVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1010613383730-qeru122do6hqngf6rmds7dqjmmvaue3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

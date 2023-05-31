@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--TODO : Resim büyük görünüyor, arka plan görünmemekte Bu arka planı placeholder olarak kullandığımda popularMovies sliderın boyutu küçülüyo-->
+    <item>
+        <shape android:shape="line">
+            <solid android:color="@color/charade" />
+        </shape>
+    </item>
+    <item
+        android:bottom="120dp"
+        android:drawable="@drawable/ic_loading"
+        android:left="120dp"
+        android:right="120dp"
+        android:top="120dp" />
+</layer-list>
