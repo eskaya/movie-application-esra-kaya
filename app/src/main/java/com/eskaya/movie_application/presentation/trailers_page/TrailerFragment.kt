@@ -1,5 +1,6 @@
 package com.eskaya.movie_application.presentation.trailers_page
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,7 +47,15 @@ class TrailerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
-            trailerList = it.getParcelableArrayList(Constants.YOUTUBE_VIDEO_KEY)!!
+
+            trailerList = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                it.getParcelableArrayList(
+                    Constants.YOUTUBE_VIDEO_KEY, Trailer::class.java
+                ) as ArrayList<Trailer>
+            } else {
+                @Suppress("DEPRECATION")
+                it.getParcelableArrayList(Constants.YOUTUBE_VIDEO_KEY)!!
+            }
             position = it.getInt(Constants.POSITION)
             createYoutubePlayerAdapter(trailerList, position)
         }
