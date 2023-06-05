@@ -85,6 +85,7 @@ class MovieDetailFragment : Fragment() {
         binding.recyclerViewActors.addItemDecoration(actorsDecoration)
         binding.recyclerViewTrailers.addItemDecoration(trailersDecoration)
     }
+    
 
     private fun setUpObservers() {
         viewModel.getViewState.observe(
