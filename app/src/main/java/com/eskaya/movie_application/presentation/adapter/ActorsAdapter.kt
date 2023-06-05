@@ -42,6 +42,7 @@ class ActorsViewHolder(
                 .placeholder(R.drawable.ic_cinema_placeholder)
                 .into(binding.ivActor)
         } else {
+            // Test!
             binding.ivActor.setImageResource(R.drawable.ic_question_mark)
         }
     }
