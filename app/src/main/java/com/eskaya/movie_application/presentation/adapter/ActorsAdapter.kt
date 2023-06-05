@@ -44,5 +44,6 @@ class ActorsViewHolder(
         } else {
             binding.ivActor.setImageResource(R.drawable.ic_question_mark)
         }
+        
     }
 }
