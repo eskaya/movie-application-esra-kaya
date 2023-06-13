@@ -1,6 +1,18 @@
 # movie-application-esra-kaya
 MVVM and Clean Architecture architecture were used in this project, which was created with technologies such as Kotlin programming language and retrofit. (work in progress)
 
+#### Tech stack & Libraries
+
+- Kotlin
+- MVVM
+- Retrofit
+- OkHttp
+- LiveData
+- Flow
+- Glide
+- View Binding
+- To download the project --> git clone git@github.com:eskaya/rick-and-morty.git
+
 
 <table>
   <tr>
