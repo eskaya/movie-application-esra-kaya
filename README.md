@@ -11,7 +11,7 @@ MVVM and Clean Architecture architecture were used in this project, which was cr
 - Flow
 - Glide
 - View Binding
-- To download the project --> git clone git@github.com:eskaya/rick-and-morty.git
+
 
 
 <table>
