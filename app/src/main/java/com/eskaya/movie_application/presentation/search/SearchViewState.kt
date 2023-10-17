@@ -2,6 +2,8 @@ package com.eskaya.movie_application.presentation.search
 
 import com.eskaya.movie_application.data.remote.models.response.SearchDto
 
+
+//kalp kalp
 sealed class SearchViewState {
     object Init : SearchViewState()
     data class Success(val data: SearchDto?) : SearchViewState()
