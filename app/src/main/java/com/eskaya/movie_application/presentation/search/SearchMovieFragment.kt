@@ -78,6 +78,7 @@ class SearchMovieFragment : Fragment() {
                         }, 1000
                     )
                 }
+                // Test Commit
                 if (s.isEmpty()) {
                     if (movieListAdapter != null) {
                         movieListAdapter?.clear()
