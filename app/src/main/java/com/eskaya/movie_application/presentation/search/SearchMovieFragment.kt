@@ -32,7 +32,7 @@ import kotlin.collections.ArrayList
 class SearchMovieFragment : Fragment() {
     private lateinit var binding: FragmentSearchMovieBinding
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private lateinit var movieListAdapter: MovieListAdapter
+    private var movieListAdapter: MovieListAdapter? = null
     private val viewModel: SearchViewModel by viewModels()
     private var timer: Timer? = null
     private lateinit var manager: InputMethodManager
@@ -80,8 +80,14 @@ class SearchMovieFragment : Fragment() {
                     )
                 }
                 if (s.isEmpty()) {
-                    movieListAdapter.clear()
+                    if (movieListAdapter != null) {
+                        movieListAdapter?.clear()
+                    } else {
+                        binding.recyclerView.visibility = View.GONE
+                    }
                     binding.tvNotFoundMovie.visibility = View.GONE
+                } else {
+                    binding.recyclerView.visibility = View.VISIBLE
                 }
             }
 
@@ -126,7 +132,7 @@ class SearchMovieFragment : Fragment() {
                 }
             })
         binding.recyclerView.adapter = movieListAdapter
-        movieListAdapter.notifyDataSetChanged()
+        movieListAdapter?.notifyDataSetChanged()
         if (data.isEmpty()) {
             binding.tvNotFoundMovie.visibility = View.VISIBLE
         }
