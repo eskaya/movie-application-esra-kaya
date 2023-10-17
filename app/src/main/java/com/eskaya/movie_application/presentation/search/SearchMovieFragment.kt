@@ -27,7 +27,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
 
-
 @AndroidEntryPoint
 class SearchMovieFragment : Fragment() {
     private lateinit var binding: FragmentSearchMovieBinding
