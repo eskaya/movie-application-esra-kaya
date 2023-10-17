@@ -1,5 +1,5 @@
 # movie-application-esra-kaya
-MVVM and Clean Architecture architecture were used in this project, which was created with technologies such as Kotlin programming language and retrofit. (work in progress)
+MVVM and Clean Architecture architecture were used in this project, which was created with technologies such as Kotlin programming language and retrofit. (WIP)
 
 #### Tech stack & Libraries
 
