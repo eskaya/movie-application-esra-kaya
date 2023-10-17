@@ -154,4 +154,5 @@ class SearchMovieFragment : Fragment() {
             addToBackStack(null)
         }
     }
+    
 }
