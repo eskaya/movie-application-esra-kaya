@@ -3,7 +3,7 @@
     <style name="Theme.Movieapplicationesrakaya" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_color_text</item>
-        <item name="colorPrimaryVariant">@color/charade</item>
+        <item name="colorPrimaryVariant">@color/second_color</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

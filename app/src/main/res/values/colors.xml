@@ -14,7 +14,8 @@
     <color name="piper">#da5022</color>
     <color name="yellow">#FFFF00</color>
     <color name="pale_blue_lily">#CFECEC</color>
-    <color name="text_color" tools:ignore="MissingDefaultResource">#ffffff</color>
+    <color name="second_color">#ffffff</color>
+    <color name="change_color">#ffffff</color>
 
 
 </resources>

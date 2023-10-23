@@ -25,7 +25,7 @@ class AppPreferences private constructor(context: Context) {
     }
 
     fun getThemeMode(): String? {
-        return sharedPreferences.getString("THEME_MODE", "dark")
+        return sharedPreferences.getString("THEME_MODE", null)
     }
 }
 

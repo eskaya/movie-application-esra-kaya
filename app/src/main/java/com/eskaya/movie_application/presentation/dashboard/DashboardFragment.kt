@@ -81,14 +81,16 @@ class DashboardFragment : Fragment() {
     }
 
     private fun init() {
-        val selectThemeMode = (AppPreferences.getInstance(requireContext()).getThemeMode() ?: "esra")
+        val selectThemeMode = (AppPreferences.getInstance(requireContext()).getThemeMode())
 
         if (selectThemeMode == "dark") {
             binding.ivThemeMode.setImageResource(R.drawable.light_mode)
             binding.tvThemeStyle.text = getString(R.string.dashboardPage_lightMode)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         } else {
             binding.ivThemeMode.setImageResource(R.drawable.dark_mode)
             binding.tvThemeStyle.text = getString(R.string.dashboardPage_darkMode)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
         layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.recyclerviewUpComing.layoutManager = layoutManager

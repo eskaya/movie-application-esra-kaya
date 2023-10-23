@@ -33,7 +33,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/lato_bold"
         android:maxLines="1"
-        android:textColor="@color/white"
+        android:textColor="@color/second_color"
         android:textSize="@dimen/text_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

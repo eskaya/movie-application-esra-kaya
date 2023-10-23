@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="background_color">#ffffff</color>
-    <color name="charade">#9B9EA5</color>
-    <color name="primary_color_text">#181a1f</color>
-    <color name="text_color" tools:ignore="MissingDefaultResource">#181a1f</color>
+    <color name="background_color">#efefef</color>
+    <color name="charade">#fbfbfb</color>
+    <color name="primary_color_text">#616785</color>
+    <color name="second_color">#597a6e</color>
+    <color name="pale_blue_lily">#D97706</color>
+    <color name="change_color">#181a1f</color>
+
+    <color name="piper">#da5022</color>
+    <color name="yellow">#181a1f</color>
 </resources>
