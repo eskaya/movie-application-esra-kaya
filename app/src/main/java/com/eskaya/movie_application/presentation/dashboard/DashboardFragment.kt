@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat.recreate
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -20,6 +19,7 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.eskaya.movie_application.R
+import com.eskaya.movie_application.data.AppPreferences
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.FragmentDashboardBinding
 import com.eskaya.movie_application.presentation.adapter.*
@@ -40,6 +40,7 @@ class DashboardFragment : Fragment() {
     private lateinit var topRatedAdapter: TopRatedAdapter
     private lateinit var upComingAdapter: UpComingMovieAdapter
     val handler = Handler(Looper.getMainLooper())
+    private val preferenceManager = context?.let { AppPreferences.getInstance(it) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,12 +70,10 @@ class DashboardFragment : Fragment() {
                     handleSuccessTopRatedMovies(it.data[0].results)
                 }
                 is MovieViewState.IsLoading -> {
-                    // binding.containerProgress.visibility = View.VISIBLE
                     handleLoadingPopularMovies(it.isLoading)
                 }
                 is MovieViewState.Error -> {
                     binding.containerProgress.visibility = View.GONE
-                    //  Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT).show()
                     handleErrorPopularMovies(it.error)
                 }
             }
@@ -82,6 +81,15 @@ class DashboardFragment : Fragment() {
     }
 
     private fun init() {
+        val selectThemeMode = (AppPreferences.getInstance(requireContext()).getThemeMode() ?: "esra")
+
+        if (selectThemeMode == "dark") {
+            binding.ivThemeMode.setImageResource(R.drawable.light_mode)
+            binding.tvThemeStyle.text = getString(R.string.dashboardPage_lightMode)
+        } else {
+            binding.ivThemeMode.setImageResource(R.drawable.dark_mode)
+            binding.tvThemeStyle.text = getString(R.string.dashboardPage_darkMode)
+        }
         layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.recyclerviewUpComing.layoutManager = layoutManager
         val actorsDecoration = RecyclerViewItemDecorator(
@@ -96,12 +104,10 @@ class DashboardFragment : Fragment() {
 
         binding.cvChangeTheme.setOnClickListener {
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-                binding.ivThemeMode.setImageResource(R.drawable.light_mode)
-                binding.tvThemeStyle.text = getString(R.string.dashboardPage_lightMode)
+                AppPreferences.getInstance(requireContext()).setThemeMode("dark")
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             } else {
-                binding.ivThemeMode.setImageResource(R.drawable.dark_mode)
-                binding.tvThemeStyle.text = getString(R.string.dashboardPage_darkMode)
+                AppPreferences.getInstance(requireContext()).setThemeMode("light")
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
         }
