@@ -20,12 +20,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <Switch
+                android:id="@+id/switchForTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/tvPopularMovies"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/lato_bold"
                 android:text="@string/homePage_popularMovies"
@@ -33,7 +41,7 @@
                 android:textSize="@dimen/text_18"
                 app:layout_constraintEnd_toStartOf="@+id/tvSeeMorePopular"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/switchForTheme" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPagerPopular"

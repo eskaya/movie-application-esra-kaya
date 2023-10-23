@@ -4,12 +4,13 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,8 +22,8 @@ import com.eskaya.movie_application.R
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.FragmentDashboardBinding
 import com.eskaya.movie_application.presentation.adapter.*
-import com.eskaya.movie_application.presentation.movie_list.MovieListFragment
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
+import com.eskaya.movie_application.presentation.movie_list.MovieListFragment
 import com.eskaya.movie_application.presentation.search.SearchMovieFragment
 import com.eskaya.movie_application.utils.MovieTypes
 import com.eskaya.movie_application.utils.extensions.RecyclerViewItemDecorator
@@ -108,6 +109,15 @@ class DashboardFragment : Fragment() {
                 replace(R.id.frameLayout, SearchMovieFragment())
                 setReorderingAllowed(true)
                 addToBackStack(null)
+            }
+        }
+        binding.switchForTheme.setOnCheckedChangeListener { compoundButton, isCheck ->
+            if (isCheck) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                Toast.makeText(context, isCheck.toString(), Toast.LENGTH_SHORT).show()
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                Toast.makeText(context, isCheck.toString(), Toast.LENGTH_SHORT).show()
             }
         }
     }
