@@ -49,11 +49,13 @@ class UpComingMovieViewHolder(
         binding.tvTitle.text = item.title
         binding.tvOriginalLngValue.text = item.originalLanguage
         binding.ratingBar.rating = (item.voteAverage / 2).toFloat()
-        Glide.with(binding.root.context)
-            .load(item.backdropPath.toFullImageLink())
-            .centerCrop()
-            .placeholder(R.drawable.ic_cinema_placeholder)
-            .into(binding.ivMoviePoster)
+        if(item.backdropPath != null) {
+            Glide.with(binding.root.context)
+                .load(item.backdropPath.toFullImageLink())
+                .centerCrop()
+                .placeholder(R.drawable.ic_cinema_placeholder)
+                .into(binding.ivMoviePoster)
+        }
     }
 
     override fun onClick(v: View?) {

@@ -45,12 +45,14 @@ class PopularMoviesViewHolder(
 
     fun bind(item: MovieItem) {
         this.item = item
-        Glide.with(binding.root.context)
-            .load(item.backdropPath.toFullImageLink())
-            .centerCrop()
-           .placeholder(R.drawable.ic_cinema_placeholder)
-          //  .apply(RequestOptions().override(2000, 1000))
-            .into(binding.imageView)
+        if(item.backdropPath != null) {
+            Glide.with(binding.root.context)
+                .load(item.backdropPath.toFullImageLink())
+                .centerCrop()
+                .placeholder(R.drawable.ic_cinema_placeholder)
+                //  .apply(RequestOptions().override(2000, 1000))
+                .into(binding.imageView)
+        }
     }
 
     override fun onClick(v: View?) {

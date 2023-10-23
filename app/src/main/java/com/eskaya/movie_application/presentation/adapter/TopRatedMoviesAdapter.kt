@@ -45,11 +45,13 @@ class TopRatedViewHolder(
 
     fun bind(item: MovieItem) {
         this.item = item
-        Glide.with(binding.root.context)
-            .load(item.backdropPath.toFullImageLink())
-            .centerCrop()
-            .placeholder(R.drawable.ic_loading)
-            .into(binding.imageView)
+        if (item.backdropPath != null) {
+            Glide.with(binding.root.context)
+                .load(item.backdropPath.toFullImageLink())
+                .centerCrop()
+                .placeholder(R.drawable.ic_loading)
+                .into(binding.imageView)
+        }
     }
 
     override fun onClick(v: View?) {
