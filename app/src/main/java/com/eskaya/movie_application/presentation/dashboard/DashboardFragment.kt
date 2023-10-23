@@ -93,6 +93,19 @@ class DashboardFragment : Fragment() {
     }
 
     private fun listener() {
+
+        binding.cvChangeTheme.setOnClickListener {
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                binding.ivThemeMode.setImageResource(R.drawable.light_mode)
+                binding.tvThemeStyle.text = getString(R.string.dashboardPage_lightMode)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                binding.ivThemeMode.setImageResource(R.drawable.dark_mode)
+                binding.tvThemeStyle.text = getString(R.string.dashboardPage_darkMode)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
+
         binding.tvSeeMoreTopRated.setOnClickListener {
             val fragment = MovieListFragment.newInstance(MovieTypes.TOP_RATED)
             navigateToMovieListPage(fragment)
@@ -113,19 +126,6 @@ class DashboardFragment : Fragment() {
             }
         }
         /*
-        binding.switchForTheme.setOnCheckedChangeListener { _, isCheck ->
-            if (isCheck) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                binding.switchForTheme.isChecked
-                Toast.makeText(context, "koyu mod açık", Toast.LENGTH_SHORT).show()
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                Toast.makeText(context, "koyu mod kapalı", Toast.LENGTH_SHORT).show()
-                !binding.switchForTheme.isChecked
-            }
-        }
-
-         */
         binding.switchForTheme.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Koyu modu etkinleştir
@@ -135,6 +135,9 @@ class DashboardFragment : Fragment() {
                 Toast.makeText(context, "else bloğu", Toast.LENGTH_SHORT).show()
             }
         }
+
+         */
+
     }
 
     private fun handleSuccessPopularMovies(data: List<MovieItem>) {

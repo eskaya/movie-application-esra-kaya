@@ -20,14 +20,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Switch
-                android:id="@+id/switchForTheme"
+            <TextView
+                android:id="@+id/tvThemeStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/dashboardPage_darkMode"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/text_12"
+                app:layout_constraintBottom_toBottomOf="@+id/cvChangeTheme"
+                app:layout_constraintEnd_toStartOf="@+id/cvChangeTheme"
+                app:layout_constraintTop_toTopOf="@+id/cvChangeTheme" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvChangeTheme"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivThemeMode"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/dark_mode"/>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/tvPopularMovies"
@@ -42,7 +66,7 @@
                 android:textSize="@dimen/text_18"
                 app:layout_constraintEnd_toStartOf="@+id/tvSeeMorePopular"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switchForTheme" />
+                app:layout_constraintTop_toBottomOf="@+id/cvChangeTheme" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPagerPopular"

@@ -11,4 +11,6 @@
     <string name="upComingItem_originalLanguage">Org. Lng:</string>
     <string name="homePage_seeMore">See More</string>
     <string name="popularity">%s popularity</string>
+    <string name="dashboardPage_darkMode">Dark Mode</string>
+    <string name="dashboardPage_lightMode">Light Mode</string>
 </resources>
