@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat.recreate
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -111,13 +112,27 @@ class DashboardFragment : Fragment() {
                 addToBackStack(null)
             }
         }
-        binding.switchForTheme.setOnCheckedChangeListener { compoundButton, isCheck ->
+        /*
+        binding.switchForTheme.setOnCheckedChangeListener { _, isCheck ->
             if (isCheck) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                Toast.makeText(context, isCheck.toString(), Toast.LENGTH_SHORT).show()
-            } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                Toast.makeText(context, isCheck.toString(), Toast.LENGTH_SHORT).show()
+                binding.switchForTheme.isChecked
+                Toast.makeText(context, "koyu mod açık", Toast.LENGTH_SHORT).show()
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                Toast.makeText(context, "koyu mod kapalı", Toast.LENGTH_SHORT).show()
+                !binding.switchForTheme.isChecked
+            }
+        }
+
+         */
+        binding.switchForTheme.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Koyu modu etkinleştir
+                Toast.makeText(context, "if bloğu", Toast.LENGTH_SHORT).show()
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) // Açık modu etkinleştir
+                Toast.makeText(context, "else bloğu", Toast.LENGTH_SHORT).show()
             }
         }
     }

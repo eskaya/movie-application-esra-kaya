@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="background_color">#ffffff</color>
+    <color name="charade">#9B9EA5</color>
+    <color name="primary_color_text">#181a1f</color>
+    <color name="text_color" tools:ignore="MissingDefaultResource">#181a1f</color>
+</resources>
