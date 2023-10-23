@@ -47,8 +47,9 @@
 
                 <ImageView
                     android:id="@+id/ivThemeMode"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:adjustViewBounds="true"
                     android:layout_gravity="center" />
 
             </com.google.android.material.card.MaterialCardView>

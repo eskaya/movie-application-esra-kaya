@@ -1,6 +1,7 @@
 package com.eskaya.movie_application.presentation.dashboard
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -87,6 +89,7 @@ class DashboardFragment : Fragment() {
             binding.ivThemeMode.setImageResource(R.drawable.light_mode)
             binding.tvThemeStyle.text = getString(R.string.dashboardPage_lightMode)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            binding.cvChangeTheme.setCardBackgroundColor(Color.parseColor("#f9e65d"))
         } else {
             binding.ivThemeMode.setImageResource(R.drawable.dark_mode)
             binding.tvThemeStyle.text = getString(R.string.dashboardPage_darkMode)
@@ -108,6 +111,7 @@ class DashboardFragment : Fragment() {
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
                 AppPreferences.getInstance(requireContext()).setThemeMode("dark")
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                binding.cvChangeTheme.setCardBackgroundColor(Color.parseColor("#f9e65d"))
             } else {
                 AppPreferences.getInstance(requireContext()).setThemeMode("light")
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
