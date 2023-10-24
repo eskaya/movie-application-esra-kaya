@@ -60,16 +60,6 @@ class TrailerFragment : Fragment() {
             createYoutubePlayerAdapter(trailerList, position)
         }
     }
-    /*
-    fun <T : Serializable?> getSerializable(activity: Activity, name: String, clazz: Class<T>): T
-    {
-        return if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-            activity.intent.getSerializableExtra(name, clazz)!!
-        else
-            activity.intent.getSerializableExtra(name) as T
-    }
-
-     */
 
     private fun createYoutubePlayerAdapter(trailerList: ArrayList<Trailer>, position: Int) {
         youtubePlayerViewAdapter = YouTubePlayerViewAdapter(trailerList)

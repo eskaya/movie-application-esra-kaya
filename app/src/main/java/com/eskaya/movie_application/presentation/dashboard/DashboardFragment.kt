@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -137,19 +136,6 @@ class DashboardFragment : Fragment() {
                 addToBackStack(null)
             }
         }
-        /*
-        binding.switchForTheme.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Koyu modu etkinleştir
-                Toast.makeText(context, "if bloğu", Toast.LENGTH_SHORT).show()
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) // Açık modu etkinleştir
-                Toast.makeText(context, "else bloğu", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-         */
-
     }
 
     private fun handleSuccessPopularMovies(data: List<MovieItem>) {

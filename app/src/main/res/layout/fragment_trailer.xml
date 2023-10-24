@@ -22,6 +22,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_gravity="center"
+            app:tint="@color/change_color"
             android:background="@drawable/shape_item_ripple"
             android:src="@drawable/ic_back_left" />
 
