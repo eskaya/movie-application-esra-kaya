@@ -60,8 +60,12 @@ class MovieListHistoryViewHolder(
         binding.ratingBar.rating = (item.voteAverage / 2).toFloat()
 
         val str = item.releaseDate
-        val parts = str.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        binding.tvDate.text = parts[0]
+        if(!str.isNullOrEmpty()){
+            val parts = str.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            binding.tvDate.text = parts[0]
+        }else{
+            binding.tvDate.text = "-"
+        }
         if (item.posterPath != null) {
             Glide.with(context)
                 .load(item.posterPath.toFullImageLink())

@@ -41,13 +41,12 @@ class DashboardFragment : Fragment() {
     private lateinit var topRatedAdapter: TopRatedAdapter
     private lateinit var upComingAdapter: UpComingMovieAdapter
     val handler = Handler(Looper.getMainLooper())
-    private val preferenceManager = context?.let { AppPreferences.getInstance(it) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        binding = FragmentDashboardBinding.inflate(layoutInflater)
         return binding.root
     }
 
