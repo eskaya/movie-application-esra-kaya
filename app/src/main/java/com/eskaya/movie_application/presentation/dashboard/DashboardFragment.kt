@@ -1,6 +1,7 @@
 package com.eskaya.movie_application.presentation.dashboard
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -24,6 +25,7 @@ import com.eskaya.movie_application.data.AppPreferences
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.databinding.FragmentDashboardBinding
 import com.eskaya.movie_application.presentation.adapter.*
+import com.eskaya.movie_application.presentation.force_update.ForceUpdateActivity
 import com.eskaya.movie_application.presentation.movie_detail.MovieDetailFragment
 import com.eskaya.movie_application.presentation.movie_list.MovieListFragment
 import com.eskaya.movie_application.presentation.search.SearchMovieFragment
@@ -117,8 +119,10 @@ class DashboardFragment : Fragment() {
         }
 
         binding.tvSeeMoreTopRated.setOnClickListener {
-            val fragment = MovieListFragment.newInstance(MovieTypes.TOP_RATED)
-            navigateToMovieListPage(fragment)
+          //  val fragment = MovieListFragment.newInstance(MovieTypes.TOP_RATED)
+           // navigateToMovieListPage(fragment)
+            val myIntent = Intent(context, ForceUpdateActivity::class.java)
+            context?.startActivity(myIntent)
         }
         binding.tvSeeMoreUpcoming.setOnClickListener {
             val fragment = MovieListFragment.newInstance(MovieTypes.UPCOMING)
