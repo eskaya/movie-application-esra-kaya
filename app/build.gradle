@@ -95,20 +95,21 @@ dependencies {
 
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2'
 
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
+
     //YoutubePlayerView
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0'
 
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    // Import the BoM for the Firebase platform
+    //firebase
     implementation platform('com.google.firebase:firebase-bom:32.0.0')
-
-    // Add the dependencies for the Crashlytics and Analytics libraries
-    // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
+    //firebaseMessaging
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.3.1'
+
 
 }
