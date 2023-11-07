@@ -4,10 +4,13 @@ import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.os.Build
 import android.widget.RemoteViews
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import com.eskaya.movie_application.R
 import com.eskaya.movie_application.presentation.MainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -17,25 +20,31 @@ open class FirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
+        val movieId = message.data["movie_id"]
         if (message.notification != null) {
-            startNotification(message.notification!!.title!!, message.notification!!.body!!)
+            startNotification(
+                message.notification!!.title!!,
+                message.notification!!.body!!, movieId
+            )
         }
     }
 
     @SuppressLint("RemoteViewLayout")
     private fun customDesignNotification(title: String, message: String): RemoteViews {
         val remoteViews = RemoteViews(applicationContext.packageName, R.layout.notification)
-        remoteViews.setTextViewText(R.id.tvNotificationTitle,title)
-        remoteViews.setTextViewText(R.id.tvMessage,message)
+        remoteViews.setTextViewText(R.id.tvNotificationTitle, title)
+        remoteViews.setTextViewText(R.id.tvMessage, message)
         remoteViews.setImageViewResource(R.id.ivNotification, R.drawable.ic_albert_einstein)
         return remoteViews
     }
 
 
-    private fun startNotification(title: String, message: String) {
+    private fun startNotification(title: String, message: String, movieId: String?) {
         val channelId = "notification_channel"
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("movieId", movieId)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
 
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
@@ -46,7 +55,7 @@ open class FirebaseMessagingService : FirebaseMessagingService() {
             .setOnlyAlertOnce(true) //aynı bildirim yeniden gelirse sesi ve titreşimi kapat
             .setContentIntent(pendingIntent)
 
-        builder = builder.setContent(customDesignNotification(title,message))
+        builder = builder.setContent(customDesignNotification(title, message))
 
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
