@@ -1,17 +1,22 @@
 package com.eskaya.movie_application.utils
 
 import android.annotation.SuppressLint
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.widget.RemoteViews
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.getSystemService
 import com.eskaya.movie_application.R
+import com.eskaya.movie_application.data.AppPreferences
+import com.eskaya.movie_application.data.remote.models.models.NotificationModel
 import com.eskaya.movie_application.presentation.MainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -24,8 +29,14 @@ open class FirebaseMessagingService : FirebaseMessagingService() {
         if (message.notification != null) {
             startNotification(
                 message.notification!!.title!!,
-                message.notification!!.body!!, movieId
+                message.notification!!.body!!,
+                movieId
             )
+            val notification = NotificationModel(
+                title = message.notification!!.title!!,
+                body = message.notification!!.body!!
+            )
+            AppPreferences.getInstance(applicationContext).saveNotifications(notification)
         }
     }
 
