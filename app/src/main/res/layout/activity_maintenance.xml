@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         android:fontFamily="@font/lato_bold"
-        android:text="App Maintenance"
+        android:text="@string/maintenancePage_title"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="@dimen/text_20"
@@ -38,7 +38,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/lato_regular"
         android:lineSpacingExtra="6dp"
-        android:text="Our application will be under maintenance for a while to serve you better. Don't forget to visit again and discover what's new."
+        android:text="@string/maintenancePage_description"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="@dimen/text_16"
@@ -65,10 +65,11 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/lato_bold"
             android:paddingVertical="18dp"
-            android:text="Close App"
+            android:text="@string/maintenancePage_buttonText"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14" />
+        
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
