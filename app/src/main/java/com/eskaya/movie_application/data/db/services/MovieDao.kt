@@ -1,4 +1,4 @@
-package com.eskaya.movie_application.data.remote.services
+package com.eskaya.movie_application.data.db.services
 
 import androidx.room.Dao
 import androidx.room.Delete
