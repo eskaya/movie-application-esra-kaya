@@ -11,12 +11,12 @@ plugins {
 
 android {
     namespace 'com.eskaya.movie_application'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.movie_application_esra_kaya"
         minSdk 21
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -111,5 +111,8 @@ dependencies {
     //firebaseMessaging
     implementation 'com.google.firebase:firebase-messaging-ktx:23.3.1'
 
+    //room database
+    implementation("androidx.room:room-runtime:2.6.0")
+    annotationProcessor("androidx.room:room-compiler:2.6.0")
 
 }
