@@ -1,9 +1,14 @@
 package com.eskaya.movie_application.presentation.dashboard
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.room.RoomDatabase
+import com.eskaya.movie_application.common.base.BaseViewModel
+import com.eskaya.movie_application.data.db.AppDatabase
+import com.eskaya.movie_application.data.remote.models.models.MovieItem
 import com.eskaya.movie_application.data.remote.models.response.MovieListDto
 import com.eskaya.movie_application.domain.repository.MovieRepository
 import com.eskaya.movie_application.domain.use_case.GetMovieListUseCase
@@ -16,9 +21,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
+    private val application: Application,
     private val getMovieListUseCase: GetMovieListUseCase,
     private val repository: MovieRepository
-) : ViewModel() {
+) : BaseViewModel(application) {
 
 
     private val uiState = MutableLiveData<MovieViewState>(MovieViewState.Init)
@@ -54,6 +60,13 @@ class DashboardViewModel @Inject constructor(
 
     fun getUiState(): LiveData<MovieViewState> {
         return uiState
+    }
+
+     fun saveMovie(movieItem: MovieItem){
+        launch {
+            val dao = AppDatabase(application).movieDao()
+            dao.insert(movieItem)
+        }
     }
 }
 
