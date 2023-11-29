@@ -59,12 +59,12 @@ class UpComingMovieViewHolder(
     }
 
     override fun onClick(v: View?) {
-        listener.onClickedItem(item.id)
+        listener.onClickedItem(item)
     }
 }
 
 interface UpComingMoviesAdapterListener {
-    fun onClickedItem(movieId: Int)
+    fun onClickedItem(movieItem: MovieItem)
 }
 
 
