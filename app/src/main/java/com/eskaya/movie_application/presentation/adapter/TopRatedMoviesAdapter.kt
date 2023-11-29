@@ -55,12 +55,12 @@ class TopRatedViewHolder(
     }
 
     override fun onClick(v: View?) {
-        listener.onClickedItem(item.id)
+        listener.onClickedItem(item)
     }
 }
 
 interface TopRatedMovieAdapterListener {
-    fun onClickedItem(movieId: Int)
+    fun onClickedItem(movieItem: MovieItem)
 }
 
 

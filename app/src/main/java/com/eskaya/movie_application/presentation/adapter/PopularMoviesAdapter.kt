@@ -56,12 +56,12 @@ class PopularMoviesViewHolder(
     }
 
     override fun onClick(v: View?) {
-        listener.onClickedItem(item.id)
+        listener.onClickedItem(item)
     }
 }
 
 interface PopularMoviesAdapterListener {
-    fun onClickedItem(movieId: Int)
+    fun onClickedItem(movieItem: MovieItem)
 }
 
 

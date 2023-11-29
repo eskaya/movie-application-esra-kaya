@@ -147,8 +147,8 @@ class DashboardFragment : Fragment() {
         }
         popularMoviesAdapter = PopularMoviesAdapter(data,
             object : PopularMoviesAdapterListener {
-                override fun onClickedItem(movieId: Int) {
-                    navigationMovieDetailPage(movieId)
+                override fun onClickedItem(movieItem: MovieItem) {
+                    navigationMovieDetailPage(movieItem)
                 }
             }
         )
@@ -166,8 +166,8 @@ class DashboardFragment : Fragment() {
     private fun handleSuccessTopRatedMovies(data: List<MovieItem>) {
         topRatedAdapter = TopRatedAdapter(data,
             object : TopRatedMovieAdapterListener {
-                override fun onClickedItem(movieId: Int) {
-                    navigationMovieDetailPage(movieId)
+                override fun onClickedItem(movieItem: MovieItem) {
+                    navigationMovieDetailPage(movieItem)
                 }
             }
         )
@@ -188,8 +188,8 @@ class DashboardFragment : Fragment() {
     private fun handleSuccessUpComingMovies(data: List<MovieItem>) {
         upComingAdapter = UpComingMovieAdapter(data,
             object : UpComingMoviesAdapterListener {
-                override fun onClickedItem(movieId: Int) {
-                    navigationMovieDetailPage(movieId)
+                override fun onClickedItem(movieItem: MovieItem) {
+                    navigationMovieDetailPage(movieItem)
                 }
             }
         )
@@ -213,8 +213,12 @@ class DashboardFragment : Fragment() {
         }
     }
 
-    private fun navigationMovieDetailPage(movieId: Int) {
-        val fragment = MovieDetailFragment.newInstance(movieId)
+    private fun navigationMovieDetailPage(movieItem: MovieItem) {
+
+        //tıklanan filmi rooma kaydedelim
+        viewModel.saveMovie(movieItem)
+
+        val fragment = MovieDetailFragment.newInstance(movieItem.id)
         parentFragmentManager.commit {
             replace(R.id.frameLayout, fragment)
             setReorderingAllowed(true)
