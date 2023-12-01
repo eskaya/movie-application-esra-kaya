@@ -16,9 +16,11 @@ data class MovieItem(
     @SerializedName("backdrop_path")
     val backdropPath: String?,
 
-    @ColumnInfo(name = "genreIds")
+    /*
     @SerializedName("genre_ids")
-    val genreIds: List<Int>,
+    val genreIds: ArrayList<Int>,
+
+     */
 
     @ColumnInfo(name = "id")
     val id: Int,

@@ -6,8 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.eskaya.movie_application.data.db.services.MovieDao
 import com.eskaya.movie_application.data.remote.models.models.MovieItem
+import dagger.hilt.android.HiltAndroidApp
 
-@Database(entities = [MovieItem::class], version = 1)
+
+@Database(entities = [MovieItem::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
 

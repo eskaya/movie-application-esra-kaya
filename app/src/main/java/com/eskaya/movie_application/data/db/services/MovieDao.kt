@@ -11,17 +11,16 @@ interface MovieDao {
 
     @Insert
     //bu istek bize primaryKey olarak işaretlediğimiz alanı bir dizi içerisinde döner, vararg ile kaç tane ekleneceğini belirtmemize gerek olmaz
-    suspend fun insertAll(vararg movie:MovieItem) : List<Long>
+    fun insertAll(vararg movie:MovieItem) : List<Long>
 
     @Insert
-    suspend fun insert(movie: MovieItem) //bu şekilde de ekleme işlemini yapabiliriz
+    fun insert(movie: MovieItem) //bu şekilde de ekleme işlemini yapabiliriz
 
-    @Query("SELECT * FROM movie_table WHERE dbId = :id")
-    suspend fun getMovie(id: Int): MovieItem
+    @Query("SELECT * FROM movie_table WHERE dbId IN (:id)")
+    fun getMovie(id: Int): MovieItem
 
     @Query("SELECT * FROM movie_table")
-    suspend fun getMovies(): List<MovieItem>
-
+    fun getMovies(): List<MovieItem>
     @Delete
-    suspend fun deleteMovie(movie: MovieItem)
+    fun deleteMovie(movie: MovieItem)
 }

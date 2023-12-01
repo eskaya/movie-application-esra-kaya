@@ -62,7 +62,7 @@ class DashboardViewModel @Inject constructor(
         return uiState
     }
 
-     fun saveMovie(movieItem: MovieItem){
+    fun saveMovie(movieItem: MovieItem) {
         launch {
             val dao = AppDatabase(application).movieDao()
             dao.insert(movieItem)
