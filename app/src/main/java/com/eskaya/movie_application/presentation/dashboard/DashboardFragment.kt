@@ -215,7 +215,7 @@ class DashboardFragment : Fragment() {
 
     private fun navigationMovieDetailPage(movieItem: MovieItem) {
 
-        //tıklanan filmi rooma kaydedelim
+        //tıklanan filmi room'a kaydedelim
         viewModel.saveMovie(movieItem)
 
         val fragment = MovieDetailFragment.newInstance(movieItem.id)
