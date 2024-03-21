@@ -16,4 +16,7 @@
     <string name="maintenancePage_title">App Maintenance</string>
     <string name="maintenancePage_description">Our application will be under maintenance for a while to serve you better. Don\'t forget to visit again and discover what\'s new.</string>
     <string name="maintenancePage_buttonText">Close App</string>
+    <string name="dashboardPage_changeThemeImage">Change Theme Image</string>
+    <string name="dashboardPage_searchIcon">Search Icon</string>
+    <string name="dashboardPage_notificationIcon">Notification Icon</string>
 </resources>

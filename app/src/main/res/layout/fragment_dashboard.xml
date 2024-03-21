@@ -52,7 +52,8 @@
                 android:src="@drawable/ic_notification"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/change_color" />
+                app:tint="@color/change_color"
+                android:contentDescription="@string/dashboardPage_notificationIcon" />
 
             <TextView
                 android:id="@+id/tvThemeStyle"
@@ -61,6 +62,7 @@
                 android:layout_marginEnd="4dp"
                 android:fontFamily="@font/lato_bold"
                 tools:text="@string/dashboardPage_darkMode"
+                android:visibility="gone"
                 android:textColor="@color/second_color"
                 android:textSize="@dimen/text_12"
                 app:layout_constraintBottom_toBottomOf="@+id/cvChangeTheme"
@@ -69,8 +71,8 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvChangeTheme"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:layout_marginEnd="8dp"
                 app:cardBackgroundColor="@color/change_color"
                 app:cardCornerRadius="20dp"
@@ -81,10 +83,11 @@
 
                 <ImageView
                     android:id="@+id/ivThemeMode"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:adjustViewBounds="true" />
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/dashboardPage_changeThemeImage" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -247,7 +250,8 @@
             android:layout_height="24dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_search"
-            app:tint="@color/charade" />
+            app:tint="@color/charade"
+            android:contentDescription="@string/dashboardPage_searchIcon" />
 
     </androidx.cardview.widget.CardView>
 
