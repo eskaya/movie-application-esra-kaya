@@ -29,4 +29,12 @@
     <string name="movieDetailPage_likeStarsGroupContentDescription">Like Stars Group</string>
     <string name="searchMoviePage_backImageContentDesc">Back Image</string>
     <string name="SearchMoivePage_searchIconContentDescription">Search Icon</string>
+    <string name="trailerPage_backImageContentDescription">Back Icon</string>
+    <string name="movieListPage_posterContentDesc">Movie Poster</string>
+    <string name="trailerPage_trailerImageContentDesc">Trailer Poster</string>
+    <string name="trailerPage_playIconContentDesc">Play Icon</string>
+    <string name="movieCard_moviePosterImageContentDesc">Movie Poster</string>
+    <string name="notificationPage_desc">Notification Description</string>
+    <string name="notificationPage_notificationIconContentDesc">Notification Icon</string>
+    <string name="notificationPage_title">Notification title</string>
 </resources>

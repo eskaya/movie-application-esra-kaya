@@ -16,6 +16,7 @@
             android:id="@+id/ivYoutube"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/trailerPage_trailerImageContentDesc"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_youtube" />
 
@@ -23,6 +24,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:contentDescription="@string/trailerPage_playIconContentDesc"
             android:src="@drawable/ic_white_play" />
 
     </androidx.cardview.widget.CardView>

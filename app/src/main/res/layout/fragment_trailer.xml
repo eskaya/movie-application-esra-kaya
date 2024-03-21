@@ -24,7 +24,8 @@
             android:layout_gravity="center"
             app:tint="@color/change_color"
             android:background="@drawable/shape_item_ripple"
-            android:src="@drawable/ic_back_left" />
+            android:src="@drawable/ic_back_left"
+            android:contentDescription="@string/trailerPage_backImageContentDescription" />
 
     </androidx.cardview.widget.CardView>
 

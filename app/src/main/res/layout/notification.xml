@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:fontFamily="@font/lato_bold"
-        android:text="Notification title"
+        android:text="@string/notificationPage_title"
         android:textColor="@color/black"
         android:textSize="@dimen/text_16"
         app:layout_constraintEnd_toStartOf="@+id/ivNotification"
@@ -26,7 +26,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Notification Description"
+        android:text="@string/notificationPage_desc"
         android:textColor="@color/black"
         android:textSize="@dimen/text_12"
         app:layout_constraintEnd_toStartOf="@+id/ivNotification"
@@ -38,6 +38,7 @@
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/notificationPage_notificationIconContentDesc"
         android:src="@drawable/ic_albert_einstein"
         app:layout_constraintBottom_toBottomOf="@+id/tvMessage"
         app:layout_constraintEnd_toEndOf="parent"

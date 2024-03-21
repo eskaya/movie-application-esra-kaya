@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_cinema_placeholder"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/movieListPage_posterContentDesc" />
 
     </androidx.cardview.widget.CardView>
 
