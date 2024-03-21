@@ -19,4 +19,14 @@
     <string name="dashboardPage_changeThemeImage">Change Theme Image</string>
     <string name="dashboardPage_searchIcon">Search Icon</string>
     <string name="dashboardPage_notificationIcon">Notification Icon</string>
+    <string name="forceUpdatePage_title">The app is out of date :(</string>
+    <string name="forceUpdatePage_forceUpdateImage">Force Update Image</string>
+    <string name="forceUpdatePage_description">Let\'s update it to have the best experience!</string>
+    <string name="forceUpdatePage_buttonText">Update</string>
+    <string name="maintenancePage_maintenanceImageContentDesc">App Maintenance Page</string>
+    <string name="movieListPage_backImageContentDescription">Back Image</string>
+    <string name="movieDetailPage_backImageContentDescription">Back Image</string>
+    <string name="movieDetailPage_likeStarsGroupContentDescription">Like Stars Group</string>
+    <string name="searchMoviePage_backImageContentDesc">Back Image</string>
+    <string name="SearchMoivePage_searchIconContentDescription">Search Icon</string>
 </resources>

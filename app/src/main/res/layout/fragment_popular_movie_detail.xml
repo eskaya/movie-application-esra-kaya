@@ -27,9 +27,10 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="center"
-                app:tint="@color/change_color"
                 android:background="@drawable/shape_item_ripple"
-                android:src="@drawable/ic_back_left" />
+                android:contentDescription="@string/movieDetailPage_backImageContentDescription"
+                android:src="@drawable/ic_back_left"
+                app:tint="@color/change_color" />
 
         </androidx.cardview.widget.CardView>
 
@@ -74,12 +75,12 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/lato_bold"
                     android:maxLines="4"
-                    android:text="Avatar Collection"
                     android:textColor="@color/change_color"
                     android:textSize="@dimen/text_28"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivMoviePoster" />
+                    app:layout_constraintTop_toBottomOf="@+id/ivMoviePoster"
+                    tools:text="Avatar Collection" />
 
                 <TextView
                     android:id="@+id/tvDate"
@@ -117,6 +118,7 @@
                     android:id="@+id/ivLike"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:contentDescription="@string/movieDetailPage_likeStarsGroupContentDescription"
                     android:src="@drawable/vote_icon"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/ratingBar"

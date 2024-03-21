@@ -24,7 +24,8 @@
             android:layout_height="16dp"
             android:layout_gravity="center"
             app:tint="@color/change_color"
-            android:src="@drawable/ic_back_left" />
+            android:src="@drawable/ic_back_left"
+            android:contentDescription="@string/searchMoviePage_backImageContentDesc" />
 
     </androidx.cardview.widget.CardView>
 
@@ -84,7 +85,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/primary_color_text" />
+                app:tint="@color/primary_color_text"
+                android:contentDescription="@string/SearchMoivePage_searchIconContentDescription" />
 
             <EditText
                 android:id="@+id/etSearch"
@@ -101,7 +103,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivSearch"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:autofillHints="movie" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

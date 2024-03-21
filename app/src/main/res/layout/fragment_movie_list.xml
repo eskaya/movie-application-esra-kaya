@@ -22,9 +22,11 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_gravity="center"
+            android:background="@drawable/shape_item_ripple"
+            android:contentDescription="@string/movieListPage_backImageContentDescription"
             android:src="@drawable/ic_back_left"
-            app:tint="@color/change_color"
-            android:background="@drawable/shape_item_ripple"/>
+            app:tint="@color/change_color" />
+
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView

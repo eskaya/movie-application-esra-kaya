@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   tools:context=".presentation.force_update.ForceUpdateActivity">
+    tools:context=".presentation.force_update.ForceUpdateActivity">
 
     <ImageView
         android:id="@+id/ivRocket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/forceUpdatePage_forceUpdateImage"
         android:src="@drawable/force_update_cover"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +25,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/lato_bold"
-        android:text="The app is out of date :("
+        android:text="@string/forceUpdatePage_title"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="@dimen/text_18"
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/lato_regular"
-        android:text="Let's update it to have the best experience!"
+        android:text="@string/forceUpdatePage_description"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="@dimen/text_16"
@@ -64,7 +65,7 @@
             android:layout_gravity="center"
             android:fontFamily="sans-serif-medium"
             android:paddingVertical="18dp"
-            android:text="Update"
+            android:text="@string/forceUpdatePage_buttonText"
             android:textColor="@color/white"
             android:textSize="@dimen/text_16" />
 
